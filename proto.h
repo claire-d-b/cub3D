@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:29:56 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/14 11:41:20 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:36:15 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void check_side_east(t_player *player);
 void check_side_west(t_player *player);
 void register_coordinates(t_player *player, double x, double y);
 void init_var_raycast(char *p, float *d, t_player *player, int *i);
-void init_pixels(t_player *player, double *wall);
+void init_pixels(t_player *player, float *wall);
 int get_decimals(float height);
 char **create_sprite(int i, char **sprite);
 void display_sprite(t_player *player, float dist, int y, int i);
@@ -95,7 +95,7 @@ void init_sprite(t_player *player);
 void draw_sprite_from_end(t_player *player, int i, int j, int count);
 void draw_sprite_from_start(t_player *player, int i, int j, int count);
 void display_all(t_player *player);
-void display_view_x(t_player *player, float *teta, float *dist, double *wall_h);
+void display_view_x(t_player *player, float *teta, float *dist, float *wall_h);
 void register_sprite_start(int i, t_player *player, float angle, float d);
 void register_sprite_end(int i, t_player *player, float angle, float d);
 int is_sprite(float *sprite);

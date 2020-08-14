@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:30:38 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/14 14:25:16 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:36:24 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ float raycast(t_player *player, char **map, float angle)
 	init_var_raycast(&player->p, &d, player, &i);
 	while (player->p != '1')
 	{
-		if (((int)(player->ray_x + d * sin(angle)) > player->table_lenght - 1|| (int)(player->ray_x + d * sin(angle)) < 0)
+		if (((int)(player->ray_x + d * sin(angle)) > player->table_lenght - 1 || (int)(player->ray_x + d * sin(angle)) < 0)
 		|| ((int)(player->ray_y + d * cos(angle)) > player->max - 1 || (int)(player->ray_y + d * cos(angle)) < 0))
 			break ;
 		player->p = map[(int)(player->ray_x + d * sin(angle))][(int)(player->ray_y + d * cos(angle))];
@@ -81,7 +81,7 @@ void display_all(t_player *player)
 	player->start = 0;
 }
 
-void display_view_x(t_player *player, float *teta, float *dist, double *wall_h)
+void display_view_x(t_player *player, float *teta, float *dist, float *wall_h)
 {
 	*teta = player->teta + VIEW_ANGLE/2 - player->struct_screen.i * VIEW_ANGLE
 	/ (float)player->struct_screen.x;
@@ -94,7 +94,7 @@ void display_view(t_player *player)
 {
 	float teta;
 	float dist;
-	double wall_h;
+	float wall_h;
 
 	teta = 0;
 	dist = 0;

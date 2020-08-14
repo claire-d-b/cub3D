@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:37:01 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/14 11:37:07 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:36:43 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void init_struct_side(t_player *player)
 	player->struct_side.west = 0;
 }
 
-void init_pixels(t_player *player, double *wall)
+void init_pixels(t_player *player, float *wall)
 {
 	player->struct_screen.i = -1;
 	player->struct_screen.j = 0;
