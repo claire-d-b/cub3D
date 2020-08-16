@@ -27,9 +27,9 @@ void init_pixels(t_player *player, float *wall)
 	*wall = 0;
 }
 
-void init_var_raycast(char *p, float *d, t_player *player, int *i)
+void init_var_raycast(float *d, t_player *player, int *i)
 {
-	*p = '0';
+	player->p = '0';
 	player->ray_x = (player->x / CELL_SIZE) - 1;
 	player->ray_y = (player->y / CELL_SIZE) - 1;
 	*d = 0;

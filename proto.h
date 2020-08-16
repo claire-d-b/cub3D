@@ -55,7 +55,7 @@ void check_side_north(t_player *player);
 void check_side_east(t_player *player);
 void check_side_west(t_player *player);
 void register_coordinates(t_player *player, double x, double y);
-void init_var_raycast(char *p, float *d, t_player *player, int *i);
+void init_var_raycast(float *d, t_player *player, int *i);
 void init_pixels(t_player *player, float *wall);
 int get_decimals(float height);
 char **create_sprite(int i, char **sprite);

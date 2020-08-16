@@ -14,10 +14,11 @@
 
 void change_color(t_player *player, int y, int i, unsigned int color)
 {
-    player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) + (i * 4)))] = color;
+    if ((int)((y * player->struct_screen.x * 4) + (i * 4) + 3) <= player->struct_screen.x * player->struct_screen.y * 4 && (int)((y * player->struct_screen.x * 4) + (i * 4) >= 0))
+    {player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) + (i * 4)))] = color;
     player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) + (i * 4) + 1))] = color / 256;
     player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) + (i * 4) + 2))] = color / (256 * 256);
-    player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) + (i * 4) + 3))] = 1;
+    player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) + (i * 4) + 3))] = 1;}
 }
 
 unsigned int set_texture_sprite(t_player *player, int y, int i)
