@@ -6,7 +6,7 @@
 #    By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/14 11:48:01 by clde-ber          #+#    #+#              #
-#    Updated: 2020/08/17 15:47:03 by clde-ber         ###   ########.fr        #
+#    Updated: 2020/08/17 16:13:39 by clde-ber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ NAME		= Cub3D
 CC		= gcc
 RUN_SRC			= -c
 RUN_O			= -o
-INCL		= -L. cminilibx/libmlx.a -lXext -lX11 -lm -lbsd
+INCL		= -I minilibx_opengl_20191021 -L minilibx_opengl_20191021 -l mlx -framework OpenGL -framework AppKit
 RM		= rm -f
 CFLAGS		= -g3 -fsanitize=address -Wall -Wextra -Werror
 $(NAME):	$(OBJ)
