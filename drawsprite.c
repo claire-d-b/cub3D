@@ -74,9 +74,9 @@ void pivot_textures_sprite(int i, int j, t_player *player)
     count = 0;
 	while (player->sprite[count] && (int)player->sprite[count][0] != 0)
 	{
-	//	printf("player->sprite[count][8] %f\n", player->sprite[count][8]);
-	//	printf("player->sprite[count][9] %f\n", player->sprite[count][9]);
-	//	printf("COUNT %d\n", count);
+		printf("player->sprite[count][8] %f\n", player->sprite[count][8]);
+		printf("player->sprite[count][9] %f\n", player->sprite[count][9]);
+		printf("COUNT %d\n", count);
 		while (i <= (int)player->sprite[count][3] - (int)player->sprite[count][7])
 		{
 			while (j < (int)((player->sprite[count][2] + player->sprite[count][6]) / 2))

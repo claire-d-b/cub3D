@@ -39,7 +39,7 @@ NAME		= Cub3D
 CC		= gcc
 RUN_SRC			= -c
 RUN_O			= -o
-INCL		= -L. cminilibx/libmlx.a -lXext -lX11 -lm -lbsd
+INCL		= -I minilibx_opengl_20191021 -L minilibx_opengl_20191021 -l mlx -framework OpenGL -framework AppKit
 RM		= rm -f
 CFLAGS		= -g3 -fsanitize=address -Wall -Wextra -Werror
 $(NAME):	$(OBJ)

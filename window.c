@@ -88,7 +88,7 @@ int place_player(int i, int j, int count, t_player *player)
                  if (player->map[i][j] == 'N' || player->map[i][j] == 'S')
                      player->teta = (player->map[i][j] == 'N') ? VIEW_ANGLE : -VIEW_ANGLE;
                  if (player->map[i][j] == 'W' || player->map[i][j] == 'E')
-                    player->teta = (player->map[i][j] == 'W') ? -VIEW_ANGLE * 2 : 0;
+                    player->teta = (player->map[i][j] == 'W') ? 0 : VIEW_ANGLE * 2;
                  count++;
                 player->x = (i + 1) * CELL_SIZE + CELL_SIZE / 2;
                 player->y = (j + 1) * CELL_SIZE + CELL_SIZE / 2;

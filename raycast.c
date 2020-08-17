@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:30:38 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/14 16:36:24 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/14 14:25:16 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ float raycast(t_player *player, char **map, float angle)
 	float d;
 	int i;
 	
-	printf("player->teta %f\n", fabs(angle - player->teta));
-//	printf("player->table_lenght - 1 %d\n", player->table_lenght - 1);
-//	printf("player->max - 1 %d\n", player->max - 1);
-	init_var_raycast(&d, player, &i);
+//	player->boolean = 0;
+	init_var_raycast(&player->p, &d, player, &i);
 	while (player->p != '1')
 	{
-		if ((int)(player->ray_x + d * sin(angle)) > player->table_lenght - 1 || (int)(player->ray_x + d * sin(angle)) < 0
-		|| (int)(player->ray_y + d * cos(angle)) > player->max - 1 || (int)(player->ray_y + d * cos(angle)) < 0)
+		if (((int)(player->ray_x + d * sin(angle)) > player->table_lenght - 1|| (int)(player->ray_x + d * sin(angle)) < 0)
+		|| ((int)(player->ray_y + d * cos(angle)) > player->max - 1 || (int)(player->ray_y + d * cos(angle)) < 0))
 			break ;
 		player->p = map[(int)(player->ray_x + d * sin(angle))][(int)(player->ray_y + d * cos(angle))];
 		if (player->p == '2')
@@ -83,7 +81,7 @@ void display_all(t_player *player)
 	player->start = 0;
 }
 
-void display_view_x(t_player *player, float *teta, float *dist, float *wall_h)
+void display_view_x(t_player *player, float *teta, float *dist, double *wall_h)
 {
 	*teta = player->teta + VIEW_ANGLE/2 - player->struct_screen.i * VIEW_ANGLE
 	/ (float)player->struct_screen.x;
@@ -96,16 +94,16 @@ void display_view(t_player *player)
 {
 	float teta;
 	float dist;
-	float wall_h;
+	double wall_h;
 
 	teta = 0;
 	dist = 0;
+	wall_h = 0;
 	init_pixels(player, &wall_h);
 	init_sprite(player);
 	while (++player->struct_screen.i < player->struct_screen.x)
 	{
 		display_view_x(player, &teta, &dist, &wall_h);
-	//	printf("dist %f\n", dist);
 		while ((player->struct_screen.j < player->struct_screen.y / 2 - (int)wall_h))
 			pivot_colors_c(player);
 		while ((player->struct_screen.j < player->struct_screen.y / 2 + (int)wall_h))
