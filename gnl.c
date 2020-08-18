@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:59:02 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/14 11:46:57 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/18 15:22:05 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ static char		*ft_update_left(char *left, char *buf, char **line)
 	return (line[0]);
 }
 
-static char		*ft_create_a_clear_left(char *left, size_t size)
+static char		*ft_create_a_clear_left(char *left, char *buf, size_t size)
 {
 	int k;
-
+	
+	buf[0] = '\0';
 	if (left)
 	{
 		k = find_n(left, size);
@@ -57,10 +58,9 @@ int				get_next_line(int fd, char **line)
 	char		buf[BUFFER_SIZE + 1];
 	static char *left;
 
-	buf[0] = '\0';
-	left = (!left) ? ft_create_a_clear_left(left, BUFFER_SIZE) : left;
+	left = (!left) ? ft_create_a_clear_left(left, buf, BUFFER_SIZE) : left;
 	line[0] = ft_strjoin(left, "");
-	ft_create_a_clear_left(left, BUFFER_SIZE);
+	ft_create_a_clear_left(left, buf, BUFFER_SIZE);
 	if (find_n(line[0], ft_strlen(line[0])) != -1)
 	{
 		line[0][find_n(line[0], ft_strlen(line[0]))] = '\0';

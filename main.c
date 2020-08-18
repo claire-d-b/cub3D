@@ -6,13 +6,13 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:25:54 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/18 13:52:17 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/18 15:33:41 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void init_struct_bitmap(t_player *player)
+void	init_struct_bitmap(t_player *player)
 {
 	player->bitmap.r = 0;
 	player->bitmap.g = 0;
@@ -29,7 +29,7 @@ void init_struct_bitmap(t_player *player)
 	player->bitmap.filesize = player->bitmap.len + player->bitmap.offset;
 }
 
-void bmp_write_header(int i, int fd, t_player *player)
+void	bmp_write_header(int i, int fd, t_player *player)
 {
 	write(fd, "BM", 2);
 	write(fd, &player->bitmap.filesize, 4);
@@ -49,73 +49,74 @@ void bmp_write_header(int i, int fd, t_player *player)
 	}
 }
 
-void bmp_write_colors(int i, int j, int fd, t_player *player)
+void	bmp_write_colors(int i, int j, int fd, t_player *player)
 {
-	player->bitmap.r = player->ids.img_data[(int)(((i * player->struct_screen.x * 4) + (j * 4))) + 2];
-	player->bitmap.g = player->ids.img_data[(int)(((i * player->struct_screen.x * 4) + (j * 4))) + 1];
-	player->bitmap.b = player->ids.img_data[(int)(((i * player->struct_screen.x * 4) + (j * 4)))];
-	player->bitmap.a = player->ids.img_data[(int)(((i * player->struct_screen.x * 4) + (j * 4)) + 3)];
-    write(fd, &player->bitmap.b, 1);
+	player->bitmap.r = player->ids.img_data[(int)(((i *
+	player->struct_screen.x * 4) + (j * 4))) + 2];
+	player->bitmap.g = player->ids.img_data[(int)(((i *
+	player->struct_screen.x * 4) + (j * 4))) + 1];
+	player->bitmap.b = player->ids.img_data[(int)(((i *
+	player->struct_screen.x * 4) + (j * 4)))];
+	player->bitmap.a = player->ids.img_data[(int)(((i *
+	player->struct_screen.x * 4) + (j * 4)) + 3)];
+	write(fd, &player->bitmap.b, 1);
 	write(fd, &player->bitmap.g, 1);
 	write(fd, &player->bitmap.r, 1);
-    write(fd, &player->bitmap.a, 1);
+	write(fd, &player->bitmap.a, 1);
 }
 
-int create_bmp(t_player *player)
+int		create_bmp(t_player *player)
 {
-    int i;
-    int fd;
-	
-	i = 0;
-	fd = 0;
-	init_struct_bitmap(player);
-    if (!(fd = open("image.bmp", O_CREAT, 00700)))
-		return (0);
-    close(fd);
-    if (!(fd = open("image.bmp", O_WRONLY)))
-			return (0);
-	bmp_write_header(i, fd, player);
+	int i;
+	int fd;
+	int j;
+
 	i = player->struct_screen.y;
-	int j = 0;
+	fd = 0;
+	j = -1;
+	init_struct_bitmap(player);
+	if (!(fd = open("image.bmp", O_CREAT, 00700)))
+		return (0);
+	close(fd);
+	if (!(fd = open("image.bmp", O_WRONLY)))
+		return (0);
+	bmp_write_header(i, fd, player);
 	while (i >= 0)
 	{
-		while (j < player->struct_screen.x)
-		{
+		while (++j < player->struct_screen.x)
 			bmp_write_colors(i, j, fd, player);
-			j++;
-		}
-		j = 0;
+		j = -1;
 		i--;
 	}
-    close(fd);
-	return(0);
+	close(fd);
+	return (0);
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-    char *title;
-	t_player player;
-    char **map;
+	char		*title;
+	t_player	player;
+	char		**map;
 
+	title = "cub3D";
 	map = NULL;
 	player.start = 1;
-    title = "cub3D";
-    player.save = 0;
+	player.save = 0;
 	player.max = 0;
 	player.bool_start = 0;
-	check_file(0, &player);
-    map = create_map(0, map, player.table_lenght, &player);
-    player.map = map;
+	check_file(NULL, 0, 0, &player);
+	map = create_map(0, map, player.table_lenght, &player);
+	player.map = map;
 	player.nb_sprites = 0;
-  if (argc == 2 && argv[1][0] == '-' && argv[1][1] == '-' && argv[1][2] == 's' && argv[1][3] == 'a'
-    && argv[1][4] == 'v' && argv[1][5] == 'e')
-        player.save = 1;
-    player.ids.mlx_ptr = mlx_init();
-    if (place_player(0, -1, 0, &player))
+	if (argc == 2 && argv[1][0] == '-' && argv[1][1] == '-' && argv[1][2]
+	== 's' && argv[1][3] == 'a' && argv[1][4] == 'v' && argv[1][5] == 'e')
+		player.save = 1;
+	player.ids.mlx_ptr = mlx_init();
+	if (place_player(0, -1, 0, &player))
 		open_window(0, 0, &player, title);
-    mlx_key_hook(player.ids.mlx_win, &key_press, &player);
-    display_view(&player);
-    mlx_loop(player.ids.mlx_ptr);
+	mlx_key_hook(player.ids.mlx_win, &key_press, &player);
+	display_view(&player);
+	mlx_loop(player.ids.mlx_ptr);
 	ft_free2(player.sprite);
-    return (0);
+	return (0);
 }

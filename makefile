@@ -6,7 +6,7 @@
 #    By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/14 11:48:01 by clde-ber          #+#    #+#              #
-#    Updated: 2020/08/18 13:50:27 by clde-ber         ###   ########.fr        #
+#    Updated: 2020/08/18 15:41:36 by clde-ber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS		= main.c\
 		utils.c\
 		split.c\
 		parsefile.c\
+		fileutils.c\
 		utilsview.c\
 		utilsmem.c\
 		initvar.c\

@@ -6,41 +6,11 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:40:30 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/14 11:40:54 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/18 15:41:15 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int set_resolution(t_player *player, char *line)
-{
-    int count;
-    char **to_cast;
-
-    count = 0;
-    to_cast = NULL;
-    while (line[count++] && ft_isdigit(line[count]) == 0)
-    if (line[count] == '\0')
-    {
-        write(1, "Error\nPLease provide numbers as map resolution.", 47);
-        return (-1);
-    }
-    to_cast = ft_split(&line[count], ' ');
-    count = 0;
-    while (to_cast[count] && ft_atoi(to_cast[count]) >= 0)
-        count++;
-    if (!(count == 2))
-    {
-        write(1, "Error\nWrong resolution ID.", 26);
-        return(-1);
-    }
-    player->struct_screen.x = ft_atoi(to_cast[0]);
-    player->struct_screen.y = ft_atoi(to_cast[1]);
-    ft_free3(to_cast);
-    player->struct_screen.x = (player->struct_screen.x > 1920) ? 1920 : player->struct_screen.x;
-    player->struct_screen.y = (player->struct_screen.y > 1080) ? 1080 : player->struct_screen.y;
-    return (1);
-}
 
 int set_path_to_texture_ns(t_player *player, char *line)
 {

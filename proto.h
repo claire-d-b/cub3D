@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:29:56 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/18 12:57:41 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/18 15:43:57 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 int			get_next_line(int fd, char **line);
 char	*ft_strjoin(char *s1, char *s2);
-int check_file(int i, t_player *player);
 char		*join_a_free(char *s1, char *s2);
 size_t		ft_strlen(char *str);
 int			find_n(char *buf, size_t size);
@@ -81,7 +80,8 @@ int	ft_atoi(const char *str);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 int pivot_file_checking(t_player *player, char *line, int y);
 int set_map_len(int y, t_player *player, char *line);
-int check_file(int i, t_player *player);
+int check_file(char *line, int fd, int i, t_player *player);
+void check_map(char *line, char **map, int count, t_player *player);
 int transform_map(char **map, int count, char *line, t_player *player);
 int set_resolution(t_player *player, char *line);
 int set_path_to_texture_ns(t_player *player, char *line);
