@@ -6,7 +6,7 @@
 #    By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/14 11:48:01 by clde-ber          #+#    #+#              #
-#    Updated: 2020/08/18 11:38:02 by clde-ber         ###   ########.fr        #
+#    Updated: 2020/08/18 13:50:27 by clde-ber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,10 @@ SRCS		= main.c\
 		raycast.c\
 		texture.c\
 		move.c\
-		moveud.c\
-		moverl.c\
+		moveu.c\
+		moved.c\
+		mover.c\
+		movel.c\
 		camera.c\
 		utils.c\
 		split.c\
