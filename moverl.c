@@ -6,13 +6,13 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:28:53 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/17 17:11:00 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/18 12:17:27 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void walk_right_teta_pos(t_player *player)
+void walk_down_teta_pos(t_player *player) // down
 {
 printf("player->teta %f\n", player->teta);
 printf("right");
@@ -79,7 +79,7 @@ printf("player->y %d\n", (int)((player->y - CELL_SIZE) / CELL_SIZE) - 1);
     		player->y = (player->map[(int)(player->x / CELL_SIZE) - 1][(int)((player->y - CELL_SIZE) / 
 			CELL_SIZE) - 1] != '1' && (int)((player->y - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y - CELL_SIZE) / 
 			CELL_SIZE) < player->max) ? player->y - CELL_SIZE : player->y;
-		else if (player->teta >= M_PI / 4 && player->teta < (M_PI / 4) * 3)
+		else if (player->teta > M_PI / 4 && player->teta < (M_PI / 4) * 3)
 			player->x = (player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE) - 1][(int)(player->y / 
 			CELL_SIZE) - 1] != '1' && (int)((player->x - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x - CELL_SIZE) / 
 			CELL_SIZE) < player->table_lenght) ? player->x - CELL_SIZE : player->x;
@@ -90,7 +90,7 @@ printf("player->y %d\n", (int)((player->y - CELL_SIZE) / CELL_SIZE) - 1);
 	}
 }
 
-void walk_left_teta_neg(t_player *player)
+void walk_up_teta_neg(t_player *player)
 {
 //printf("player->teta %f\n", player->teta);i
 printf("right neg");
@@ -100,8 +100,8 @@ printf("right neg");
 		CELL_SIZE) - 1] != '1' && (int)((player->x - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x - CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && (int)((player->y + CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y + CELL_SIZE) / 
 		CELL_SIZE) < player->max)
-		player->x = player->x - CELL_SIZE;
-		player->y = player->y + CELL_SIZE;
+		{player->x = player->x - CELL_SIZE;
+		player->y = player->y + CELL_SIZE;}
 		/*player->x = (player->map[(int)((player->x - CELL_SIZE)/ CELL_SIZE) - 1][(int)((player->y + CELL_SIZE) / 
 		CELL_SIZE) - 1] != '1' && (int)((player->x - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x - CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && (int)((player->y + CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y + CELL_SIZE) / 
@@ -133,8 +133,8 @@ printf("right neg");
 		CELL_SIZE) - 1] != '1' && (int)((player->x - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x - CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && (int)((player->y - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y - CELL_SIZE) / 
 		CELL_SIZE) < player->max)
-		player->x = player->x - CELL_SIZE;
-		player->y = player->y - CELL_SIZE;
+		{player->x = player->x - CELL_SIZE;
+		player->y = player->y - CELL_SIZE;}
 	/*	player->x = (player->map[(int)((player->x - CELL_SIZE)/ CELL_SIZE) - 1][(int)((player->y - CELL_SIZE) / 
 		CELL_SIZE) - 1] != '1' && (int)((player->x - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x - CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && (int)((player->y - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y - CELL_SIZE) / 
@@ -161,7 +161,7 @@ printf("right neg");
 	}
 }
 
-void walk_left_teta_pos(t_player *player)
+void walk_up_teta_pos(t_player *player) //up
 {
 	printf("player->teta %f\n", player->teta);
 	printf("left");
@@ -171,8 +171,8 @@ void walk_left_teta_pos(t_player *player)
 		CELL_SIZE) - 1] != '1' && ((player->x + CELL_SIZE) / CELL_SIZE) > 0 && ((player->x + CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && ((player->y + CELL_SIZE) / CELL_SIZE) > 1 && ((player->y + CELL_SIZE) / 
 		CELL_SIZE) < player->max)
-		player->x = player->x + CELL_SIZE;
-		player->y = player->y + CELL_SIZE;
+		{player->x = player->x + CELL_SIZE;
+		player->y = player->y + CELL_SIZE;}
 		/*player->x = (player->map[(int)((player->x + CELL_SIZE)/ CELL_SIZE) - 1][(int)((player->y + CELL_SIZE) / 
 		CELL_SIZE) - 1] != '1' && ((player->x + CELL_SIZE) / CELL_SIZE) > 0 && ((player->x + CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && ((player->y + CELL_SIZE) / CELL_SIZE) > 0 && ((player->y + CELL_SIZE) / 
@@ -204,8 +204,8 @@ void walk_left_teta_pos(t_player *player)
 		CELL_SIZE) - 1] != '1' && (int)((player->x + CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x + CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && (int)((player->y - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y - CELL_SIZE) / 
 		CELL_SIZE) < player->max)
-		player->x = player->x + CELL_SIZE;
-		player->y = player->y - CELL_SIZE;
+		{player->x = player->x + CELL_SIZE;
+		player->y = player->y - CELL_SIZE;}
 	/*	player->x = (player->map[(int)((player->x + CELL_SIZE)/ CELL_SIZE) - 1][(int)((player->y - CELL_SIZE) / 
 		CELL_SIZE) - 1] != '1' && (int)((player->x + CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x + CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && (int)((player->y - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y - CELL_SIZE) / 
@@ -232,7 +232,7 @@ void walk_left_teta_pos(t_player *player)
 	}
 }
 
-void walk_right_teta_neg(t_player *player)
+void walk_down_teta_neg(t_player *player)
 {
 	printf("player->teta %f\n", player->teta);
 	printf("left neg");
@@ -242,8 +242,8 @@ void walk_right_teta_neg(t_player *player)
 		CELL_SIZE) - 1] != '1' && (int)((player->x + CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x + CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && (int)((player->y - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y - CELL_SIZE) / 
 		CELL_SIZE) < player->max)
-		player->x = player->x + CELL_SIZE;
-		player->y = player->y - CELL_SIZE;
+		{player->x = player->x + CELL_SIZE;
+		player->y = player->y - CELL_SIZE;}
 	/*	player->x = (player->map[(int)((player->x - CELL_SIZE)/ CELL_SIZE) - 1][(int)((player->y + CELL_SIZE) / 
 		CELL_SIZE) - 1] != '1' && (int)((player->x - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x - CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && (int)((player->y + CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y + CELL_SIZE) / 
@@ -259,8 +259,8 @@ void walk_right_teta_neg(t_player *player)
 		CELL_SIZE) - 1] != '1' && (int)((player->x + CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x + CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && (int)((player->y + CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y + CELL_SIZE) / 
 		CELL_SIZE) < player->max)
-		player->x = player->x + CELL_SIZE;
-		player->y = player->y + CELL_SIZE;
+		{player->x = player->x + CELL_SIZE;
+		player->y = player->y + CELL_SIZE;}
 	/*	player->x = (player->map[(int)((player->x - CELL_SIZE)/ CELL_SIZE) - 1][(int)((player->y - CELL_SIZE) / 
 		CELL_SIZE) - 1] != '1' && (int)((player->x - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x - CELL_SIZE) / 
 		CELL_SIZE) < player->table_lenght && (int)((player->y - CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y - CELL_SIZE) / 
@@ -292,7 +292,7 @@ void walk_right_teta_neg(t_player *player)
 			player->y = (player->map[(int)(player->x / CELL_SIZE) - 1][(int)((player->y + CELL_SIZE) / 
 			CELL_SIZE) - 1] != '1' && (int)((player->y + CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->y + CELL_SIZE) / 
 			CELL_SIZE) < player->max) ? player->y + CELL_SIZE : player->y;
-		else if (player->teta >= (-(M_PI / 4) * 3) && player->teta < -M_PI / 4)
+		else if (player->teta > (-(M_PI / 4) * 3) && player->teta < -M_PI / 4)
 			 player->x = (player->map[(int)((player->x + CELL_SIZE) / CELL_SIZE) - 1][(int)(player->y / 
 			CELL_SIZE) - 1] != '1' && (int)((player->x + CELL_SIZE) / CELL_SIZE) > 1 && (int)((player->x + CELL_SIZE) / 
 			CELL_SIZE) < player->table_lenght) ? player->x + CELL_SIZE : player->x;
