@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 11:22:57 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/18 12:19:00 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/18 12:58:58 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ int exit_game(t_player *player)
 
 int		key_press(int keycode, t_player *player)
 {
-	printf("keycode = %d\n", keycode);
-	printf("plqyer->teta %f\n", player->teta);
 	if (keycode == right_arrow)
 		camera_right(player);
 	if (keycode == left_arrow)

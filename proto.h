@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:29:56 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/14 11:41:20 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/18 12:57:41 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,13 @@ void bmp_write_header(int i, int fd, t_player *player);
 void bmp_write_colors(int i, int j, int fd, t_player *player);
 void delete_sprites(t_player *player);
 void register_dist_minmax(t_player *player, float d, float angle, int i);
+void walk_up_teta_pos_diag(t_player *player);
+void walk_up_teta_neg_diag(t_player *player);
+void walk_down_teta_pos_diag(t_player *player);
+void walk_down_teta_neg_diag(t_player *player);
+void walk_right_teta_pos_diag(t_player *player);
+void walk_right_teta_neg_diag(t_player *player);
+void walk_left_teta_pos_diag(t_player *player);
+void walk_left_teta_neg_diag(t_player *player);
 
 #endif
