@@ -17,7 +17,7 @@ void check_wall_sides(t_player *player, float d, float angle)
 	if ((int)(player->ray_x + (d - EPSILON) * sin(angle)) - (int)player->struct_side.he == -1 &&
 		(int)(player->ray_y + (d - EPSILON) * cos(angle)) - (int)player->struct_side.wi == 0 && player->p == '1')
 		check_side_south(player);
-	else if ((int)(player->ray_x + (d - EPSILON) * sin(angle)) - (int)player->struct_side.he == 1 &&
+	else if ((int)(player->ray_x + (d + EPSILON) * sin(angle)) - (int)player->struct_side.he == 1 &&
 		(int)(player->ray_y + (d - EPSILON) * cos(angle)) - (int)player->struct_side.wi == 0 && player->p == '1')
 		check_side_north(player);
 	else if ((int)(player->ray_y + (d - EPSILON) * cos(angle)) - (int)player->struct_side.wi == -1 &&
@@ -30,12 +30,12 @@ void check_wall_sides(t_player *player, float d, float angle)
 
 void register_dist_minmax(t_player *player, float d, float angle, int i)
 {
-	if ((player->struct_screen.y / (d * cos(fabs(angle - player->teta)))) > player->sprite[i][2] || player->sprite[i][2] == 0)
-		player->sprite[i][2] = (player->struct_screen.y / (d * cos(fabs(angle - player->teta))));
-	if ((player->struct_screen.y / d > player->sprite[i][9] || player->sprite[i][9] == 0))
-		player->sprite[i][9] = player->struct_screen.y / d;
-	if (player->struct_screen.y / (d * cos(fabs(angle - player->teta))) < player->sprite[i][6] || player->sprite[i][6] == 0)
-		player->sprite[i][6] = player->struct_screen.y / (d * cos(fabs(angle - player->teta)));
+	if ((player->struct_screen.x / (d * cos(fabs(angle - player->teta)))) > player->sprite[i][2] || player->sprite[i][2] == 0)
+		player->sprite[i][2] = (player->struct_screen.x / (d * cos(fabs(angle - player->teta))));
+	if ((player->struct_screen.x / d > player->sprite[i][9] || player->sprite[i][9] == 0))
+		player->sprite[i][9] = player->struct_screen.x / d;
+	if (player->struct_screen.x / (d * cos(fabs(angle - player->teta))) < player->sprite[i][6] || player->sprite[i][6] == 0)
+		player->sprite[i][6] = player->struct_screen.x / (d * cos(fabs(angle - player->teta)));
 }
 
 float raycast(t_player *player, char **map, float angle)
@@ -83,10 +83,10 @@ void display_all(t_player *player)
 
 void display_view_x(t_player *player, float *teta, float *dist, double *wall_h)
 {
-	*teta = player->teta + VIEW_ANGLE/2 - player->struct_screen.i * VIEW_ANGLE
+	*teta = player->teta + FOV/2 - player->struct_screen.i * FOV
 	/ (float)player->struct_screen.x;
 	*dist = raycast(player, player->map, *teta);
-	*wall_h = (player->struct_screen.y / 2) / *dist;
+	*wall_h = (player->struct_screen.x / 2) / *dist;
 	player->struct_screen.j = 0;
 }
 

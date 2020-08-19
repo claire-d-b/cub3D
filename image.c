@@ -31,7 +31,7 @@ void	pivot_textures_ns(t_player *player, float dist)
 	unsigned int	col;
 	int				wall_h;
 
-	wall_h = (int)((player->struct_screen.y) / dist);
+	wall_h = (int)((player->struct_screen.x) / dist);
 	col = 0;
 	player->rx = (int)((get_decimals(player->struct_side.wi) * 64) / 100);
 	player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
@@ -60,7 +60,7 @@ void	pivot_textures_ew(t_player *player, float dist)
 	unsigned int	col;
 	int				wall_h;
 
-	wall_h = (int)((player->struct_screen.y) / dist);
+	wall_h = (int)((player->struct_screen.x) / dist);
 	col = 0;
 	player->rx = (int)((get_decimals(player->struct_side.he) * 64) / 100);
 	player->ry = (int)(((player->struct_screen.j - player->struct_screen.y

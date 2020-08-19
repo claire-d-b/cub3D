@@ -89,6 +89,7 @@ typedef struct s_ids
 typedef struct s_player
 {
     int gnl;
+    int square;
     float dist_to_wall;
     char *xpm_path_no;
     char *xpm_path_so;

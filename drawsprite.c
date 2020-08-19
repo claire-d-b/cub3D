@@ -34,7 +34,7 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 	int				xposition_end;
 	int				wall_h;
 
-	wall_h = (int)((player->sprite[count][2] + player->sprite[count][6]) / 2);
+	wall_h = (int)((player->sprite[count][2]));
 	xposition_end = (int)player->sprite[count][3];
 	color = set_texture_sprite(player, (int)(j * 64 / wall_h),
 	(int)(i * 64 / wall_h));
@@ -52,7 +52,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 	int				xposition_start;
 	int				wall_h;
 
-	wall_h = (int)((player->sprite[count][2] + player->sprite[count][6]) / 2);
+	wall_h = (int)((player->sprite[count][2]));
 	xposition_start = (int)player->sprite[count][7];
 	color = set_texture_sprite(player, (int)(j * 64 / wall_h),
 	(int)(i * 64 / wall_h));
