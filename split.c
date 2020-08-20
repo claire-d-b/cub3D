@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:42:27 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/14 11:42:30 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/20 12:32:22 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ size_t	count_malloc(char const *s, char c)
 	return (count);
 }
 
-void		*ft_free(char **res, int j)
+void	*ft_free(char **res, int j)
 {
 	int	i;
 
@@ -58,13 +58,14 @@ void		*ft_free(char **res, int j)
 	return (NULL);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	size_t	i = 0;
+	size_t	i;
 	size_t	j;
 	char	**res;
 
 	j = 0;
+	i = 0;
 	if (!s || !*s)
 		return ((char **)ft_calloc(2, sizeof(char *)));
 	if (!(res = malloc(sizeof(char *) * (count_malloc(s, c) + 1))))

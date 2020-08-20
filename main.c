@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:25:54 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/18 15:33:41 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/20 14:26:01 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,10 @@ int		main(int argc, char **argv)
 	== 's' && argv[1][3] == 'a' && argv[1][4] == 'v' && argv[1][5] == 'e')
 		player.save = 1;
 	player.ids.mlx_ptr = mlx_init();
-	if (place_player(0, -1, 0, &player))
-		open_window(0, 0, &player, title);
+	if (place_player(-1, -1, 0, &player))
+		open_window(-1, -1, &player, title);
 	mlx_key_hook(player.ids.mlx_win, &key_press, &player);
-	display_view(&player);
+	display_view(0, 0, 0, &player);
 	mlx_loop(player.ids.mlx_ptr);
 	ft_free2(player.sprite);
 	return (0);

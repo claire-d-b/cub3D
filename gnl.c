@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:59:02 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/18 15:22:05 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/19 18:53:57 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char		*ft_update_left(char *left, char *buf, char **line)
 static char		*ft_create_a_clear_left(char *left, char *buf, size_t size)
 {
 	int k;
-	
+
 	buf[0] = '\0';
 	if (left)
 	{
