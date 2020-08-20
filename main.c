@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:25:54 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/20 14:26:01 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/20 15:20:42 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	bmp_write_colors(int i, int j, int fd, t_player *player)
 	player->bitmap.b = player->ids.img_data[(int)(((i *
 	player->struct_screen.x * 4) + (j * 4)))];
 	player->bitmap.a = player->ids.img_data[(int)(((i *
-	player->struct_screen.x * 4) + (j * 4)) + 3)];
+	player->struct_screen.x * 4) + (j * 4))) + 3];
 	write(fd, &player->bitmap.b, 1);
 	write(fd, &player->bitmap.g, 1);
 	write(fd, &player->bitmap.r, 1);
@@ -80,13 +80,12 @@ int		create_bmp(t_player *player)
 	close(fd);
 	if (!(fd = open("image.bmp", O_WRONLY)))
 		return (0);
-	bmp_write_header(i, fd, player);
-	while (i >= 0)
+	bmp_write_header(0, fd, player);
+	while (--i >= 0)
 	{
 		while (++j < player->struct_screen.x)
 			bmp_write_colors(i, j, fd, player);
 		j = -1;
-		i--;
 	}
 	close(fd);
 	return (0);

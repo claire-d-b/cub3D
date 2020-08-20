@@ -6,7 +6,7 @@
 #    By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/14 11:48:01 by clde-ber          #+#    #+#              #
-#    Updated: 2020/08/20 14:44:15 by clde-ber         ###   ########.fr        #
+#    Updated: 2020/08/20 15:08:45 by clde-ber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,6 @@ BITMAP = image.bmp
 OBJ		= $(SRCS:.c=.o)
 NAME		= Cub3D
 CC		= gcc
-RUN_SRC			= -c
-RUN_O			= -o
 INCL		= -I minilibx_opengl_20191021 -L minilibx_opengl_20191021 -l mlx -framework OpenGL -framework AppKit
 RM		= rm -f
 CFLAGS		= -g3 -fsanitize=address -Wall -Wextra -Werror
