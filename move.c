@@ -59,11 +59,7 @@ int		key_press(int keycode, t_player *player)
 	if (keycode == MOVE_LEFT)
 		walk_right(player);
 	if (keycode == ESCAPE)
-	{
-		mlx_clear_window(player->ids.mlx_ptr, player->ids.mlx_win);
-		mlx_destroy_window(player->ids.mlx_ptr, player->ids.mlx_win);
 		exit_game(player);
-	}
 	else
 	{
 		delete_sprites(player);

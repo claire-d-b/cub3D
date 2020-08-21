@@ -91,6 +91,13 @@ int		create_bmp(t_player *player)
 	return (0);
 }
 
+int		exit2(t_player *player, int code)
+{
+	printf("%d\n", code);
+	player->ids.mlx_ptr = player->ids.mlx_ptr;
+	return (0);
+}	
+
 int		main(int argc, char **argv)
 {
 	char		*title;
@@ -117,5 +124,6 @@ int		main(int argc, char **argv)
 	display_view(0, 0, 0, &player);
 	mlx_loop(player.ids.mlx_ptr);
 	ft_free2(player.sprite);
+	exit_game(&player);
 	return (0);
 }

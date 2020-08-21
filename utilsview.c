@@ -44,6 +44,8 @@ int				get_decimals(float height)
 
 int				exit_game(t_player *player)
 {
+	mlx_clear_window(player->ids.mlx_ptr, player->ids.mlx_win);
+	mlx_destroy_window(player->ids.mlx_ptr, player->ids.mlx_win);
 	player->ids.mlx_ptr = 0;
 	player->ids.mlx_win = 0;
 	exit(0);

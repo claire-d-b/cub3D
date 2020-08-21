@@ -36,7 +36,6 @@ void	*ft_free3(char **sprite)
 	{
 		free(sprite[i]);
 		i++;
-		printf("ici");
 	}
 	free(sprite[i]);
 	free(sprite);
