@@ -46,19 +46,19 @@ void	walk_left(t_player *player)
 
 int		key_press(int keycode, t_player *player)
 {
-	if (keycode == right_arrow)
+	if (keycode == RIGHT_ARROW)
 		camera_right(player);
-	if (keycode == left_arrow)
+	if (keycode == LEFT_ARROW)
 		camera_left(player);
-	if (keycode == move_up)
+	if (keycode == MOVE_UP)
 		walk_up(player);
-	if (keycode == move_down)
+	if (keycode == MOVE_DOWN)
 		walk_down(player);
-	if (keycode == move_right)
+	if (keycode == MOVE_RIGHT)
 		walk_left(player);
-	if (keycode == move_left)
+	if (keycode == MOVE_LEFT)
 		walk_right(player);
-	if (keycode == escape)
+	if (keycode == ESCAPE)
 	{
 		mlx_clear_window(player->ids.mlx_ptr, player->ids.mlx_win);
 		mlx_destroy_window(player->ids.mlx_ptr, player->ids.mlx_win);

@@ -16,12 +16,12 @@ void	camera_right(t_player *player)
 {
 	if ((int)player->teta <= (int)-M_PI)
 		player->teta = M_PI;
-	player->teta -= rotation;
+	player->teta -= ROTATION;
 }
 
 void	camera_left(t_player *player)
 {
 	if ((int)player->teta >= (int)M_PI)
 		player->teta = -M_PI;
-	player->teta += rotation;
+	player->teta += ROTATION;
 }

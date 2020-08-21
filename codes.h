@@ -20,15 +20,15 @@
 # define FOV M_PI/3
 # define CELL_SIZE 64
 # define EPSILON 0.02f
-# define rotation M_PI/8
-# define move_right 100
-# define move_left 115
-# define move_up 97
-# define move_down 119
-# define escape 65307 
-# define left_arrow 65361
-# define right_arrow 65363
-# define key_press_ev 2
-# define exit_ev 17
+# define ROTATION M_PI/8
+# define MOVE_RIGHT 100
+# define MOVE_LEFT 115
+# define MOVE_UP 97
+# define MOVE_DOWN 119
+# define ESCAPE 65307 
+# define LEFT_ARROW 65361
+# define RIGHT_ARROW 65363
+# define KEY_PRESS_EV 2
+# define EXIT_EV 17
 
 #endif
