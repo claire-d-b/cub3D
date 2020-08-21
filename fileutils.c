@@ -87,10 +87,8 @@ int	set_resolution(int count, t_player *player, char *line)
 		write(1, "Error\nWrong resolution ID.", 26);
 		return (-1);
 	}
-	player->struct_screen.x = (ft_atoi(to_cast[0]) > 1920) ?
-	1920 : ft_atoi(to_cast[0]);
-	player->struct_screen.y = (ft_atoi(to_cast[1]) > 1080) ?
-	1080 : ft_atoi(to_cast[1]);
+	player->struct_screen.x = ft_atoi(to_cast[0]);
+	player->struct_screen.y = ft_atoi(to_cast[1]);
 	ft_free3(to_cast);
 	return (1);
 }

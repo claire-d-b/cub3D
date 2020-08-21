@@ -99,6 +99,8 @@ int		open_window(int count, int j, t_player *player, char const *title)
 			player->sprite[count][j] = 0;
 	}
 	player->sprite[count] = NULL;
+	mlx_get_screen_size(player->ids.mlx_ptr, &player->struct_screen.x,
+	&player->struct_screen.y);
 	player->ids.mlx_win = mlx_new_window(player->ids.mlx_ptr,
 	player->struct_screen.x, player->struct_screen.y, (char *)title);
 	player->ids.img_ptr = mlx_new_image(player->ids.mlx_ptr,

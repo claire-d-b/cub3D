@@ -19,6 +19,6 @@
 # include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <mlx.h>
+# include "./minilibx/mlx.h"
 
 #endif

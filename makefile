@@ -15,7 +15,7 @@ SRCS		= main.c\
 		gnlutils.c\
 		window.c\
 		map.c\
-		raycast.c\
+		raymarch.c\
 		texture.c\
 		move.c\
 		moveu.c\
@@ -31,7 +31,7 @@ SRCS		= main.c\
 		utilsmem.c\
 		utilsnb.c\
 		initvar.c\
-		utilsraycast.c\
+		utilsraymarch.c\
 		image.c\
 		utilssprite.c\
 		drawsprite.c\
@@ -43,7 +43,7 @@ BITMAP = image.bmp
 OBJ		= $(SRCS:.c=.o)
 NAME		= Cub3D
 CC		= gcc
-INCL		= -I minilibx_opengl_20191021 -L minilibx_opengl_20191021 -l mlx -framework OpenGL -framework AppKit
+INCL		= -L. minilibx/libmlx.a -lXext -lX11 -lm -lbsd
 RM		= rm -f
 CFLAGS		= -g3 -fsanitize=address -Wall -Wextra -Werror
 $(NAME):	$(OBJ)
