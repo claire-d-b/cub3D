@@ -17,7 +17,7 @@
 #  define M_PI 3.14159265358979323846f
 # endif
 # define VIEW_ANGLE 1.57079632679f
-# define FOV 1.0471975512f 
+# define FOV 1.0471975512f
 # define CELL_SIZE 64
 # define EPSILON 0.02f
 # define ROTATION 0.39269908169f

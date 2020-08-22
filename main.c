@@ -91,13 +91,6 @@ int		create_bmp(t_player *player)
 	return (0);
 }
 
-int		exit2(t_player *player, int code)
-{
-	printf("%d\n", code);
-	player->ids.mlx_ptr = player->ids.mlx_ptr;
-	return (0);
-}	
-
 int		main(int argc, char **argv)
 {
 	char		*title;
@@ -113,7 +106,6 @@ int		main(int argc, char **argv)
 	check_file(NULL, 0, 0, &player);
 	map = create_map(0, map, player.table_lenght, &player);
 	player.map = map;
-	player.nb_sprites = 0;
 	if (argc == 2 && argv[1][0] == '-' && argv[1][1] == '-' && argv[1][2]
 	== 's' && argv[1][3] == 'a' && argv[1][4] == 'v' && argv[1][5] == 'e')
 		player.save = 1;
@@ -121,9 +113,9 @@ int		main(int argc, char **argv)
 	if (place_player(-1, -1, 0, &player))
 		open_window(-1, -1, &player, title);
 	mlx_key_hook(player.ids.mlx_win, &key_press, &player);
+	mlx_hook(player.ids.mlx_win, 17, 1L << 17, exit_game, &player);
 	display_view(0, 0, 0, &player);
 	mlx_loop(player.ids.mlx_ptr);
 	ft_free2(player.sprite);
-	exit_game(&player);
 	return (0);
 }

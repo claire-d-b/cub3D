@@ -38,10 +38,9 @@ SRCS		= main.c\
 		xpm_data.c\
 
 RENAME = mv a.out Cub3D
-IMAGE =	--save
-BITMAP = image.bmp
 OBJ		= $(SRCS:.c=.o)
 NAME		= Cub3D
+BITMAP		= image.bmp
 CC		= gcc
 INCL		= -L. minilibx/libmlx.a -lXext -lX11 -lm -lbsd
 RM		= rm -f
@@ -49,7 +48,6 @@ CFLAGS		= -g3 -fsanitize=address -Wall -Wextra -Werror
 $(NAME):	$(OBJ)
 			@$(CC) $(CFLAGS) $(SRCS) $(INCL)
 			@$(RENAME)
-			@./$(NAME)
 all:		$(NAME)
 bitmap:		$(OBJ)
 			@$(CC) $(CFLAGS) $(SRCS) $(INCL)
@@ -59,6 +57,4 @@ clean:
 fclean:		clean
 		@$(RM) $(NAME) $(BITMAP)
 re:		fclean all
-bmp:	fclean bitmap
-		@./$(NAME) $(IMAGE)
 .PHONY:		all clean fclean re
