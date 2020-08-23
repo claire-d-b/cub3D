@@ -91,6 +91,12 @@ int		create_bmp(t_player *player)
 	return (0);
 }
 
+void init_h_w(t_player *player)
+{
+	player->max = 0;
+	player->table_lenght = 0;
+}
+
 int		main(int argc, char **argv)
 {
 	char		*title;
@@ -101,7 +107,7 @@ int		main(int argc, char **argv)
 	map = NULL;
 	player.start = 1;
 	player.save = 0;
-	player.max = 0;
+	init_h_w (&player);
 	player.bool_start = 0;
 	check_file(NULL, 0, 0, &player);
 	map = create_map(0, map, player.table_lenght, &player);
