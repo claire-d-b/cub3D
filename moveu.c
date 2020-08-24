@@ -12,6 +12,14 @@
 
 #include "cub3d.h"
 
+void	walk_up(t_player *player)
+{
+	if (player->teta >= 0 || (int)player->teta == (int)-M_PI)
+		walk_up_teta_pos(player);
+	else
+		walk_up_teta_neg(player);
+}
+
 void	walk_up_teta_pos_diag(t_player *player)
 {
 	if (get_decimals(player->teta) == get_decimals(M_PI / 4))

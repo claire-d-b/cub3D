@@ -12,40 +12,9 @@
 
 #include "cub3d.h"
 
-void	walk_up(t_player *player)
+int		key_release(int keycode, t_player *player)
 {
-	if (player->teta >= 0 || (int)player->teta == (int)-M_PI)
-		walk_up_teta_pos(player);
-	else
-		walk_up_teta_neg(player);
-}
-
-void	walk_down(t_player *player)
-{
-	if (player->teta >= 0 || (int)player->teta == (int)-M_PI)
-		walk_down_teta_pos(player);
-	else
-		walk_down_teta_neg(player);
-}
-
-void	walk_right(t_player *player)
-{
-	if (player->teta >= 0 || (int)player->teta == (int)-M_PI)
-		walk_right_teta_pos(player);
-	else
-		walk_right_teta_neg(player);
-}
-
-void	walk_left(t_player *player)
-{
-	if (player->teta >= 0 || (int)player->teta == (int)-M_PI)
-		walk_left_teta_pos(player);
-	else
-		walk_left_teta_neg(player);
-}
-
-int		key_press(int keycode, t_player *player)
-{
+	player->key_r = -1;
 	if (keycode == RIGHT_ARROW)
 		camera_right(player);
 	if (keycode == LEFT_ARROW)
@@ -65,5 +34,33 @@ int		key_press(int keycode, t_player *player)
 		delete_sprites(player);
 		display_view(0, 0, 0, player);
 	}
+	return (0);
+}
+
+int		key_press(int keycode, t_player *player)
+{
+	if (player->key_r != -1)
+	{		
+		if (keycode == RIGHT_ARROW)
+			camera_right(player);
+		if (keycode == LEFT_ARROW)
+			camera_left(player);
+		if (keycode == MOVE_UP)
+			walk_up(player);
+		if (keycode == MOVE_DOWN)
+			walk_down(player);
+		if (keycode == MOVE_RIGHT)
+			walk_left(player);
+		if (keycode == MOVE_LEFT)
+			walk_right(player);
+		if (keycode == ESCAPE)
+			exit_game(player);
+		else
+		{
+			delete_sprites(player);
+			display_view(0, 0, 0, player);
+		}
+	}
+	player->key_r = 0;
 	return (0);
 }

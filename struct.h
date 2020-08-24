@@ -41,8 +41,8 @@ typedef struct	s_bitmap
 	int				resfield;
 	int				offset;
 	int				size;
-	unsigned short	plane;
-	unsigned short	depth;
+	short int			plane;
+	short int			depth;
 	int				compression;
 	int				zero;
 	int				len;
@@ -74,6 +74,7 @@ typedef struct	s_ids
 
 typedef struct	s_player
 {
+	int			key_r;
 	int			waste;
 	char		*xpm_path_no;
 	char		*xpm_path_so;

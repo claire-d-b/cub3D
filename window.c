@@ -43,7 +43,7 @@ int		player_placement_error(int i, int j, t_player *player)
 	if (i == 0 || i == player->table_lenght - 1 || j == 0 ||
 	j == player->max - 1)
 	{
-		write(1, "Wrong player placement.\n", 24);
+		player->save = write(1, "Wrong player placement.\n", 24);
 		return (-1);
 	}
 	return (1);
@@ -82,7 +82,7 @@ int		place_player(int i, int j, int count, t_player *player)
 		}
 		j = -1;
 	}
-	player->waste = (count != 1) ? write(1, "Error\nPlayer nb.\n", 16) : 0;
+	player->waste = (count != 1) ? player->save = write(1, "Error\nPlayer nb.\n", 16) : 0;
 	return (count == 1) ? 1 : -1;
 }
 

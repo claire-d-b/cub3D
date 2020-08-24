@@ -53,7 +53,7 @@ int	check_file(char *line, int fd, int i, t_player *player)
 	}
 	if (!(line))
 	{
-		write(1, "Error\nMissing newline after map.", 32);
+		player->save = write(1, "Error\nMissing newline after map.", 32);
 		return (-1);
 	}
 	else
@@ -61,7 +61,7 @@ int	check_file(char *line, int fd, int i, t_player *player)
 	free(line);
 	if (player->table_lenght < 3 || player->max < 3)
 	{
-		write(1, "Error\nIncorrect map.", 20);
+		player->save = write(1, "Error\nIncorrect map.", 20);
 		return (-1);
 	}
 	return (0);
@@ -75,7 +75,7 @@ int	set_resolution(int count, t_player *player, char *line)
 	while (line[count++] && ft_isdigit(line[count]) == 0)
 		if (line[count] == '\0')
 		{
-			write(1, "Error\nPlease provide numbers as map res.", 40);
+			player->save = write(1, "Error\nPlease provide numbers as map res.", 40);
 			return (-1);
 		}
 	to_cast = ft_split(&line[count], ' ');
@@ -84,7 +84,7 @@ int	set_resolution(int count, t_player *player, char *line)
 		count++;
 	if (!(count == 2))
 	{
-		write(1, "Error\nWrong resolution ID.", 26);
+		player->save = write(1, "Error\nWrong resolution ID.", 26);
 		return (-1);
 	}
 	player->struct_screen.x = ft_atoi(to_cast[0]);

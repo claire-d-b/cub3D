@@ -22,7 +22,7 @@ int	set_path_to_texture_ns(int count, t_player *player, char *line)
 		if (!(ft_strncmp((const char *)to_record, "./text1.xpm",
 		ft_strlen(to_record)) == 0))
 		{
-			write(1, "Error\nWrong path to north texture.", 34);
+			player->save = write(1, "Error\nWrong path to north texture.", 34);
 			return (-1);
 		}
 		player->xpm_path_no = ft_strdup(to_record);
@@ -32,7 +32,7 @@ int	set_path_to_texture_ns(int count, t_player *player, char *line)
 		if (!(ft_strncmp((const char *)to_record, "./text2.xpm",
 		ft_strlen(to_record)) == 0))
 		{
-			write(1, "Error\nWrong path to south texture.", 34);
+			player->save = write(1, "Error\nWrong path to south texture.", 34);
 			return (-1);
 		}
 		player->xpm_path_so = ft_strdup(to_record);
@@ -50,7 +50,7 @@ int	set_path_to_texture_ew(int count, t_player *player, char *line)
 		if (!(ft_strncmp((const char *)to_record, "./text3.xpm",
 		ft_strlen(to_record)) == 0))
 		{
-			write(1, "Error\nWrong path to west texture.", 33);
+			player->save = write(1, "Error\nWrong path to west texture.", 33);
 			return (-1);
 		}
 		player->xpm_path_we = ft_strdup(to_record);
@@ -61,7 +61,7 @@ int	set_path_to_texture_ew(int count, t_player *player, char *line)
 		if (!(ft_strncmp((const char *)to_record, "./text4.xpm",
 		ft_strlen(to_record)) == 0))
 		{
-			write(1, "Error\nWrong path to east texture.", 33);
+			player->save = write(1, "Error\nWrong path to east texture.", 33);
 			return (-1);
 		}
 		player->xpm_path_ea = ft_strdup(to_record);
@@ -80,7 +80,7 @@ int	set_path_to_texture_sp(int count, t_player *player, char *line)
 		if (!(ft_strncmp((const char *)to_record, "./invdiamond.xpm",
 		ft_strlen(to_record)) == 0))
 		{
-			write(1, "Error\nWrong path to sprite texture.", 35);
+			player->save = write(1, "Error\nWrong path to sprite texture.", 35);
 			return (-1);
 		}
 		player->xpm_path_sp = ft_strdup(to_record);
@@ -102,7 +102,7 @@ int	set_floor_color(int count, t_player *player, char *line)
 		j++;
 	if (!(j == 3))
 	{
-		write(1, "Error\nWrong color ID [floor]", 28);
+		player->save = write(1, "Error\nWrong color ID [floor]", 28);
 		return (-1);
 	}
 	player->floor_color[0] = ft_atoi(to_cast[0]);
@@ -128,7 +128,7 @@ int	set_ceiling_color(int count, t_player *player, char *line)
 		j++;
 	if (!(j == 3))
 	{
-		write(1, "Error\nWrong color ID [ceiling]", 30);
+		player->save = write(1, "Error\nWrong color ID [ceiling]", 30);
 		return (-1);
 	}
 	player->ceil_color[0] = ft_atoi(to_cast[0]);

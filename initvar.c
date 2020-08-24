@@ -54,3 +54,9 @@ void	init_sprite(t_player *player)
 		i++;
 	}
 }
+
+void	init_map_dim(t_player *player)
+{
+	player->max = 0;
+	player->table_lenght = 0;
+}

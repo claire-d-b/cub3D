@@ -128,5 +128,7 @@ int				is_not_wall(t_player *player, float angle, float d);
 void			check_wall_sides(t_player *player, float d, float angle);
 void			xpm_images(t_player *player);
 void			xpm_image_sprite(t_player *player);
+void			init_map_dim(t_player *player);
+int			key_release(int keycode, t_player *player);
 
 #endif
