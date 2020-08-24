@@ -101,7 +101,7 @@ int		main(int argc, char **argv)
 	map = NULL;
 	init_map_dim(&player);
 	player.save = 0;
-	player.max = 0;
+	init_map_dim(&player);
 	player.bool_start = 0;
 	player.start = 1;
 	check_file(NULL, 0, 0, &player);
