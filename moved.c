@@ -14,10 +14,17 @@
 
 void	walk_down(t_player *player)
 {
-	if (player->teta >= 0 || (int)player->teta == (int)-M_PI)
+/*	if (player->teta >= 0 || (int)player->teta == (int)-M_PI)
 		walk_down_teta_pos(player);
 	else
-		walk_down_teta_neg(player);
+		walk_down_teta_neg(player);*/
+	float stepx;
+	float stepy;
+
+	stepx = -sin(player->teta);
+	stepy = -cos(player->teta);
+	player->x += stepx * CELL_SIZE / 4;
+	player->y += stepy * CELL_SIZE / 4;
 }
 
 void	walk_down_teta_pos_diag(t_player *player)

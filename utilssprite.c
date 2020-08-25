@@ -48,7 +48,7 @@ void	delete_sprites(t_player *player)
 	64)] == '2')
 		player->map[(int)((player->x - 64) / 64)][(int)((player->y - 64) /
 		64)] = '0';
-	if (player->map[(int)((player->x - 64) / 64) + 1][(int)((player->y - 64)
+	/*if (player->map[(int)((player->x - 64) / 64) + 1][(int)((player->y - 64)
 	/ 64)] == '2')
 		player->map[(int)((player->x - 64) / 64) + 1][(int)((player->y - 64)
 	/ 64)] = '0';
@@ -63,7 +63,7 @@ void	delete_sprites(t_player *player)
 	if (player->map[(int)((player->x - 64) / 64)][(int)((player->y - 64) / 64)
 	- 1] == '2')
 		player->map[(int)((player->x - 64) / 64)][(int)((player->y - 64) / 64)
-		- 1] = '0';
+		- 1] = '0';*/
 }
 
 void	define_heightawidth(t_player *player, float d, float angle)

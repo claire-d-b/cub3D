@@ -14,10 +14,46 @@
 
 void	walk_right(t_player *player)
 {
-	if (player->teta >= 0 || (int)player->teta == (int)-M_PI)
-		walk_right_teta_pos(player);
+	int stepx;
+	int stepy;
+
+	stepy = (int)(sin(player->teta));
+	stepx = (int)(cos(player->teta));
+	if (!(player->map[(int)(player->y / CELL_SIZE + stepy)]
+	[(int)(player->x / CELL_SIZE + stepx)] == '1'))
+	{
+		float stepx;
+	float stepy;
+
+	/*if (player->teta >= 0 && player->teta < M_PI / 2)
+	{
+		stepy = sin(fabs(player->teta));
+		stepx = cos(fabs(player->teta));
+	}
+	else if (player->teta > 0 && player->teta >= M_PI / 2 && player->teta <= M_PI)
+	{
+		stepy = sin(fabs(player->teta) - M_PI / 2);
+		stepx = cos(fabs(player->teta) - M_PI / 2);
+	}
+	else if (player->teta < 0 && player->teta >= -M_PI && player->teta < -M_PI / 2)
+	{
+		stepy = sin(fabs(player->teta) - M_PI / 2);
+		stepx = cos(fabs(player->teta) - M_PI / 2);
+	}
 	else
-		walk_right_teta_neg(player);
+	{
+		stepy = sin(fabs(player->teta));
+		stepx = cos(fabs(player->teta));
+	}
+	printf("%f\n", stepy); 
+	printf("%f\n", stepx);*/
+	stepx = cos(player->teta);
+	stepy = -sin(player->teta);
+	player->x += stepx * CELL_SIZE / 4;
+	player->y += stepy * CELL_SIZE / 4;
+		//else
+		//	walk_left_teta_neg(player, stepy, stepx);
+	}
 }
 
 void	walk_right_teta_pos_diag(t_player *player)

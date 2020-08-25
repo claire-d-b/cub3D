@@ -20,13 +20,17 @@ int		key_release(int keycode, t_player *player)
 	if (keycode == LEFT_ARROW)
 		camera_left(player);
 	if (keycode == MOVE_UP)
+		//walk_up(player);
 		walk_up(player);
 	if (keycode == MOVE_DOWN)
 		walk_down(player);
+	//	walk_left(player);
 	if (keycode == MOVE_RIGHT)
-		walk_left(player);
-	if (keycode == MOVE_LEFT)
 		walk_right(player);
+	//	walk_left(player);
+	if (keycode == MOVE_LEFT)
+	//	walk_right(player);
+		walk_left(player);
 	if (keycode == ESCAPE)
 		exit_game(player);
 	else
@@ -39,6 +43,7 @@ int		key_release(int keycode, t_player *player)
 
 int		key_press(int keycode, t_player *player)
 {
+//	printf("%d\n", keycode);
 	if (player->key_r != -1)
 	{		
 		if (keycode == RIGHT_ARROW)
@@ -46,14 +51,19 @@ int		key_press(int keycode, t_player *player)
 		if (keycode == LEFT_ARROW)
 			camera_left(player);
 		if (keycode == MOVE_UP)
-			walk_up(player);
+		//walk_up(player);
+		walk_up(player);
 		if (keycode == MOVE_DOWN)
 			walk_down(player);
+	//	walk_left(player);
 		if (keycode == MOVE_RIGHT)
-			walk_left(player);
-		if (keycode == MOVE_LEFT)
 			walk_right(player);
-		if (keycode == ESCAPE)
+	//	walk_left(player);
+		if (keycode == MOVE_LEFT)
+	//		walk_right(player);
+		walk_left(player);
+
+	if (keycode == ESCAPE)
 			exit_game(player);
 		else
 		{

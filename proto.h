@@ -43,7 +43,7 @@ void			walk_down_teta_pos(t_player *player);
 void			walk_down_teta_neg(t_player *player);
 void			walk_right_teta_pos(t_player *player);
 void			walk_right_teta_neg(t_player *player);
-void			walk_left_teta_pos(t_player *player);
+void			walk_left_teta_pos(t_player *player, float stepy , float stepx);
 void			walk_left_teta_neg(t_player *player);
 void			change_color(t_player *player, int y, int i,
 				unsigned int color);
@@ -130,5 +130,6 @@ void			xpm_images(t_player *player);
 void			xpm_image_sprite(t_player *player);
 void			init_map_dim(t_player *player);
 int			key_release(int keycode, t_player *player);
+void			move_left(t_player *player);
 
 #endif

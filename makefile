@@ -44,7 +44,7 @@ BITMAP		= image.bmp
 CC		= gcc
 INCL		= -L. minilibx/libmlx.a -lXext -lX11 -lm -lbsd
 RM		= rm -f
-CFLAGS		= -g3 -O3 -Wall -Wextra -Werror
+CFLAGS		= -g3 -fsanitize=address -O3 -Wall -Wextra -Werror
 $(NAME):	$(OBJ)
 			@$(CC) $(CFLAGS) $(SRCS) $(INCL)
 			@$(RENAME)
