@@ -14,16 +14,16 @@
 
 void	register_dist_minmax(t_player *player, float d, float angle, int i)
 {
-	if (((player->struct_screen.x) / (d * cos(fabs(angle - player->teta)))) >
+	if ((player->struct_screen.x / (d * cos(fabs(angle - player->teta)))) >
 	player->sprite[i][2] || player->sprite[i][2] == 0)
-		player->sprite[i][2] = ((player->struct_screen.x) / (d * cos(fabs(angle
+		player->sprite[i][2] = (player->struct_screen.x / (d * cos(fabs(angle
 		- player->teta))));
-	if (((player->struct_screen.x) / d > player->sprite[i][9] ||
+	if ((player->struct_screen.x / d > player->sprite[i][9] ||
 	player->sprite[i][9] == 0))
-		player->sprite[i][9] = (player->struct_screen.x) / d;
-	if ((player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) <
+		player->sprite[i][9] = player->struct_screen.x / d;
+	if (player->struct_screen.x / (d * cos(fabs(angle - player->teta))) <
 	player->sprite[i][6] || player->sprite[i][6] == 0)
-		player->sprite[i][6] = (player->struct_screen.x) / (d * cos(fabs(angle
+		player->sprite[i][6] = player->struct_screen.x / (d * cos(fabs(angle
 		- player->teta)));
 }
 
@@ -72,5 +72,5 @@ void	define_heightawidth(t_player *player, float d, float angle)
 	sin(angle)));
 	player->struct_side.wi = (player->ray_y + ((d - (2 * EPSILON)) *
 	cos(angle)));
-	player->distance = (player->struct_screen.x / 2) / (d - (2 * EPSILON));
+	player->distance = player->struct_screen.x / (d - (2 * EPSILON));
 }

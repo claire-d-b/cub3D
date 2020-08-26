@@ -33,13 +33,11 @@ void	pivot_textures_ns(t_player *player, float dist)
 
 	wall_h = (int)((player->struct_screen.x) / dist);
 	col = 0;
-//	player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
-//	/ 2 + wall_h / 2) * 64) / wall_h);
 	if (player->struct_side.south == 1)
 	{
 		player->rx = (int)((get_decimals(player->struct_side.wi) * player->ids.xpm_img_w) / 100);
-		player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
-		/ 2 + wall_h / 2) * player->ids.xpm_img_h) / wall_h);
+	player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
+	/ 2 + wall_h / 2) * player->ids.xpm_img_h) / wall_h);
 		if (((int)(((player->struct_screen.j * player->struct_screen.x * 4)
 		+ (player->struct_screen.i * 4) + 3))) <= (player->struct_screen.x *
 		player->struct_screen.y * 4) && (int)(((player->struct_screen.j *
@@ -49,8 +47,8 @@ void	pivot_textures_ns(t_player *player, float dist)
 	if (player->struct_side.north == 1)
 	{
 		player->rx = (int)((get_decimals(player->struct_side.wi) * player->ids.xpm_img2_w) / 100);
-		player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
-		/ 2 + wall_h / 2) * player->ids.xpm_img2_h) / wall_h);
+	player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
+	/ 2 + wall_h / 2) * player->ids.xpm_img2_h) / wall_h);
 		if (((int)(((player->struct_screen.j * player->struct_screen.x * 4)
 		+ (player->struct_screen.i * 4) + 3))) <= (player->struct_screen.x *
 		player->struct_screen.y * 4) && (int)(((player->struct_screen.j *
@@ -67,14 +65,11 @@ void	pivot_textures_ew(t_player *player, float dist)
 
 	wall_h = (int)((player->struct_screen.x) / dist);
 	col = 0;
-	//player->rx = (int)((get_decimals(player->struct_side.he) * 64) / 100);
-	//player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
-	// / 2 + wall_h / 2) * 64) / wall_h);
 	if (player->struct_side.east == 1)
 	{
 		player->rx = (int)((get_decimals(player->struct_side.he) * player->ids.xpm_img3_w) / 100);
-		player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
-		/ 2 + wall_h / 2) * player->ids.xpm_img3_h) / wall_h);
+	player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
+	/ 2 + wall_h / 2) * player->ids.xpm_img3_h) / wall_h);
 		if (((int)(((player->struct_screen.j * player->struct_screen.x * 4)
 		+ (player->struct_screen.i * 4) + 3))) <= (player->struct_screen.x *
 		player->struct_screen.y * 4) && (int)(((player->struct_screen.j *
@@ -84,8 +79,8 @@ void	pivot_textures_ew(t_player *player, float dist)
 	if (player->struct_side.west == 1)
 	{
 		player->rx = (int)((get_decimals(player->struct_side.he) * player->ids.xpm_img4_w) / 100);
-		player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
-		/ 2 + wall_h / 2) * player->ids.xpm_img4_h) / wall_h);
+	player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
+	/ 2 + wall_h / 2) * player->ids.xpm_img4_h) / wall_h);
 		if (((int)(((player->struct_screen.j * player->struct_screen.x * 4)
 		+ (player->struct_screen.i * 4) + 3))) <= (player->struct_screen.x *
 		player->struct_screen.y * 4) && (int)(((player->struct_screen.j *

@@ -78,10 +78,10 @@ void	display_view(float teta, float dist, double wall_h, t_player *player)
 	while (++player->struct_screen.i < player->struct_screen.x)
 	{
 		display_view_x(player, &teta, &dist, &wall_h);
-		while ((player->struct_screen.j < player->struct_screen.y  / 2  
+		while ((player->struct_screen.j < player->struct_screen.y / 2
 		- (int)wall_h))
 			pivot_colors_c(player);
-		while ((player->struct_screen.j < player->struct_screen.y  / 2  
+		while ((player->struct_screen.j < player->struct_screen.y / 2
 		+ (int)wall_h))
 		{
 			if ((player->struct_side.south == 1 || player->struct_side.north
