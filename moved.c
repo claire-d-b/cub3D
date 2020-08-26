@@ -23,8 +23,12 @@ void	walk_down(t_player *player)
 
 	stepx = -sin(player->teta);
 	stepy = -cos(player->teta);
-	player->x += stepx * CELL_SIZE / 4;
-	player->y += stepy * CELL_SIZE / 4;
+	if (player->map[(int)((player->x + stepx * CELL_SIZE / 4) / CELL_SIZE) - 1]
+	[(int)((player->y + stepy * CELL_SIZE / 4) / CELL_SIZE) - 1] != '1') 
+	{
+		player->x += stepx * CELL_SIZE / 4;
+		player->y += stepy * CELL_SIZE / 4;
+	}
 }
 
 void	walk_down_teta_pos_diag(t_player *player)
