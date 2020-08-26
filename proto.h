@@ -129,7 +129,9 @@ void			check_wall_sides(t_player *player, float d, float angle);
 void			xpm_images(t_player *player);
 void			xpm_image_sprite(t_player *player);
 void			init_map_dim(t_player *player);
-int			key_release(int keycode, t_player *player);
+int				key_release(int keycode, t_player *player);
 void			move_left(t_player *player);
+void			sort_sprite(t_player *player);
+void	ft_swap(float **a, float **b);
 
 #endif

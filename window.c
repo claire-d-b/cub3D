@@ -93,9 +93,9 @@ int		open_window(int count, int j, t_player *player, char const *title)
 		return (0);
 	while (++count < player->max * player->table_lenght)
 	{
-		if (!(player->sprite[count] = malloc(sizeof(float) * 11)))
+		if (!(player->sprite[count] = malloc(sizeof(float) * 10)))
 			return (0);
-		while (++j < 11)
+		while (++j < 10)
 			player->sprite[count][j] = 0;
 	}
 	player->sprite[count] = NULL;

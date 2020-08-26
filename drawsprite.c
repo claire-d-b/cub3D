@@ -65,11 +65,41 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		xposition_start + i, color);
 }
 
+void	ft_swap(float **a, float **b)
+{
+	float *tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void	sort_sprite(t_player *player)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (player->sprite[i])
+	{
+		while (player->sprite[j])
+		{
+			if (player->sprite[j][9] < player->sprite[i][9] && player->sprite[i][9] && player->sprite[j][9])
+				ft_swap(&player->sprite[i], &player->sprite[j]);
+			j++;
+		}
+		i++;
+		j = i + 1;
+	}
+}
+
 void	pivot_textures_sprite(int i, int j, t_player *player)
 {
 	int count;
 
 	count = 0;
+	sort_sprite(player);
 	while (player->sprite[count] && (int)player->sprite[count][0] != 0)
 	{
 		while (i <= (int)player->sprite[count][3] -
