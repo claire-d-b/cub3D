@@ -38,12 +38,12 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 	xposition_end = (int)player->sprite[count][3];
 	color = set_texture_sprite(player, (int)(j * player->ids.xpm_sprite_h / wall_h),
 	(int)(i * player->ids.xpm_sprite_w / wall_h));
-	if ((color > 10000000 && xposition_end - i >= 0 && xposition_end - i
+	if ((color < 1000000 || color > 4000000) && xposition_end - i >= 0 && xposition_end - i
 	< player->struct_screen.x && player->struct_screen.y / 2 - wall_h / 2 + j
 	>= 0 && player->struct_screen.y / 2 - wall_h / 2 + j <
-	player->struct_screen.y))
+	player->struct_screen.y)
 		change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
-		xposition_end - i, 0xffffff);
+		xposition_end - i, color);
 }
 
 void	draw_sprite_from_start(t_player *player, int i, int j, int count)
@@ -56,12 +56,13 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 	xposition_start = (int)player->sprite[count][7];
 	color = set_texture_sprite(player, (int)(j * player->ids.xpm_sprite_h / wall_h),
 	(int)(i * player->ids.xpm_sprite_w / wall_h));
-	if ((color > 10000000 && xposition_start + i >= 0 && xposition_start + i
+//	printf("color = %d\n", color);
+	if ((color < 1000000 || color > 4000000) && xposition_start + i >= 0 && xposition_start + i
 	< player->struct_screen.x && player->struct_screen.y / 2 - wall_h / 2 + j
 	>= 0 && player->struct_screen.y / 2 - wall_h / 2 + j <
-	player->struct_screen.y))
+	player->struct_screen.y)
 		change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
-		xposition_start + i, 0xffffff);
+		xposition_start + i, color);
 }
 
 void	pivot_textures_sprite(int i, int j, t_player *player)

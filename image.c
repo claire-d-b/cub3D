@@ -72,7 +72,7 @@ void	pivot_textures_ew(t_player *player, float dist)
 	// / 2 + wall_h / 2) * 64) / wall_h);
 	if (player->struct_side.east == 1)
 	{
-		player->rx = (int)((get_decimals(player->struct_side.wi) * player->ids.xpm_img3_w) / 100);
+		player->rx = (int)((get_decimals(player->struct_side.he) * player->ids.xpm_img3_w) / 100);
 		player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
 		/ 2 + wall_h / 2) * player->ids.xpm_img3_h) / wall_h);
 		if (((int)(((player->struct_screen.j * player->struct_screen.x * 4)
@@ -83,7 +83,7 @@ void	pivot_textures_ew(t_player *player, float dist)
 	}
 	if (player->struct_side.west == 1)
 	{
-		player->rx = (int)((get_decimals(player->struct_side.wi) * player->ids.xpm_img4_w) / 100);
+		player->rx = (int)((get_decimals(player->struct_side.he) * player->ids.xpm_img4_w) / 100);
 		player->ry = (int)(((player->struct_screen.j - player->struct_screen.y
 		/ 2 + wall_h / 2) * player->ids.xpm_img4_h) / wall_h);
 		if (((int)(((player->struct_screen.j * player->struct_screen.x * 4)
