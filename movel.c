@@ -41,8 +41,8 @@ void	walk_left(t_player *player)
 	printf("%f\n", stepx);*/
 	stepx = cos(player->teta);
 	stepy = -sin(player->teta);
-	if (player->map[(int)((player->x + stepx * CELL_SIZE / 4) / CELL_SIZE) - 1]
-	[(int)((player->y + stepy * CELL_SIZE / 4) / CELL_SIZE) - 1] != '1') 
+	if (player->map[(int)((player->x + stepx * CELL_SIZE / 4) / CELL_SIZE - 1)]
+	[(int)((player->y + stepy * CELL_SIZE / 4) / CELL_SIZE - 1)] != '1') 
 {
 	player->x += stepx * CELL_SIZE / 4;
 	player->y += stepy * CELL_SIZE / 4;

@@ -14,14 +14,6 @@
 
 void	walk_right(t_player *player)
 {
-	int stepx;
-	int stepy;
-
-	stepy = (int)(sin(player->teta));
-	stepx = (int)(cos(player->teta));
-	if (!(player->map[(int)(player->y / CELL_SIZE + stepy)]
-	[(int)(player->x / CELL_SIZE + stepx)] == '1'))
-	{
 		float stepx;
 	float stepy;
 
@@ -47,17 +39,16 @@ void	walk_right(t_player *player)
 	}
 	printf("%f\n", stepy); 
 	printf("%f\n", stepx);*/
-	stepx = cos(player->teta);
-	stepy = -sin(player->teta);
-	if (player->map[(int)((player->x + stepx * CELL_SIZE / 4) / CELL_SIZE) - 1]
-	[(int)((player->y + stepy * CELL_SIZE / 4) / CELL_SIZE) - 1] != '1') 
+	stepx = -cos(player->teta);
+	stepy = sin(player->teta);
+if (player->map[(int)((player->x + stepx * CELL_SIZE / 4) / CELL_SIZE - 1)]
+	[(int)((player->y + stepy * CELL_SIZE / 4) / CELL_SIZE - 1)] != '1')  
 	{
 	player->x += stepx * CELL_SIZE / 4;
 	player->y += stepy * CELL_SIZE / 4;
 	}
 		//else
 		//	walk_left_teta_neg(player, stepy, stepx);
-	}
 }
 
 void	walk_right_teta_pos_diag(t_player *player)
