@@ -64,6 +64,16 @@ typedef struct	s_ids
 	void	*xpm_img3;
 	void	*xpm_img4;
 	void	*xpm_sprite;
+	int		xpm_img_w;
+	int		xpm_img_h;
+	int		xpm_img2_w;
+	int		xpm_img2_h;
+	int		xpm_img3_w;
+	int		xpm_img3_h;
+	int		xpm_img4_w;
+	int		xpm_img4_h;
+	int		xpm_sprite_w;
+	int		xpm_sprite_h;
 	char	*xpm_data;
 	char	*xpm_data2;
 	char	*xpm_data3;

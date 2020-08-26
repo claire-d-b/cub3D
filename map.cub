@@ -4,7 +4,7 @@ SO ./text2.xpm
 WE ./text3.xpm
 EA ./text4.xpm
 
-S ./invdiamond.xpm
+S ./sprite.xpm
 F 0,0,0
 C 0,255,255
 

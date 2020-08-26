@@ -77,7 +77,7 @@ int	set_path_to_texture_sp(int count, t_player *player, char *line)
 	if (line[count] == 'S' && line[count + 1] != 'O' && count == 0)
 	{
 		to_record = ft_strchr(line, '.');
-		if (!(ft_strncmp((const char *)to_record, "./invdiamond.xpm",
+		if (!(ft_strncmp((const char *)to_record, "./sprite.xpm",
 		ft_strlen(to_record)) == 0))
 		{
 			player->save = write(1, "Error\nWrong path to sprite texture.", 35);
