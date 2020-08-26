@@ -28,7 +28,7 @@ void	xpm_images(t_player *player)
 	&player->ids.img_bpp, &player->ids.img_size_line,
 	&player->ids.img_endian);
 	player->ids.xpm_img2 = mlx_xpm_file_to_image(player->ids.mlx_ptr,
-	player->xpm_path_so, &player->ids.xpm_img2_w,& player->ids.xpm_img2_h);
+	player->xpm_path_so, &player->ids.xpm_img2_w, &player->ids.xpm_img2_h);
 	player->ids.xpm_data2 = mlx_get_data_addr(player->ids.xpm_img2,
 	&player->ids.img_bpp, &player->ids.img_size_line,
 	&player->ids.img_endian);
