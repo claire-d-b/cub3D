@@ -35,9 +35,9 @@ float	raycast(t_player *player, char **map, float angle)
 		if (player->p == '2')
 		{
 			i = 0;
-			while (is_sprite(player->sprite[i]) && ((((int)player->sprite[i][0]
+			while (is_sprite(player->sprite[i]) && ((((int)player->sprite[i][4]
 			!= (int)(player->ray_x + d * sin(angle)) || ((int)
-			player->sprite[i][1] != (int)(player->ray_y + d * cos(angle)))))))
+			player->sprite[i][5] != (int)(player->ray_y + d * cos(angle)))))))
 				i++;
 			if (!is_sprite(player->sprite[i]))
 				register_sprite_start(i, player, angle, d);
