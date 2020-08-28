@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:29:56 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/20 14:41:28 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/28 10:40:11 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,14 @@ void			walk_down(t_player *player);
 void			walk_right(t_player *player);
 void			walk_left(t_player *player);
 int				key_press(int keycode, t_player *player);
-void			walk_up_teta_pos(t_player *player);
-void			walk_up_teta_neg(t_player *player);
-void			walk_down_teta_pos(t_player *player);
-void			walk_down_teta_neg(t_player *player);
-void			walk_right_teta_pos(t_player *player);
-void			walk_right_teta_neg(t_player *player);
-void			walk_left_teta_pos(t_player *player, float stepy , float stepx);
-void			walk_left_teta_neg(t_player *player);
 void			change_color(t_player *player, int y, int i,
 				unsigned int color);
 void			pivot_colors_c(t_player *player);
 void			pivot_colors_f(t_player *player);
-void			pivot_textures_ns(t_player *player, float dist);
-void			pivot_textures_ew(t_player *player, float dist);
+void			pivot_textures_ns(unsigned int col, int wall_h,
+				t_player *player);
+void			pivot_textures_ew(unsigned int col, int wall_h,
+				t_player *player);
 void			define_heightawidth(t_player *player, float d, float angle);
 void			check_side_south(t_player *player);
 void			check_side_north(t_player *player);
@@ -116,14 +110,6 @@ void			bmp_write_colors(int i, int j, int fd, t_player *player);
 void			delete_sprites(t_player *player);
 void			register_dist_minmax(t_player *player, float d, float angle,
 				int i);
-void			walk_up_teta_pos_diag(t_player *player);
-void			walk_up_teta_neg_diag(t_player *player);
-void			walk_down_teta_pos_diag(t_player *player);
-void			walk_down_teta_neg_diag(t_player *player);
-void			walk_right_teta_pos_diag(t_player *player);
-void			walk_right_teta_neg_diag(t_player *player);
-void			walk_left_teta_pos_diag(t_player *player);
-void			walk_left_teta_neg_diag(t_player *player);
 int				is_not_wall(t_player *player, float angle, float d);
 void			check_wall_sides(t_player *player, float d, float angle);
 void			xpm_images(t_player *player);
@@ -132,6 +118,8 @@ void			init_map_dim(t_player *player);
 int				key_release(int keycode, t_player *player);
 void			move_left(t_player *player);
 void			sort_sprite(t_player *player);
-void	ft_swap(float **a, float **b);
+void			ft_swap(float **a, float **b);
+void			hooks(t_player *player);
+void			screen_size(t_player *player);
 
 #endif

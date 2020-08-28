@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:43:41 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/20 13:05:07 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/28 09:47:23 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,13 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+void	ft_swap(float **a, float **b)
+{
+	float *tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

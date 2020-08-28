@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:30:38 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/20 12:20:56 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/28 10:01:22 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ float	raycast(t_player *player, char **map, float angle)
 
 void	display_all(t_player *player)
 {
-	pivot_textures_sprite(0, 0, player);
+	pivot_textures_sprite(-1, -1, player);
 	mlx_put_image_to_window(player->ids.mlx_ptr, player->ids.mlx_win,
 	player->ids.img_ptr, 0, 0);
 	if (player->start == 1 && player->save == 1)
@@ -86,10 +86,12 @@ void	display_view(float teta, float dist, double wall_h, t_player *player)
 		{
 			if ((player->struct_side.south == 1 || player->struct_side.north
 			== 1) && player->p == '1')
-				pivot_textures_ns(player, dist);
+				pivot_textures_ns(0, (int)(player->struct_screen.x / dist),
+				player);
 			if ((player->struct_side.east == 1 || player->struct_side.west == 1)
 			&& player->p == '1')
-				pivot_textures_ew(player, dist);
+				pivot_textures_ew(0, (int)(player->struct_screen.x / dist),
+				player);
 			player->struct_screen.j++;
 		}
 		while (player->struct_screen.j < player->struct_screen.y)

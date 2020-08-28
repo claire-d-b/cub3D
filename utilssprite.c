@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:11:42 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/20 13:13:03 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/28 10:30:04 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,47 @@ int		is_sprite(float *sprite)
 
 void	delete_sprites(t_player *player)
 {
-	if (player->map[(int)((player->x - 64) / 64)][(int)((player->y - 64) /
-	64)] == '2')
-		player->map[(int)((player->x - 64) / 64)][(int)((player->y - 64) /
-		64)] = '0';
-	if (player->map[(int)((player->x - 64) / 64) + 1][(int)((player->y - 64)
-	/ 64)] == '2')
-		player->map[(int)((player->x - 64) / 64) + 1][(int)((player->y - 64)
-	/ 64)] = '0';
-	if (player->map[(int)((player->x - 64) / 64)][(int)((player->y - 64) /
-	64) + 1] == '2')
-		player->map[(int)((player->x - 64) / 64)][(int)((player->y - 64) / 64)
-		+ 1] = '0';
-	if (player->map[(int)((player->x - 64) / 64) - 1][(int)((player->y - 64)
-	/ 64)] == '2')
-		player->map[(int)((player->x - 64) / 64) - 1][(int)((player->y - 64)
-		/ 64)] = '0';
-	if (player->map[(int)((player->x - 64) / 64)][(int)((player->y - 64) / 64)
-	- 1] == '2')
-		player->map[(int)((player->x - 64) / 64)][(int)((player->y - 64) / 64)
-		- 1] = '0';
+	if (player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
+	[(int)((player->y - CELL_SIZE) / CELL_SIZE)] == '2')
+		player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
+		[(int)((player->y - CELL_SIZE) / CELL_SIZE)] = '0';
+	if (player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE) + 1]
+	[(int)((player->y - CELL_SIZE) / CELL_SIZE)] == '2')
+		player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE) + 1]
+		[(int)((player->y - CELL_SIZE) / CELL_SIZE)] = '0';
+	if (player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
+	[(int)((player->y - CELL_SIZE) / CELL_SIZE) + 1] == '2')
+		player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
+		[(int)((player->y - CELL_SIZE) / CELL_SIZE) + 1] = '0';
+	if (player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE) - 1]
+	[(int)((player->y - CELL_SIZE) / CELL_SIZE)] == '2')
+		player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE) - 1]
+		[(int)((player->y - CELL_SIZE) / CELL_SIZE)] = '0';
+	if (player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
+	[(int)((player->y - CELL_SIZE) / CELL_SIZE) - 1] == '2')
+		player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
+		[(int)((player->y - CELL_SIZE) / CELL_SIZE) - 1] = '0';
+}
+
+void	sort_sprite(t_player *player)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (player->sprite[i])
+	{
+		while (player->sprite[j])
+		{
+			if (player->sprite[j][9] < player->sprite[i][9] &&
+			player->sprite[i][9] && player->sprite[j][9])
+				ft_swap(&player->sprite[i], &player->sprite[j]);
+			j++;
+		}
+		i++;
+		j = i + 1;
+	}
 }
 
 void	define_heightawidth(t_player *player, float d, float angle)

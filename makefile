@@ -6,7 +6,7 @@
 #    By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/14 11:48:01 by clde-ber          #+#    #+#              #
-#    Updated: 2020/08/20 15:08:45 by clde-ber         ###   ########.fr        #
+#    Updated: 2020/08/28 10:34:50 by clde-ber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,7 @@ SRCS		= main.c\
 		raymarch.c\
 		texture.c\
 		move.c\
-		moveu.c\
-		moved.c\
-		mover.c\
-		movel.c\
+		playermove.c\
 		camera.c\
 		utils.c\
 		split.c\
@@ -36,6 +33,8 @@ SRCS		= main.c\
 		utilssprite.c\
 		drawsprite.c\
 		xpm_data.c\
+		bmp.c\
+		placeplayer.c\
 
 RENAME = mv a.out Cub3D
 OBJ		= $(SRCS:.c=.o)

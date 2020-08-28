@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:39:30 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/20 11:42:46 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/28 09:42:38 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	set_resolution(int count, t_player *player, char *line)
 	while (line[count++] && ft_isdigit(line[count]) == 0)
 		if (line[count] == '\0')
 		{
-			player->save = write(1, "Error\nPlease provide numbers as map res.", 40);
+			player->save =
+			write(1, "Error\nPlease provide numbers as map res.", 40);
 			return (-1);
 		}
 	to_cast = ft_split(&line[count], ' ');

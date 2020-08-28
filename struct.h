@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:31:09 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/20 14:37:44 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/08/28 10:37:56 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct	s_bitmap
 	int				resfield;
 	int				offset;
 	int				size;
-	short int			plane;
-	short int			depth;
+	short int		plane;
+	short int		depth;
 	int				compression;
 	int				zero;
 	int				len;
