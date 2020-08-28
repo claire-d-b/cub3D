@@ -87,8 +87,8 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 			player->sprite[count][6]) / 2)))
 			{
 				if (((player->sprite[count][8] < player->sprite[count][9])
-				&& player->sprite[count][7] != 0) || player->sprite[count][3]
-				== player->struct_screen.x - 1)
+				&& player->sprite[count][7] != 0) ||
+				player->sprite[count][3] == player->struct_screen.x - 1)
 					draw_sprite_from_start(player, i, j, count);
 				else
 					draw_sprite_from_end(player, i, j, count);
