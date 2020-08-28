@@ -75,7 +75,7 @@ size_t			count_malloc(char const *s, char c);
 void			*ft_free(char **res, int j);
 int				ft_atoi(const char *str);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
-int				pivot_file_checking(t_player *player, char *line, int y);
+int				pivot_file_checking(int len, t_player *player, char *line, int y);
 int				set_map_len(int y, t_player *player, char *line);
 int				check_file(char *line, int fd, int i, t_player *player);
 void			check_map(char *line, char **map, int count, t_player *player);
@@ -121,5 +121,11 @@ void			sort_sprite(t_player *player);
 void			ft_swap(float **a, float **b);
 void			hooks(t_player *player);
 void			screen_size(t_player *player);
+void			player_placement(t_player *player, char *title);
+int				is_player(char c);
+void			set_game_elements(char *line, t_player *player);
+void init_struct_player(t_player *player);
+void init_struct_screen(t_player *player);
+void	missing_elements(t_player *player);
 
 #endif

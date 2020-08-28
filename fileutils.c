@@ -12,30 +12,52 @@
 
 #include "cub3d.h"
 
-int	pivot_file_checking(t_player *player, char *line, int y)
+void	set_game_elements(char *line, t_player *player)
 {
-	int len;
+		if (line[0] == 'R')
+			if (set_resolution(0, player, line) == -1)
+				exit(0);
+		if (((line[0] == 'N' && line[1] == 'O')
+		|| (line[0] == 'S' && line[1] == 'O')))
+			if (set_path_to_texture_ns(0, player, line) == -1)
+				exit(0);
+		if (((line[0] == 'W' && line[1] == 'E')
+		|| (line[0] == 'E' && line[1] == 'A')))
+			if (set_path_to_texture_ew(0, player, line) == -1)
+				exit(0);
+		if (line[0] == 'S' && line[1] != 'O') 
+			if (set_path_to_texture_sp(0, player, line) == -1)
+				exit(0);
+		if (line[0] == 'F')
+			if (set_floor_color(0, player, line) == -1)
+				exit(0);
+		if (line[0] == 'C')
+			if (set_ceiling_color(0, player, line) == -1)
+				exit(0);
+}
 
-	len = 0;
-	if (line[0] == 'R')
-		set_resolution(0, player, line);
-	if ((line[0] == 'N' && line[1] == 'O')
-	|| (line[0] == 'S' && line[1] == 'O'))
-		set_path_to_texture_ns(0, player, line);
-	if ((line[0] == 'W' && line[1] == 'E')
-	|| (line[0] == 'E' && line[1] == 'A'))
-		set_path_to_texture_ew(0, player, line);
-	if (line[0] == 'S' && line[1] != 'O')
-		set_path_to_texture_sp(0, player, line);
-	if (line[0] == 'F')
-		set_floor_color(0, player, line);
-	if (line[0] == 'C')
-		set_ceiling_color(0, player, line);
-	if (line[0] == ' ' || line[0] == '\t' || line[0] == '\n' ||
+int	pivot_file_checking(int len, t_player *player, char *line, int y)
+{
+	set_game_elements(line, player);
+	if ((line[0] == ' ' || line[0] == '\t' || line[0] == '\n' ||
 	line[0] == '\r' || line[0] == '\v' || line[0] == '\f' ||
-	line[0] == '1' || line[0] == '2' || line[0] == '0')
-		len += set_map_len(y, player, line);
+	line[0] == '1' || line[0] == '2' || line[0] == '0') &&
+	(ft_strchr(line, '1') || ft_strchr(line, '0')))
+			len += set_map_len(y, player, line);
 	return (len);
+}
+
+void	missing_elements(t_player *player)
+{
+	if (player->struct_screen.x < 0 || player->struct_screen.y < 0 
+	|| player->xpm_path_no == 0 || player->xpm_path_so == 0 ||
+	player->xpm_path_we == 0 || player->xpm_path_ea == 0 || 
+	player->xpm_path_sp == 0 || player->ceil_color[3] < 0 ||
+	player->floor_color[3] < 0)
+	{
+		player->waste = write(1, "Error\nMissing info in file.\n", 28);
+		exit(0);
+	}
 }
 
 int	check_file(char *line, int fd, int i, t_player *player)
@@ -47,10 +69,11 @@ int	check_file(char *line, int fd, int i, t_player *player)
 	line = NULL;
 	while ((i = get_next_line(fd, &line)))
 	{
-		player->table_lenght += pivot_file_checking(player, line, y);
+		player->table_lenght += pivot_file_checking(0, player, line, y);
 		free(line);
 		y++;
 	}
+	missing_elements(player);
 	if (!(line))
 	{
 		player->save = write(1, "Error\nMissing newline after map.", 32);

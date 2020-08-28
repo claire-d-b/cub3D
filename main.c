@@ -19,6 +19,14 @@ void	hooks(t_player *player)
 	mlx_hook(player->ids.mlx_win, 17, 1L << 17, &exit_game, player);
 }
 
+void		player_placement(t_player *player, char *title)
+{
+	if (place_player(-1, -1, 0, player) != -1)
+		open_window(-1, -1, player, title);
+	else
+		exit(0);
+}
+
 int		main(int argc, char **argv)
 {
 	char		*title;
@@ -28,10 +36,9 @@ int		main(int argc, char **argv)
 	title = "cub3D";
 	map = NULL;
 	init_map_dim(&player);
-	player.save = 0;
+	init_struct_player(&player);
+	init_struct_screen(&player);
 	init_map_dim(&player);
-	player.bool_start = 0;
-	player.start = 1;
 	check_file(NULL, 0, 0, &player);
 	map = create_map(0, map, player.table_lenght, &player);
 	player.map = map;
@@ -39,8 +46,7 @@ int		main(int argc, char **argv)
 	== 's' && argv[1][3] == 'a' && argv[1][4] == 'v' && argv[1][5] == 'e')
 		player.save = 1;
 	player.ids.mlx_ptr = mlx_init();
-	if (place_player(-1, -1, 0, &player))
-		open_window(-1, -1, &player, title);
+	player_placement(&player, title);
 	hooks(&player);
 	display_view(0, 0, 0, &player);
 	mlx_loop(player.ids.mlx_ptr);

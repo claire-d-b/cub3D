@@ -20,7 +20,7 @@ void	parse_map(char **map, t_player *player)
 	i = -1;
 	j = -1;
 	while (map[++i])
-	{
+	{	
 		while (map[i][++j])
 		{
 			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != '2' &&
@@ -30,7 +30,8 @@ void	parse_map(char **map, t_player *player)
 			if (j == player->max - 1 || j == 0 || i == 0 || i
 			== player->table_lenght - 1)
 			{
-				if (map[i][j] != '1')
+				if (map[i][j] != '1' && map[i][j] != 'S' && map[i][j] != 'N'
+				&& map[i][j] != 'E' && map[i][j] != 'W')
 					map[i][j] = '1';
 			}
 		}

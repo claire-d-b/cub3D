@@ -17,7 +17,7 @@ int		player_placement_error(int i, int j, t_player *player)
 	if (i == 0 || i == player->table_lenght - 1 || j == 0 ||
 	j == player->max - 1)
 	{
-		player->save = write(1, "Wrong player placement.\n", 24);
+		player->save = write(1, "Error\nPlayer.", 13);
 		return (-1);
 	}
 	return (1);
@@ -31,16 +31,24 @@ void	player_coord(int *count, t_player *player, int i, int j)
 	player->y = (j + 1) * CELL_SIZE + (CELL_SIZE / 2);
 }
 
+int		is_player(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	else
+		return (0);
+}
+
 int		place_player(int i, int j, int count, t_player *player)
 {
 	while (++i < player->table_lenght)
 	{
 		while (++j < player->max)
 		{
-			if (player->map[i][j] == 'N' || player->map[i][j] == 'S' ||
-			player->map[i][j] == 'E' || player->map[i][j] == 'W')
+			if (is_player(player->map[i][j]))
 			{
-				player_placement_error(i, j, player);
+				if (player_placement_error(i, j, player) == -1)
+					exit(0);
 				if (i != 0 && i != player->table_lenght - 1 && j != 0 &&
 				j != player->max - 1)
 				{
@@ -56,6 +64,6 @@ int		place_player(int i, int j, int count, t_player *player)
 		}
 		j = -1;
 	}
-	player->waste = (count != 1) ? write(1, "Error\nPlayer nb.\n", 16) : 0;
+	player->waste = (count != 1) ? write(1, "Error\nPlayer.\n", 13) : 0;
 	return (count == 1) ? 1 : -1;
 }
