@@ -12,6 +12,40 @@
 
 #include "cub3d.h"
 
+void	manage_lines(char *line, t_player *player)
+{
+	if (!strchr(line, '1') && !strchr(line, '0') && line [0] != '\0' &&
+	line[0] != 'R' && line[0] != 'C' && line[0] != 'F' && line[0] != 'F' && 
+	line[0] != 'N' && line[1] != 'O' && line[0] != 'S' && line[1] != 'O' &&
+	line[0] != 'E' && line[1] != 'A' && line[0] != 'W' && line[1] != 'E' && 
+	is_empty_line(line) == 0)
+	{
+		player->waste =
+		write(1, "Error\nOnly IDs, map and empty lines are valid.\n", 47);
+		exit(0);
+	}
+}
+
+int		is_empty_line(char *line)
+{
+	size_t i;
+	size_t count;
+
+	i = 0;
+	count = 0;
+	while (line[i])
+	{
+		if (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'
+		|| line[i] == '\r' || line[i] == '\v' || line[i] == '\f'
+		|| line[i] == '\0')
+			count++;
+		i++;
+	}
+	if (i != count)
+		return (0);
+	return (1); 
+}
+
 void	set_game_elements(char *line, t_player *player)
 {
 	if (line[0] == 'R' && player->struct_screen.x == -1
@@ -38,6 +72,7 @@ void	set_game_elements(char *line, t_player *player)
 	if (line[0] == 'C' && player->ceil_color[0] == -1)
 		if (set_ceiling_color(0, player, line) == -1)
 			exit(0);
+	manage_lines(line, player);
 }
 
 int		pivot_file_checking(int len, t_player *player, char *line, int y)

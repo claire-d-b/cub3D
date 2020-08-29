@@ -130,5 +130,7 @@ void			init_struct_screen(t_player *player);
 void			missing_elements(t_player *player, char *line);
 void			init_elements(t_player *player);
 void			map_error(t_player *player, char **map, int i, int j);
+int				is_empty_line(char *line);
+void			manage_lines(char *line, t_player *player);
 
 #endif
