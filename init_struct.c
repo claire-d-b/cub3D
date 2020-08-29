@@ -42,7 +42,7 @@ void	init_struct_player(t_player *player)
 	player->sprite = 0;
 	player->table_lenght = 0;
 	player->max = 0;
-	player->start = 0;
+	player->start = 1;
 	player->p = 0;
 	player->distance = 0;
 	player->x = 0;
