@@ -19,7 +19,7 @@ void	hooks(t_player *player)
 	mlx_hook(player->ids.mlx_win, 17, 1L << 17, &exit_game, player);
 }
 
-void		player_placement(t_player *player, char *title)
+void	player_placement(t_player *player, char *title)
 {
 	if (place_player(-1, -1, 0, player) != -1)
 		open_window(-1, -1, player, title);

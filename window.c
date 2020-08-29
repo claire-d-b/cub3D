@@ -20,7 +20,7 @@ void	parse_map(char **map, t_player *player)
 	i = -1;
 	j = -1;
 	while (map[++i])
-	{	
+	{
 		while (map[i][++j])
 		{
 			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != '2' &&

@@ -35,6 +35,7 @@ SRCS		= main.c\
 		xpm_data.c\
 		bmp.c\
 		placeplayer.c\
+		init_struct.c\
 
 RENAME = mv a.out Cub3D
 OBJ		= $(SRCS:.c=.o)
