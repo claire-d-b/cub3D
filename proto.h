@@ -132,5 +132,12 @@ void			init_elements(t_player *player);
 void			map_error(t_player *player, char **map, int i, int j);
 int				is_empty_line(char *line);
 void			manage_lines(char *line, t_player *player);
+void			init_struct_bitmap_exit(t_player *player);
+void			init_struct_screen_exit(t_player *player);
+void			init_elements_exit(t_player *player);
+void			init_struct_player_exit(t_player *player);
+void			init_struct_ids(t_player *player);
+void			init_struct_side_s_e(t_player *player);
+void			exit_program(t_player *player);
 
 #endif

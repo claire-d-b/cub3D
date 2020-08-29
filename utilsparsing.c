@@ -22,7 +22,7 @@ void	manage_lines(char *line, t_player *player)
 	{
 		player->waste =
 		write(1, "Error\nOnly IDs, map and empty lines are valid.\n", 47);
-		exit(0);
+		exit_program(player);
 	}
 }
 

@@ -52,3 +52,11 @@ void	init_map_dim(t_player *player)
 	player->max = 0;
 	player->table_lenght = 0;
 }
+
+void	init_struct_side(t_player *player)
+{
+	player->struct_side.north = 0;
+	player->struct_side.south = 0;
+	player->struct_side.east = 0;
+	player->struct_side.west = 0;
+}

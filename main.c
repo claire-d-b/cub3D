@@ -12,6 +12,26 @@
 
 #include "cub3d.h"
 
+void	exit_program(t_player *player)
+{
+	if (player->xpm_path_no)
+		free(player->xpm_path_no);
+	if (player->xpm_path_so)
+		free(player->xpm_path_so);
+	if (player->xpm_path_we)
+		free(player->xpm_path_we);
+	if (player->xpm_path_ea)
+		free(player->xpm_path_ea);
+	if (player->xpm_path_sp)
+		free(player->xpm_path_sp);
+	init_struct_ids(player);
+	init_struct_player_exit(player);
+	init_struct_screen_exit(player);
+	init_struct_side_s_e(player);
+	init_struct_bitmap_exit(player);
+	exit(0);
+}
+
 void	hooks(t_player *player)
 {
 	mlx_hook(player->ids.mlx_win, 2, 1L << 0, &key_press, player);
@@ -24,7 +44,7 @@ void	player_placement(t_player *player, char *title)
 	if (place_player(-1, -1, 0, player) != -1)
 		open_window(-1, -1, player, title);
 	else
-		exit(0);
+		exit_program(player);
 }
 
 int		main(int argc, char **argv)
@@ -38,7 +58,8 @@ int		main(int argc, char **argv)
 	init_map_dim(&player);
 	init_struct_player(&player);
 	init_struct_screen(&player);
-	init_map_dim(&player);
+	init_struct_ids(&player);
+	init_struct_side_s_e(&player);
 	check_file(NULL, 0, 0, &player);
 	map = create_map(0, map, player.table_lenght, &player);
 	player.map = map;
@@ -50,6 +71,6 @@ int		main(int argc, char **argv)
 	hooks(&player);
 	display_view(0, 0, 0, &player);
 	mlx_loop(player.ids.mlx_ptr);
-	ft_free2(player.sprite);
+	init_struct_ids(&player);
 	return (0);
 }

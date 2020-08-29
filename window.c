@@ -19,7 +19,7 @@ void	map_error(t_player *player, char **map, int i, int j)
 	{
 		player->waste =
 		write(1, "Error\nMap must be surrounded by walls.\n", 39);
-		exit(0);
+		exit_program(player);
 	}
 }
 

@@ -48,7 +48,7 @@ int		place_player(int i, int j, int count, t_player *player)
 			if (is_player(player->map[i][j]))
 			{
 				if (player_placement_error(i, j, player) == -1)
-					exit(0);
+					exit_program(player);
 				if (i != 0 && i != player->table_lenght - 1 && j != 0 &&
 				j != player->max - 1)
 				{

@@ -1,4 +1,5 @@
-R "800 600"
+R 800 600
+
 NO ./text1.xpm
 SO ./text2.xpm
 WE ./text3.xpm

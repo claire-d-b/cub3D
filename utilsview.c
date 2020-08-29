@@ -46,9 +46,24 @@ int				exit_game(t_player *player)
 {
 	mlx_clear_window(player->ids.mlx_ptr, player->ids.mlx_win);
 	mlx_destroy_window(player->ids.mlx_ptr, player->ids.mlx_win);
-	player->ids.mlx_ptr = 0;
-	player->ids.mlx_win = 0;
+	ft_free2(player->sprite);
+	ft_free3(player->map);
+	if (player->xpm_path_no)
+		free(player->xpm_path_no);
+	if (player->xpm_path_so)
+		free(player->xpm_path_so);
+	if (player->xpm_path_we)
+		free(player->xpm_path_we);
+	if (player->xpm_path_ea)
+		free(player->xpm_path_ea);
+	if (player->xpm_path_sp)
+		free(player->xpm_path_sp);
+	init_struct_player_exit(player);
+	init_struct_screen_exit(player);
+	init_struct_side_s_e(player);
+	init_struct_bitmap_exit(player);
 	exit(0);
+	return (0);
 }
 
 void			check_wall_sides(t_player *player, float d, float angle)
