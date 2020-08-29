@@ -26,7 +26,7 @@ SRCS		= main.c\
 		fileutils.c\
 		utilsview.c\
 		utilsmem.c\
-		utilsnb.c\
+		utilsparsing.c\
 		initvar.c\
 		utilsraymarch.c\
 		image.c\

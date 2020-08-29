@@ -12,6 +12,40 @@
 
 #include "cub3d.h"
 
+void	manage_lines(char *line, t_player *player)
+{
+	if (!strchr(line, '1') && !strchr(line, '0') && line[0] != '\0' &&
+	line[0] != 'R' && line[0] != 'C' && line[0] != 'F' && line[0] != 'F' &&
+	line[0] != 'N' && line[1] != 'O' && line[0] != 'S' && line[1] != 'O' &&
+	line[0] != 'E' && line[1] != 'A' && line[0] != 'W' && line[1] != 'E' &&
+	is_empty_line(line) == 0)
+	{
+		player->waste =
+		write(1, "Error\nOnly IDs, map and empty lines are valid.\n", 47);
+		exit(0);
+	}
+}
+
+int		is_empty_line(char *line)
+{
+	size_t i;
+	size_t count;
+
+	i = 0;
+	count = 0;
+	while (line[i])
+	{
+		if (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'
+		|| line[i] == '\r' || line[i] == '\v' || line[i] == '\f'
+		|| line[i] == '\0')
+			count++;
+		i++;
+	}
+	if (i != count)
+		return (0);
+	return (1);
+}
+
 int		ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
