@@ -129,5 +129,6 @@ void			init_struct_player(t_player *player);
 void			init_struct_screen(t_player *player);
 void			missing_elements(t_player *player, char *line);
 void			init_elements(t_player *player);
+void			map_error(t_player *player, char **map, int i, int j);
 
 #endif

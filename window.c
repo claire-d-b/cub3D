@@ -12,6 +12,17 @@
 
 #include "cub3d.h"
 
+void	map_error(t_player *player, char **map, int i, int j)
+{
+	if (map[i][j] != '1' && map[i][j] != 'S' && map[i][j] != 'N'
+	&& map[i][j] != 'E' && map[i][j] != 'W')
+	{
+		player->waste =
+		write(1, "Error\nMap must be surrounded by walls.\n", 39);
+		exit(0);
+	}
+}
+
 void	parse_map(char **map, t_player *player)
 {
 	int i;
@@ -29,11 +40,7 @@ void	parse_map(char **map, t_player *player)
 				map[i][j] = '1';
 			if (j == player->max - 1 || j == 0 || i == 0 || i
 			== player->table_lenght - 1)
-			{
-				if (map[i][j] != '1' && map[i][j] != 'S' && map[i][j] != 'N'
-				&& map[i][j] != 'E' && map[i][j] != 'W')
-					map[i][j] = '1';
-			}
+				map_error(player, map, i, j);
 		}
 		j = -1;
 	}
