@@ -111,7 +111,7 @@ int	set_floor_color(int count, t_player *player, char *line)
 	player->floor_color[2] = ft_atoi(to_cast[2]);
 	player->floor_color[3] = rgb3((unsigned int)player->floor_color[0],
 	(unsigned int)player->floor_color[1], (unsigned int)player->floor_color[2]);
-	ft_free3(to_cast);
+	ft_free_tab(to_cast);
 	return (1);
 }
 
@@ -137,6 +137,6 @@ int	set_ceiling_color(int count, t_player *player, char *line)
 	player->ceil_color[2] = ft_atoi(to_cast[2]);
 	player->ceil_color[3] = rgb3((unsigned int)player->ceil_color[0],
 	(unsigned int)player->ceil_color[1], (unsigned int)player->ceil_color[2]);
-	ft_free3(to_cast);
+	ft_free_tab(to_cast);
 	return (1);
 }

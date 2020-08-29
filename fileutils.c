@@ -119,6 +119,6 @@ int		set_resolution(int count, t_player *player, char *line)
 	}
 	player->struct_screen.x = ft_atoi(to_cast[0]);
 	player->struct_screen.y = ft_atoi(to_cast[1]);
-	ft_free3(to_cast);
+	ft_free_tab(to_cast);
 	return (1);
 }

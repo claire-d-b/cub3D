@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	*ft_free2(float **sprite)
+void	*ft_free_sprite(float **sprite)
 {
 	int i;
 
@@ -27,7 +27,7 @@ void	*ft_free2(float **sprite)
 	return (NULL);
 }
 
-void	*ft_free3(char **sprite)
+void	*ft_free_tab(char **sprite)
 {
 	int i;
 
