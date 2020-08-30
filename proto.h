@@ -143,5 +143,6 @@ int				set_path_to_texture_no(char *to_record, t_player *player);
 int				set_path_to_texture_so(char *to_record, t_player *player);
 int				set_path_to_texture_we(char *to_record, t_player *player);
 int				set_path_to_texture_ea(char *to_record, t_player *player);
+int				is_space(char c);
 
 #endif

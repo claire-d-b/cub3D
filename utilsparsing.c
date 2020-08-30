@@ -78,3 +78,11 @@ int		ft_atoi(const char *str)
 		res = res * j;
 	return (res);
 }
+
+int		is_space(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\r' ||
+	c == '\v' || c == '\f')
+		return (1);
+	return (0);
+}
