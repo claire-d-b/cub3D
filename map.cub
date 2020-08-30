@@ -2,7 +2,7 @@ R 600 800
 
 NO ./text1.xpm
 SO ./text2.xpm
-WE ./text3.xpm
+WE ./t
 EA ./text4.xpm
 S ./sprite.xpm
 

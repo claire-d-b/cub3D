@@ -139,5 +139,9 @@ void			init_struct_player_exit(t_player *player);
 void			init_struct_ids(t_player *player);
 void			init_struct_side_s_e(t_player *player);
 void			exit_program(t_player *player);
+int				set_path_to_texture_no(char *to_record, t_player *player);
+int				set_path_to_texture_so(char *to_record, t_player *player);
+int				set_path_to_texture_we(char *to_record, t_player *player);
+int				set_path_to_texture_ea(char *to_record, t_player *player);
 
 #endif
