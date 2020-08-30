@@ -63,8 +63,8 @@ int		main(int argc, char **argv)
 	check_file(NULL, 0, 0, &player);
 	map = create_map(0, map, player.table_lenght, &player);
 	player.map = map;
-	if (argc == 2 && argv[1][0] == '-' && argv[1][1] == '-' && argv[1][2]
-	== 's' && argv[1][3] == 'a' && argv[1][4] == 'v' && argv[1][5] == 'e')
+	if (argc == 2 && ft_strlen(argv[1]) == 6 &&
+	strncmp(argv[1], "--save", 6) == 0)
 		player.save = 1;
 	player.ids.mlx_ptr = mlx_init();
 	player_placement(&player, title);

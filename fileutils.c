@@ -110,11 +110,12 @@ int		set_resolution(int count, t_player *player, char *line)
 		}
 	to_cast = ft_split(&line[count], ' ');
 	count = 0;
-	while (to_cast[count] && ft_atoi(to_cast[count]) >= 0)
+	while (to_cast[count] && ft_atoi(to_cast[count]) > 0)
 		count++;
 	if (!(count == 2))
 	{
 		player->waste = write(1, "Error\nWrong resolution ID.", 26);
+		ft_free_tab(to_cast);
 		return (-1);
 	}
 	player->struct_screen.x = ft_atoi(to_cast[0]);

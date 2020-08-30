@@ -16,77 +16,91 @@ int	set_path_to_texture_ns(int count, t_player *player, char *line)
 {
 	char *to_record;
 
-	to_record = ft_strchr(line, '.');
-	if (line[count] == 'N' && line[count + 1] == 'O' && count == 0)
+	if ((to_record = ft_strchr(line, '.')))
 	{
-		if (!(ft_strncmp((const char *)to_record, "./text1.xpm",
-		ft_strlen(to_record)) == 0))
+		if (line[count] == 'N' && line[count + 1] == 'O' && count == 0)
 		{
-			player->waste = write(1, "Error\nWrong path to north texture.", 34);
-			return (-1);
+			if (!(ft_strncmp((const char *)to_record, "./text1.xpm",
+			ft_strlen(to_record)) == 0) || ft_strlen(to_record) <= 2)
+			{
+				player->waste = write(1, "Error\nWrong path to north texture.", 34);
+				return (-1);
+			}
+			player->xpm_path_no = ft_strdup(to_record);
 		}
-		player->xpm_path_no = ft_strdup(to_record);
-	}
-	if (line[count] == 'S' && line[count + 1] == 'O' && count == 0)
-	{
-		if (!(ft_strncmp((const char *)to_record, "./text2.xpm",
-		ft_strlen(to_record)) == 0))
+		if (line[count] == 'S' && line[count + 1] == 'O' && count == 0)
 		{
-			player->waste = write(1, "Error\nWrong path to south texture.", 34);
-			return (-1);
+			if (!(ft_strncmp((const char *)to_record, "./text2.xpm",
+			ft_strlen(to_record)) == 0) || ft_strlen(to_record) <= 2)
+			{
+				player->waste = write(1, "Error\nWrong path to south texture.", 34);
+				return (-1);
+			}
+			player->xpm_path_so = ft_strdup(to_record);
 		}
-		player->xpm_path_so = ft_strdup(to_record);
+		return (1);
 	}
-	return (1);
+	player->waste = write(1, "Error\nWalls texture path.\n", 26);
+	exit_program(player);
+	return (-1);
 }
 
 int	set_path_to_texture_ew(int count, t_player *player, char *line)
 {
 	char *to_record;
 
-	to_record = ft_strchr(line, '.');
-	if (line[count] == 'W' && line[count + 1] == 'E' && count == 0)
+	if ((to_record = ft_strchr(line, '.')))
 	{
-		if (!(ft_strncmp((const char *)to_record, "./text3.xpm",
-		ft_strlen(to_record)) == 0))
+		if (line[count] == 'W' && line[count + 1] == 'E' && count == 0)
 		{
-			player->waste = write(1, "Error\nWrong path to west texture.", 33);
-			return (-1);
+			if (!(ft_strncmp((const char *)to_record, "./text3.xpm",
+			ft_strlen(to_record)) == 0) || ft_strlen(to_record) <= 2)
+			{
+				player->waste = write(1, "Error\nWrong path to west texture.", 33);
+				return (-1);
+			}
+			player->xpm_path_we = ft_strdup(to_record);
 		}
-		player->xpm_path_we = ft_strdup(to_record);
-	}
-	if (line[count] == 'E' && line[count + 1] == 'A' && count == 0)
-	{
-		to_record = ft_strchr(line, '.');
-		if (!(ft_strncmp((const char *)to_record, "./text4.xpm",
-		ft_strlen(to_record)) == 0))
+		if (line[count] == 'E' && line[count + 1] == 'A' && count == 0)
 		{
-			player->waste = write(1, "Error\nWrong path to east texture.", 33);
-			return (-1);
+			to_record = ft_strchr(line, '.');
+			if (!(ft_strncmp((const char *)to_record, "./text4.xpm",
+			ft_strlen(to_record)) == 0) || ft_strlen(to_record) <= 2)
+			{
+				player->waste = write(1, "Error\nWrong path to east texture.", 33);
+				return (-1);
+			}
+			player->xpm_path_ea = ft_strdup(to_record);
 		}
-		player->xpm_path_ea = ft_strdup(to_record);
+		return (1);
 	}
-	return (1);
+	player->waste = write(1, "Error\nWalls texture path.\n", 26);
+	exit_program(player);
+	return (-1);
 }
 
 int	set_path_to_texture_sp(int count, t_player *player, char *line)
 {
 	char *to_record;
 
-	to_record = ft_strchr(line, '.');
-	if (line[count] == 'S' && line[count + 1] != 'O' && count == 0)
+	if ((to_record = ft_strchr(line, '.')))
 	{
-		to_record = ft_strchr(line, '.');
-		if (!(ft_strncmp((const char *)to_record, "./sprite.xpm",
-		ft_strlen(to_record)) == 0))
+		if (line[count] == 'S' && line[count + 1] != 'O' && count == 0)
 		{
-			player->waste =
-			write(1, "Error\nWrong path to sprite texture.", 35);
-			return (-1);
+			if (!(ft_strncmp((const char *)to_record, "./sprite.xpm",
+			ft_strlen(to_record)) == 0) || ft_strlen(to_record) <= 2)
+			{
+				player->waste =
+				write(1, "Error\nWrong path to sprite texture.", 35);
+				return (-1);
+			}
+			player->xpm_path_sp = ft_strdup(to_record);
 		}
-		player->xpm_path_sp = ft_strdup(to_record);
+		return (1);
 	}
-	return (1);
+	player->waste = write(1, "Error\nSprite texture path.\n", 27);
+	exit_program(player);
+	return (-1);
 }
 
 int	set_floor_color(int count, t_player *player, char *line)
@@ -104,6 +118,7 @@ int	set_floor_color(int count, t_player *player, char *line)
 	if (!(j == 3))
 	{
 		player->waste = write(1, "Error\nWrong color ID [floor]", 28);
+		ft_free_tab(to_cast);
 		return (-1);
 	}
 	player->floor_color[0] = ft_atoi(to_cast[0]);
@@ -130,6 +145,7 @@ int	set_ceiling_color(int count, t_player *player, char *line)
 	if (!(j == 3))
 	{
 		player->waste = write(1, "Error\nWrong color ID [ceiling]", 30);
+		ft_free_tab(to_cast);
 		return (-1);
 	}
 	player->ceil_color[0] = ft_atoi(to_cast[0]);
