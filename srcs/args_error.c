@@ -1,4 +1,16 @@
-#include "cub3d_mac.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   args_error.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/01 19:36:49 by clde-ber          #+#    #+#             */
+/*   Updated: 2020/09/01 21:07:21 by clde-ber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
 
 void	two_args_plus_error(int nb_args, char **args, t_player *player)
 {
@@ -33,8 +45,8 @@ void	arg_error(int nb_args, char **args, t_player *player)
 		two_args_plus_error(nb_args, args, player);
 	else if (nb_args == 2)
 	{
-		if (ft_strchr(args[1], '.') && ft_strlen(ft_strchr(args[1], '.'))
-		== 4 && !ft_strncmp(ft_strchr(args[1], '.'), ".cub", 4))
+		if (!(ft_strchr(args[1], '.') && ft_strlen(ft_strchr(args[1], '.'))
+		== 4 && !ft_strncmp(ft_strchr(args[1], '.'), ".cub", 4)))
 			player->waste =
 			write(1, "Error\nPlease provide a valid map file.\n", 39);
 	}

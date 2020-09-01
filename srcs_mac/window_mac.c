@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:32:09 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/28 10:34:38 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/01 20:42:42 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,10 @@ void	parse_map(char **map, t_player *player)
 
 void	screen_size(t_player *player)
 {
-	int height;
-	int width;
-
-	height = 0;
-	width = 0;
-	mlx_get_screen_size(player->ids.mlx_ptr, &width,
-	&height);
-	if (player->struct_screen.x > width)
-		player->struct_screen.x = width;
-	if (player->struct_screen.y > height)
-		player->struct_screen.y = height;
+	if (player->struct_screen.x > 2560)
+		player->struct_screen.x = 2560;
+	if (player->struct_screen.y > 1440)
+		player->struct_screen.y = 1440;
 }
 
 int		open_window(int count, int j, t_player *player, char const *title)
