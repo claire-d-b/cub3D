@@ -72,16 +72,18 @@ void	check_map(char *line, char **map, int count, t_player *player)
 	parse_map(map, player);
 }
 
-char	**create_map(int i, char **map, int lenght, t_player *player)
+char	**create_map(char **map, int lenght, t_player *player, char *arg)
 {
 	int		fd;
+	int		i;
 	char	*line;
 	int		y;
 	int		count;
 
 	count = 0;
+	i = 0;
 	y = 0;
-	fd = open("map.cub", O_RDONLY);
+	fd = open(arg, O_RDONLY);
 	if (!(map = malloc(sizeof(char *) * (lenght + 2))))
 		return (0);
 	while ((i = get_next_line(fd, &line)))
@@ -95,7 +97,6 @@ char	**create_map(int i, char **map, int lenght, t_player *player)
 		y++;
 		free(line);
 	}
-	y = 0;
 	check_map(line, map, count, player);
 	return (map);
 }

@@ -21,7 +21,8 @@ int				find_n(char *buf, size_t size);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 int				open_window(int count, int j, t_player *player,
 				char const *title);
-char			**create_map(int i, char **map, int lenght, t_player *player);
+char			**create_map(char **map, int lenght, t_player *player,
+			char *arg);
 float			raycast(t_player *player, char **map, float angle);
 void			display_view(float teta, float dist, double wall_h,
 				t_player *player);
@@ -78,7 +79,7 @@ int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				pivot_file_checking(int len, t_player *player, char *line,
 				int y);
 int				set_map_len(int y, t_player *player, char *line);
-int				check_file(char *line, int fd, int i, t_player *player);
+int				check_file(char *line, int fd, t_player *player, char *arg);
 void			check_map(char *line, char **map, int count, t_player *player);
 int				transform_map(char **map, int count, char *line,
 				t_player *player);
@@ -144,5 +145,7 @@ int				set_path_to_texture_so(char *to_record, t_player *player);
 int				set_path_to_texture_we(char *to_record, t_player *player);
 int				set_path_to_texture_ea(char *to_record, t_player *player);
 int				is_space(char c);
+void			arg_error(int nb_args, char **args, t_player *player);
+void			two_args_plus_error(int nb_args, char **args, t_player *player);
 
 #endif

@@ -76,12 +76,14 @@ void	missing_elements(t_player *player, char *line)
 	}
 }
 
-int		check_file(char *line, int fd, int i, t_player *player)
+int		check_file(char *line, int fd, t_player *player, char *arg)
 {
 	int		y;
+	int		i;
 
 	y = 0;
-	fd = open("map.cub", O_RDONLY);
+	i = 0;
+	fd = open(arg, O_RDONLY);
 	line = NULL;
 	while ((i = get_next_line(fd, &line)) >= 0)
 	{

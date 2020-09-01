@@ -38,6 +38,7 @@ SRCS		= main.c\
 		init_struct.c\
 		init_struct_2.c\
 		utilstextures.c\
+		args_error.c\
 
 RENAME = mv a.out Cub3D
 OBJ		= $(SRCS:.c=.o)

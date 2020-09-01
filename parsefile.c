@@ -83,8 +83,9 @@ int	set_floor_color(int count, t_player *player, char *line)
 	while (line[count] && is_space(line[count]))
 		count++;
 	if (ft_isdigit(line[count]) && (to_cast = ft_split(&line[count], ',')))
-			while (to_cast[j] && ft_atoi(to_cast[j]) >= 0 && ft_atoi(to_cast[j]) <= 255)
-				j++;
+		while (to_cast[j] && ft_atoi(to_cast[j]) >= 0 &&
+		ft_atoi(to_cast[j]) <= 255)
+			j++;
 	if (!(j == 3))
 	{
 		player->waste = write(1, "Error\nWrong color ID [floor]", 28);
@@ -111,7 +112,8 @@ int	set_ceiling_color(int count, t_player *player, char *line)
 	while (line[count] && is_space(line[count]))
 		count++;
 	if (ft_isdigit(line[count]) && (to_cast = ft_split(&line[count], ',')))
-		while (to_cast[j] && ft_atoi(to_cast[j]) >= 0 && ft_atoi(to_cast[j]) <= 255)
+		while (to_cast[j] && ft_atoi(to_cast[j]) >= 0 &&
+		ft_atoi(to_cast[j]) <= 255)
 			j++;
 	if (!(j == 3))
 	{

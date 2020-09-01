@@ -60,12 +60,12 @@ int		main(int argc, char **argv)
 	init_struct_screen(&player);
 	init_struct_ids(&player);
 	init_struct_side_s_e(&player);
-	check_file(NULL, 0, 0, &player);
-	map = create_map(0, map, player.table_lenght, &player);
+	arg_error(argc, argv, &player);
+	player.waste = (argc == 2) ? check_file(NULL, 0, &player, argv[1])
+	: check_file(NULL, 0, &player, argv[2]);
+	map = (argc == 2) ? create_map(map, player.table_lenght, &player, argv[1])
+	: create_map(map, player.table_lenght, &player, argv[2]);
 	player.map = map;
-	if (argc == 2 && ft_strlen(argv[1]) == 6 &&
-	strncmp(argv[1], "--save", 6) == 0)
-		player.save = 1;
 	player.ids.mlx_ptr = mlx_init();
 	player_placement(&player, title);
 	hooks(&player);
