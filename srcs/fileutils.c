@@ -20,15 +20,13 @@ void	set_game_elements(char *line, t_player *player)
 		if (set_resolution(0, player, line) == -1)
 			exit_program(player);
 	if ((line[0] == 'N' && line[1] == 'O' &&
-	player->xpm_path_no == 0)
-	|| (line[0] == 'S' && line[1] == 'O' &&
-	player->xpm_path_so == 0))
+	player->xpm_path_no == 0) || (line[0] == 'S' && line[1] == 'O'
+	&& player->xpm_path_so == 0))
 		if (set_path_to_texture_ns(0, player, line) == -1)
 			exit_program(player);
 	if ((line[0] == 'W' && line[1] == 'E' &&
-	player->xpm_path_we == 0)
-	|| (line[0] == 'E' && line[1] == 'A' &&
-	player->xpm_path_ea == 0))
+	player->xpm_path_we == 0) || (line[0] == 'E' && line[1] == 'A'
+	&& player->xpm_path_ea == 0))
 		if (set_path_to_texture_ew(0, player, line) == -1)
 			exit_program(player);
 	if (line[0] == 'S' && line[1] != 'O' &&
