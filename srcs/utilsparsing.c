@@ -16,8 +16,14 @@ void	manage_lines(char *line, t_player *player)
 {
 	if (!strchr(line, '1') && !strchr(line, '0') && line[0] != '\0' &&
 	line[0] != 'R' && line[0] != 'C' && line[0] != 'F' && line[0] != 'F' &&
-	line[0] != 'N' && line[1] != 'O' && line[0] != 'S' && line[1] != 'O' &&
-	line[0] != 'E' && line[1] != 'A' && line[0] != 'W' && line[1] != 'E' &&
+	((line[0] != 'N' && line[1] != 'O') || (line[0] != 'N' && line[1] == 'O')
+	|| (line[0] == 'N' && line[1] != 'O')) &&
+	((line[0] != 'S' && line[1] != 'O') || (line[0] != 'S' && line[1] == 'O')
+	|| (line[0] == 'S' && line[1] != 'O')) &&
+	((line[0] != 'E' && line[1] != 'A') || (line[0] != 'E' && line[1] == 'A')
+	|| (line[0] == 'E' && line[1] != 'A')) &&
+	((line[0] != 'W' && line[1] != 'E') || (line[0] != 'W' && line[1] == 'E')
+	|| (line[0] == 'W' && line[1] != 'E')) &&
 	is_empty_line(line) == 0)
 	{
 		player->waste =
