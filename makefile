@@ -81,6 +81,7 @@ CC			= gcc
 INCL		= -L. ./srcs/minilibx/libmlx.a -lXext -lX11 -lm -lbsd
 INCL_MAC	= -I ./srcs_mac/minilibx_opengl_20191021 -L ./srcs_mac/minilibx_opengl_20191021 -l mlx -framework OpenGL -framework Appkit
 RM			= rm -f
+RM_DIR		= rm -rf
 CFLAGS		= -g3 -fsanitize=address -O3 -Wall -Wextra -Werror
 $(NAME):		$(OBJ)
 				@$(CC) $(CFLAGS) $(SRCS) $(INCL)
@@ -97,10 +98,12 @@ clean:
 clean_mac:		
 				@$(RM) $(OBJ_MAC) 
 fclean:			clean
-				@$(RM) $(NAME) $(BITMAP) $(FS)
+				@$(RM) $(NAME) $(BITMAP) 
+				@$(RM_DIR) $(FS)
 re:				fclean all
 fclean_mac:		clean_mac
-				@$(RM) $(NAME_MAC) $(BITMAP) $(FS)
+				@$(RM) $(NAME_MAC) $(BITMAP)
+				@$(RM_DIR) $(FS)
 re_mac:			$(OBJ_MAC)
 				@$(RM) $(NAME_MAC) $(BITMAP)
 				@$(CC) $(CFLAGS) $(SRCS_MAC) $(INCL_MAC)
