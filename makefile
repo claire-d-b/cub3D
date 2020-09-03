@@ -76,6 +76,7 @@ OBJ_MAC		= $(SRCS_MAC:.c=.o)
 NAME		= Cub3D
 NAME_MAC	= Cub3D
 BITMAP		= image.bmp
+FS		= a.out.dSYM
 CC			= gcc
 INCL		= -L. ./srcs/minilibx/libmlx.a -lXext -lX11 -lm -lbsd
 INCL_MAC	= -I ./srcs_mac/minilibx_opengl_20191021 -L ./srcs_mac/minilibx_opengl_20191021 -l mlx -framework OpenGL -framework Appkit
@@ -88,7 +89,7 @@ NAME_MAC:		$(OBJ_MAC)
 				@$(CC) $(CFLAGS) $(SRCS_MAC) $(INCL_MAC)
 				@$(RENAME)
 all:			$(NAME)
-mac:			$(OBJ)
+mac:			$(OBJ_MAC)
 				@$(CC) $(CFLAGS) $(SRCS_MAC) $(INCL_MAC)
 				@$(RENAME)
 clean:
@@ -96,10 +97,10 @@ clean:
 clean_mac:		
 				@$(RM) $(OBJ_MAC) 
 fclean:			clean
-				@$(RM) $(NAME) $(BITMAP)
+				@$(RM) $(NAME) $(BITMAP) $(FS)
 re:				fclean all
 fclean_mac:		clean_mac
-				@$(RM) $(NAME_MAC) $(BITMAP)
+				@$(RM) $(NAME_MAC) $(BITMAP) $(FS)
 re_mac:			$(OBJ_MAC)
 				@$(RM) $(NAME_MAC) $(BITMAP)
 				@$(CC) $(CFLAGS) $(SRCS_MAC) $(INCL_MAC)
