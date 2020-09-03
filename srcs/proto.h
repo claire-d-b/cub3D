@@ -147,5 +147,6 @@ int				set_path_to_texture_ea(char *to_record, t_player *player);
 int				is_space(char c);
 void			arg_error(int nb_args, char **args, t_player *player);
 void			two_args_plus_error(int nb_args, char **args, t_player *player);
+void			doublons(char *line, t_player *player);
 
 #endif

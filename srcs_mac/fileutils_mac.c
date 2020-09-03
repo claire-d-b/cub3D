@@ -14,18 +14,21 @@
 
 void	set_game_elements(char *line, t_player *player)
 {
+	manage_lines(line, player);
 	if (line[0] == 'R' && player->struct_screen.x == -1
 	&& player->struct_screen.y == -1)
 		if (set_resolution(0, player, line) == -1)
 			exit_program(player);
-	if (((line[0] == 'N' && line[1] == 'O')
-	|| (line[0] == 'S' && line[1] == 'O')) &&
-	(player->xpm_path_no == 0 || player->xpm_path_so == 0))
+	if ((line[0] == 'N' && line[1] == 'O' &&
+	player->xpm_path_no == 0)
+	|| (line[0] == 'S' && line[1] == 'O' &&
+	player->xpm_path_so == 0))
 		if (set_path_to_texture_ns(0, player, line) == -1)
 			exit_program(player);
-	if (((line[0] == 'W' && line[1] == 'E')
-	|| (line[0] == 'E' && line[1] == 'A')) &&
-	(player->xpm_path_we == 0 || player->xpm_path_ea == 0))
+	if ((line[0] == 'W' && line[1] == 'E' &&
+	player->xpm_path_we == 0)
+	|| (line[0] == 'E' && line[1] == 'A' &&
+	player->xpm_path_ea == 0))
 		if (set_path_to_texture_ew(0, player, line) == -1)
 			exit_program(player);
 	if (line[0] == 'S' && line[1] != 'O' &&
@@ -38,7 +41,6 @@ void	set_game_elements(char *line, t_player *player)
 	if (line[0] == 'C' && player->ceil_color[0] == -1)
 		if (set_ceiling_color(1, player, line) == -1)
 			exit_program(player);
-	manage_lines(line, player);
 }
 
 int		pivot_file_checking(int len, t_player *player, char *line, int y)

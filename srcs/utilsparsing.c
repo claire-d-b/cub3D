@@ -12,24 +12,42 @@
 
 #include "cub3d.h"
 
+void	doublons(char *line, t_player *player)
+{
+	if (is_empty_line(line) == 0 && ((ft_strlen(line) >= 1 &&
+	((line[0] == 'R' && player->struct_screen.x != -1 &&
+	player->struct_screen.y != -1) || (line[0] != 'C' && player->ceil_color[3] != -1)
+	 || (line[0] == 'F' && player->floor_color[3] != -1) || (line[0] == 'S' &&
+	 player->xpm_path_sp != 0)) && (is_space(line[1]) || line[1] == '\0'))
+	|| (ft_strlen(line) >= 3 && (((line[2] && is_space(line[2])) || line[2] == '\0'))
+	&& ((line[0] == 'N' && line[1] == 'O' && player->xpm_path_no != 0) ||
+	(line[0] == 'S' && line[1] == 'O' && player->xpm_path_so != 0) ||
+	(line[0] == 'E' && line[1] == 'A' && player->xpm_path_ea != 0) ||
+	(line[0] == 'W' && line[1] == 'E' && player->xpm_path_we != 0)))))
+	 {
+		 player->waste = write(1, "Error\nDoublons in IDs.\n", 23);
+		 exit_program(player);
+	 }
+}
+
 void	manage_lines(char *line, t_player *player)
 {
-	if (!strchr(line, '1') && !strchr(line, '0') && line[0] != '\0' &&
-	line[0] != 'R' && line[0] != 'C' && line[0] != 'F' && line[0] != 'F' &&
-	((line[0] != 'N' && line[1] != 'O') || (line[0] != 'N' && line[1] == 'O')
-	|| (line[0] == 'N' && line[1] != 'O')) &&
-	((line[0] != 'S' && line[1] != 'O') || (line[0] != 'S' && line[1] == 'O')
-	|| (line[0] == 'S' && line[1] != 'O')) &&
-	((line[0] != 'E' && line[1] != 'A') || (line[0] != 'E' && line[1] == 'A')
-	|| (line[0] == 'E' && line[1] != 'A')) &&
-	((line[0] != 'W' && line[1] != 'E') || (line[0] != 'W' && line[1] == 'E')
-	|| (line[0] == 'W' && line[1] != 'E')) &&
-	is_empty_line(line) == 0)
+	if (ft_strlen(line) >= 1 && !(line[0] == '1') && !(is_space(line[0])) &&
+	is_empty_line(line) == 0 && ((line[0] != 'R' && line[0] != 'C' &&
+	line[0] != 'F' && line[0] != 'S' && (is_space(line[1]) || line[1] == '\0')) ||
+	(((line[2] && is_space(line[2])) || line[2] == '\0') && (((line[0] != 'N' && line[1] != 'O')
+	|| (line[0] != 'N' && line[1] == 'O') || (line[0] == 'N' && line[1] != 'O')) &&
+	((line[0] != 'S' && line[1] != 'O') || (line[0] != 'S' && line[1] == 'O') ||
+	(line[0] == 'S' && line[1] != 'O')) && ((line[0] != 'E' && line[1] != 'A') ||
+	(line[0] != 'E' && line[1] == 'A') || (line[0] == 'E' && line[1] != 'A')) &&
+	((line[0] != 'W' && line[1] != 'E') || (line[0] != 'W' && line[1] == 'E') ||
+	(line[0] == 'W' && line[1] != 'E'))))))
 	{
 		player->waste =
 		write(1, "Error\nOnly IDs, map and empty lines are valid.\n", 47);
 		exit_program(player);
 	}
+	doublons(line, player);
 }
 
 int		is_empty_line(char *line)
@@ -39,11 +57,12 @@ int		is_empty_line(char *line)
 
 	i = 0;
 	count = 0;
+	if (line[0] == '\0')
+		return (1);
 	while (line[i])
 	{
 		if (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'
-		|| line[i] == '\r' || line[i] == '\v' || line[i] == '\f'
-		|| line[i] == '\0')
+		|| line[i] == '\r' || line[i] == '\v' || line[i] == '\f')
 			count++;
 		i++;
 	}
