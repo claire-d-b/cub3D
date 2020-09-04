@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:29:56 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/28 10:40:11 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/04 17:30:17 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int				set_path_to_texture_ew(int count, t_player *player, char *line);
 int				set_path_to_texture_sp(int count, t_player *player, char *line);
 int				set_floor_color(int count, t_player *player, char *line);
 int				set_ceiling_color(int count, t_player *player, char *line);
-int				fill_last_line(char **map, int count, t_player *player);
 void			init_struct_side(t_player *player);
 void			init_sprite(t_player *player);
 void			draw_sprite_from_end(t_player *player, int i, int j,
@@ -148,5 +147,6 @@ int				is_space(char c);
 void			arg_error(int nb_args, char **args, t_player *player);
 void			two_args_plus_error(int nb_args, char **args, t_player *player);
 void			doublons(char *line, t_player *player);
+int				is_map(char *line);
 
 #endif

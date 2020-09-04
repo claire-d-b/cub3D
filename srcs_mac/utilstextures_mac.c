@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 12:39:37 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/30 12:39:41 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/03 16:53:35 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	doublons(char *line, t_player *player)
 {
-	if (is_empty_line(line) == 0 && ((ft_strlen(line) >= 1 &&
+	if (is_map(line) == 0 &&
+	is_empty_line(line) == 0 && ((ft_strlen(line) >= 1 &&
 	((line[0] == 'R' && player->struct_screen.x != -1 &&
 	player->struct_screen.y != -1) || (line[0] != 'C' &&
 	player->ceil_color[3] != -1) || (line[0] == 'F' &&

@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:04:39 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/20 13:06:05 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/03 16:51:08 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	manage_lines(char *line, t_player *player)
 {
-	if (ft_strlen(line) >= 1 && !(line[0] == '1') && !(is_space(line[0])) &&
+	if (is_map(line) == 0 &&
+	ft_strlen(line) >= 1 && !(line[0] == '1') && !(is_space(line[0])) &&
 	is_empty_line(line) == 0 && ((line[0] != 'R' && line[0] != 'C' &&
 	line[0] != 'F' && line[0] != 'S' && (is_space(line[1]) ||
 	line[1] == '\0')) || (((line[2] && is_space(line[2])) || line[2] == '\0')

@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 10:34:22 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/28 10:37:46 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/04 17:34:03 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		player_placement_error(int i, int j, t_player *player)
 {
 	if (i == 0 || i == player->table_lenght - 1 || j == 0 ||
-	j == player->max - 1)
+	j == (int)ft_strlen(player->map[i]) - 1)
 	{
 		player->waste = write(1, "Error\nPlayer.", 13);
 		return (-1);
@@ -43,14 +43,14 @@ int		place_player(int i, int j, int count, t_player *player)
 {
 	while (++i < player->table_lenght)
 	{
-		while (++j < player->max)
+		while (player->map[++j])
 		{
 			if (is_player(player->map[i][j]))
 			{
 				if (player_placement_error(i, j, player) == -1)
 					exit_program(player);
 				if (i != 0 && i != player->table_lenght - 1 && j != 0 &&
-				j != player->max - 1)
+				j != (int)ft_strlen(player->map[i]) - 1)
 				{
 					if (player->map[i][j] == 'N' || player->map[i][j] == 'S')
 						player->teta = (player->map[i][j] == 'N') ? VIEW_ANGLE :

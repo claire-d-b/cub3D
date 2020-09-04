@@ -6,7 +6,7 @@
 #    By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/14 11:48:01 by clde-ber          #+#    #+#              #
-#    Updated: 2020/09/01 21:04:39 by clde-ber         ###   ########.fr        #
+#    Updated: 2020/09/03 16:48:49 by clde-ber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS		= ./srcs/main.c\
 		./srcs/split.c\
 		./srcs/parsefile.c\
 		./srcs/fileutils.c\
+		./srcs/fileutils_2.c\
 		./srcs/utilsview.c\
 		./srcs/utilsmem.c\
 		./srcs/utilsparsing.c\
@@ -54,6 +55,7 @@ SRCS_MAC	= ./srcs_mac/main_mac.c\
 		./srcs_mac/split_mac.c\
 		./srcs_mac/parsefile_mac.c\
 		./srcs_mac/fileutils_mac.c\
+		./srcs_mac/fileutils_2_mac.c\
 		./srcs_mac/utilsview_mac.c\
 		./srcs_mac/utilsmem_mac.c\
 		./srcs_mac/utilsparsing_mac.c\
