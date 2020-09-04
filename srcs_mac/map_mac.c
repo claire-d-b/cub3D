@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:26:26 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/04 17:29:20 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/04 17:41:24 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 
 	y = -1;
 	x = 0;
-	while (line[++y] && 
+	while (line[++y] &&
 	(line[y] == '0' || line[y] == '1' || line[y] == '2' || line[y] == 'N' ||
 	line[y] == 'S' || line[y] == 'E' || line[y] == 'W' || is_space(line[y])))
 	{
@@ -69,7 +69,8 @@ void	check_map(char *line, char **map, int count, t_player *player)
 	while (map[i])
 	{
 		while (map[i][j] && j)
-		{	if (map[i + 1][j - 1] != '1' && (j < (int)ft_strlen(map[i + 1])
+		{
+			if (map[i + 1][j - 1] != '1' && (j < (int)ft_strlen(map[i + 1])
 			|| map[i][j] != '1'))
 			{
 				write(1, "Error\nMap must be surrounded by walls.\n", 39);
