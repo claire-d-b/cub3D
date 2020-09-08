@@ -100,7 +100,7 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 			while (++j < (int)(((player->sprite[count][2] +
 			player->sprite[count][6]) / 2)))
 			{
-				if (fabs(player->teta) > VIEW_ANGLE)
+				if (fabs(player->teta) >= VIEW_ANGLE)
 					draw_sprite_from_start(player, i, j, count);
 				else
 					draw_sprite_from_end(player, i, j, count);
