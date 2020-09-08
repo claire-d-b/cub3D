@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:36:12 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/28 09:52:16 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/08 18:39:41 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,21 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 	unsigned int	color;
 	int				xposition_end;
 	double			wall_h;
+	double			dist;
+	double			dist2;
+	double			ratio;
 
 	wall_h = ((player->sprite[count][2] + player->sprite[count][6]) / 2);
 	xposition_end = (int)player->sprite[count][3];
+	dist2 = sqrt(wall_h * wall_h + wall_h * wall_h);
+	dist = sqrt(get_decimals(player->sprite[count][0]) * get_decimals(player->sprite[count][1]) +
+	get_decimals(player->sprite[count][0]) * get_decimals(player->sprite[count][1]) * dist2 / 100);
+	ratio = dist * wall_h / dist2;
 	if (j < wall_h && i < wall_h &&
 	i >= 0 && j >= 0)
 	{
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, player->ids.xpm_sprite_w - (i * player->ids.xpm_sprite_w /
+		wall_h, ratio * player->ids.xpm_sprite_w / wall_h + (i * player->ids.xpm_sprite_w /
 		wall_h));
 		if ((color > 0 && xposition_end - i >= 0 && xposition_end - i
 		< player->struct_screen.x && player->struct_screen.y / 2 - wall_h / 2
@@ -56,14 +63,21 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 	unsigned int	color;
 	int				xposition_start;
 	double			wall_h;
+	double			dist;
+	double			dist2;
+	double			ratio;
 
 	wall_h = ((player->sprite[count][2] + player->sprite[count][6]) / 2);
 	xposition_start = (int)player->sprite[count][7];
+	dist2 = sqrt(wall_h * wall_h + wall_h * wall_h);
+	dist = sqrt(get_decimals(player->sprite[count][4]) * get_decimals(player->sprite[count][4]) +
+	get_decimals(player->sprite[count][5]) * get_decimals(player->sprite[count][5]) * dist2 / 100);
+	ratio = dist * wall_h / dist2;
 	if (j < wall_h && i < wall_h &&
 	i >= 0 && j >= 0)
 	{
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, i * player->ids.xpm_sprite_w / wall_h);
+		wall_h, i * player->ids.xpm_sprite_w / wall_h + ratio * player->ids.xpm_sprite_w / wall_h);
 		if ((color > 0 && xposition_start + i >= 0 && xposition_start + i
 		< player->struct_screen.x && player->struct_screen.y / 2 - wall_h / 2
 		+ j >= 0 && player->struct_screen.y / 2 - wall_h / 2 + j <
@@ -86,9 +100,7 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 			while (++j < (int)(((player->sprite[count][2] +
 			player->sprite[count][6]) / 2)))
 			{
-				if (((player->sprite[count][8] < player->sprite[count][9])
-				&& player->sprite[count][7] != 0) ||
-				player->sprite[count][3] == player->struct_screen.x - 1)
+				if (fabs(player->teta) >= VIEW_ANGLE)
 					draw_sprite_from_start(player, i, j, count);
 				else
 					draw_sprite_from_end(player, i, j, count);
