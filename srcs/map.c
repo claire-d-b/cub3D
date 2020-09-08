@@ -47,7 +47,7 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 		y == (int)ft_strlen(line) - 1) && line[y] != '1' &&
 		is_space(line[y]) == 0)
 		{
-			write(1, "Error\nMap must be surrounded by walls.\n", 39);
+			player->waste = write(1, "Error\nMap must be surrounded by walls.\n", 39);
 			exit_program(player);
 		}
 	}
@@ -73,7 +73,7 @@ void	check_map(char *line, char **map, int count, t_player *player)
 			if (map[i + 1][j - 1] != '1' && (j < (int)ft_strlen(map[i + 1])
 			|| map[i][j] != '1'))
 			{
-				write(1, "Error\nMap must be surrounded by walls.\n", 39);
+				player->waste = write(1, "Error\nMap must be surrounded by walls.\n", 39);
 				exit_program(player);
 			}
 			j++;
