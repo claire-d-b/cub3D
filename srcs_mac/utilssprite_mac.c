@@ -34,9 +34,9 @@ int		is_sprite(float *sprite)
 	i = 0;
 	if (sprite)
 	{
-		while (i < 10 && sprite[i] == 0)
+		while (i < 11 && sprite[i] == 0)
 			i++;
-		return (i == 10) ? 0 : 1;
+		return (i == 11) ? 0 : 1;
 	}
 	else
 		return (0);
@@ -94,4 +94,12 @@ void	define_heightawidth(t_player *player, float d, float angle)
 	player->struct_side.wi = (player->ray_y + ((d - (2 * EPSILON)) *
 	cos(angle)));
 	player->distance = (player->struct_screen.x) / (d - (2 * EPSILON));
+	if (player->struct_side.north == 1)
+		player->side = 0;
+	if (player->struct_side.south == 1)
+		player->side = 1;
+	if (player->struct_side.west == 1)
+		player->side = 2;
+	if (player->struct_side.east == 1)
+		player->side = 3;
 }
