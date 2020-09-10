@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:44:48 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/20 14:11:21 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/10 16:51:59 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,13 @@ void			check_wall_sides(t_player *player, float d, float angle)
 	(int)player->struct_side.wi == 1 && (int)(player->ray_x + (d - EPSILON) *
 	sin(angle)) - (int)player->struct_side.he == 0 && player->p == '1')
 		check_side_west(player);
+	player->distance = (player->struct_screen.x) / (d);
+	if (player->struct_side.north == 1)
+		player->side = 0;
+	if (player->struct_side.south == 1)
+		player->side = 1;
+	if (player->struct_side.west == 1)
+		player->side = 2;
+	if (player->struct_side.east == 1)
+		player->side = 3;
 }

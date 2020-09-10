@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:11:42 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/28 10:30:04 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/10 16:48:24 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,4 @@ void	define_heightawidth(t_player *player, float d, float angle)
 	sin(angle)));
 	player->struct_side.wi = (player->ray_y + ((d - (2 * EPSILON)) *
 	cos(angle)));
-	player->distance = (player->struct_screen.x) / (d);
-	if (player->struct_side.north == 1)
-		player->side = 0;
-	if (player->struct_side.south == 1)
-		player->side = 1;
-	if (player->struct_side.west == 1)
-		player->side = 2;
-	if (player->struct_side.east == 1)
-		player->side = 3;
 }

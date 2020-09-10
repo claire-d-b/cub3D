@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:36:12 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/10 16:42:57 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/10 17:07:23 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 	xposition_start = (int)player->sprite[count][7];
 	if (player->sprite[count][10] == 0 || player->sprite[count][10] == 1) 
 		dist2 = (player->sprite[count][10] == 0) ? get_decimals(player->sprite[count][5]) * wall_h / 100 :
-		get_decimals(player->sprite[count][5]) * wall_h / 100;
+		wall_h - (get_decimals(player->sprite[count][5]) * wall_h / 100);
 	else
 		dist2 = (player->sprite[count][10] == 2) ? wall_h - (get_decimals(player->sprite[count][4]) * wall_h / 100) :
 	get_decimals(player->sprite[count][4]) * wall_h / 100;
