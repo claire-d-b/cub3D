@@ -93,7 +93,7 @@ void	define_heightawidth(t_player *player, float d, float angle)
 	sin(angle)));
 	player->struct_side.wi = (player->ray_y + ((d - (2 * EPSILON)) *
 	cos(angle)));
-	player->distance = (player->struct_screen.x) / (d - (2 * EPSILON));
+	player->distance = (player->struct_screen.x) / (d);
 	if (player->struct_side.north == 1)
 		player->side = 0;
 	if (player->struct_side.south == 1)
