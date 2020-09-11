@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:31:09 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/28 10:37:56 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/11 11:09:37 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ typedef struct	s_side
 	int				south;
 	int				east;
 	int				west;
+	int				north_s;
+	int				south_s;
+	int				east_s;
+	int				west_s;
 	unsigned char	pixel[4];
 }				t_side;
 

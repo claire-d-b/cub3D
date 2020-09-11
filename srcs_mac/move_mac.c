@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 11:22:57 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/28 09:53:57 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/11 16:00:03 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		key_release(int keycode, t_player *player)
 		exit_game(player);
 	else
 	{
-		delete_sprites(player);
+	//	delete_sprites(player);
 		display_view(0, 0, 0, player);
 	}
 	return (0);
@@ -57,7 +57,7 @@ int		key_press(int keycode, t_player *player)
 			exit_game(player);
 		else
 		{
-			delete_sprites(player);
+		//	delete_sprites(player);
 			display_view(0, 0, 0, player);
 		}
 	}
