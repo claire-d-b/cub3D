@@ -37,7 +37,7 @@ void	init_sprite(t_player *player)
 	player->nb_sprites = 0;
 	while (player->sprite[i])
 	{
-		while (j < 10)
+		while (j < 11)
 		{
 			player->sprite[i][j] = 0;
 			j++;
@@ -59,4 +59,12 @@ void	init_struct_side(t_player *player)
 	player->struct_side.south = 0;
 	player->struct_side.east = 0;
 	player->struct_side.west = 0;
+}
+
+void	init_struct_side_s(t_player *player)
+{
+	player->struct_side.north_s = 0;
+	player->struct_side.south_s = 0;
+	player->struct_side.east_s = 0;
+	player->struct_side.west_s = 0;
 }

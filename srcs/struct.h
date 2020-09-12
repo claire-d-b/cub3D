@@ -21,6 +21,10 @@ typedef struct	s_side
 	int				south;
 	int				east;
 	int				west;
+	int				north_s;
+	int				south_s;
+	int				east_s;
+	int				west_s;
 	unsigned char	pixel[4];
 }				t_side;
 

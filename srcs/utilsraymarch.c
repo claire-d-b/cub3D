@@ -12,11 +12,11 @@
 
 #include "cub3d.h"
 
-void	register_coordinates(t_player *player, double x, double y)
-{
-	player->struct_side.he = x;
-	player->struct_side.wi = y;
-}
+//void	register_coordinates(t_player *player, double x, double y)
+//{
+//	player->struct_side.he = x;
+//	player->struct_side.wi = y;
+//}
 
 void	check_side_south(t_player *player)
 {
@@ -40,4 +40,28 @@ void	check_side_west(t_player *player)
 {
 	init_struct_side(player);
 	player->struct_side.west = 1;
+}
+
+void	check_side_south_s(t_player *player)
+{
+//	init_struct_side_s(player);
+	player->struct_side.south_s = player->struct_screen.i;
+}
+
+void	check_side_north_s(t_player *player)
+{
+//	init_struct_side_s(player);
+	player->struct_side.north_s = player->struct_screen.i;
+}
+
+void	check_side_east_s(t_player *player)
+{
+//	init_struct_side_s(player);
+	player->struct_side.east_s = player->struct_screen.i;
+}
+
+void	check_side_west_s(t_player *player)
+{
+//	init_struct_side_s(player);
+	player->struct_side.west_s = player->struct_screen.i;
 }

@@ -148,5 +148,11 @@ void			arg_error(int nb_args, char **args, t_player *player);
 void			two_args_plus_error(int nb_args, char **args, t_player *player);
 void			doublons(char *line, t_player *player);
 int				is_map(char *line);
+void			check_sprite_sides(t_player *player, float d, float angle, int count);
+void			check_side_south_s(t_player *player);
+void			check_side_north_s(t_player *player);
+void			check_side_east_s(t_player *player);
+void			check_side_west_s(t_player *player);
+void			init_struct_side_s(t_player *player);
 
 #endif
