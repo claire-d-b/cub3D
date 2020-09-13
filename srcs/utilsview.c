@@ -72,19 +72,19 @@ void		check_sprite_sides(t_player *player, float d, float angle, int count)
 	if ((int)(player->ray_x + (d - EPSILON) * sin(angle)) -
 	(int)player->sprite[count][4] == -1 && (int)(player->ray_y + (d - EPSILON) *
 	cos(angle)) - (int)player->sprite[count][5] == 0 && player->p == '2')
-		check_side_south_s(player);
+		check_side_south_s(player, count);
 	else if ((int)(player->ray_x + (d - EPSILON) * sin(angle)) -
 	(int)player->sprite[count][4] == 1 && (int)(player->ray_y + (d - EPSILON) *
 	cos(angle)) - (int)player->sprite[count][5] == 0 && player->p == '2')
-		check_side_north_s(player);
+		check_side_north_s(player, count);
 	else if ((int)(player->ray_y + (d - EPSILON) * cos(angle)) -
 	(int)player->sprite[count][5] == -1 && (int)(player->ray_x + (d - EPSILON) *
 	sin(angle)) - (int)player->sprite[count][4] == 0 && player->p == '2')
-		check_side_east_s(player);
+		check_side_east_s(player, count);
 	else if ((int)(player->ray_y + (d - EPSILON) * cos(angle)) -
 	(int)player->sprite[count][5] == 1 && (int)(player->ray_x + (d - EPSILON) *
 	sin(angle)) - (int)player->sprite[count][4] == 0 && player->p == '2')
-		check_side_west_s(player);
+		check_side_west_s(player, count);
 }
 
 void			check_wall_sides(t_player *player, float d, float angle)

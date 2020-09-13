@@ -38,12 +38,12 @@ float	raycast(t_player *player, char **map, float angle)
 			while (is_sprite(player->sprite[i]) && ((((int)player->sprite[i][4]
 			!= (int)(player->ray_x + d * sin(angle)) || ((int)
 			player->sprite[i][5] != (int)(player->ray_y + d * cos(angle)))))))
-			{
-				init_struct_side_s(player);
 				i++;
-			}
 			if (!is_sprite(player->sprite[i]))
+			{
+				init_struct_side_s(player, i);
 				register_sprite_start(i, player, angle, d);
+			}
 			register_dist_minmax(player, d, angle, i);
 			register_sprite_end(i, player, angle, d);
 		}

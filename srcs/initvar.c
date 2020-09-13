@@ -61,10 +61,7 @@ void	init_struct_side(t_player *player)
 	player->struct_side.west = 0;
 }
 
-void	init_struct_side_s(t_player *player)
+void	init_struct_side_s(t_player *player, int i)
 {
-	player->struct_side.north_s = 0;
-	player->struct_side.south_s = 0;
-	player->struct_side.east_s = 0;
-	player->struct_side.west_s = 0;
+	player->sprite[i][8] = 0;
 }

@@ -42,26 +42,26 @@ void	check_side_west(t_player *player)
 	player->struct_side.west = 1;
 }
 
-void	check_side_south_s(t_player *player)
+void	check_side_south_s(t_player *player, int i)
 {
 //	init_struct_side_s(player);
-	player->struct_side.south_s = player->struct_screen.i;
+	player->sprite[i][8] = 0;
 }
 
-void	check_side_north_s(t_player *player)
+void	check_side_north_s(t_player *player, int i)
 {
 //	init_struct_side_s(player);
-	player->struct_side.north_s = player->struct_screen.i;
+	player->sprite[i][8] = 1;
 }
 
-void	check_side_east_s(t_player *player)
+void	check_side_east_s(t_player *player, int i)
 {
 //	init_struct_side_s(player);
-	player->struct_side.east_s = player->struct_screen.i;
+	player->sprite[i][8] = 2;
 }
 
-void	check_side_west_s(t_player *player)
+void	check_side_west_s(t_player *player, int i)
 {
 //	init_struct_side_s(player);
-	player->struct_side.west_s = player->struct_screen.i;
+	player->sprite[i][8] = 3;
 }
