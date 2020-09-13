@@ -39,7 +39,6 @@ int				get_decimals(float height)
 {
 	int res;
 
-	height = fabs(height);
 	res = (int)((height - (int)height) * 100);
 	return (res);
 }
