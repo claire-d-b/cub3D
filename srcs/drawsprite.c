@@ -62,14 +62,17 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 {
 	unsigned int	color;
 	int				xposition_start;
-//	int				xposition_end;
+	int				xposition_end;
 	double			wall_h;
 	double			dist2;
 	float			ratio;
+	int				boolean;
 
 	color = 0;
 	dist2 = 0;
-	wall_h = ((player->sprite[count][2] + player->sprite[count][6]) / 2);
+	boolean = 0;
+//	printf("player->teta %f\n", player->teta);
+	wall_h = ((player->sprite[count][6] + player->sprite[count][2]) / 2);
 /*	if (player->sprite[count][10] == 0 || player->sprite[count][10] == 1) 
 		dist2 = (player->sprite[count][10] == 0) ? get_decimals(player->sprite[count][5]) * wall_h / 100 :
 		wall_h - (get_decimals(player->sprite[count][5]) * wall_h / 100);
@@ -77,29 +80,111 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		dist2 = (player->sprite[count][10] == 2) ? wall_h - (get_decimals(player->sprite[count][4]) * wall_h / 100) :
 	get_decimals(player->sprite[count][4]) * wall_h / 100;*/
 	if (player->sprite[count][8] == 1)
-		dist2 = wall_h - get_decimals(player->sprite[count][5]) * wall_h / 100;
+	{
+		if (get_decimals(player->teta) == get_decimals(M_PI / 2) || get_decimals(player->teta) == get_decimals(M_PI) || get_decimals(player->teta) == 0)
+		{
+			dist2 = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ?  wall_h - get_decimals(player->sprite[count][5]) * wall_h / 100 :
+			wall_h - (wall_h - get_decimals(player->sprite[count][1]) * wall_h / 100);
+			boolean = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ? 0 : 1;
+		}
+		else if ((player->teta > M_PI / 2 || (player->teta < -0 && player->teta > -M_PI / 2)) || player->sprite[count][3] == player->struct_screen.x - 1)
+		{
+			dist2 = wall_h - get_decimals(player->sprite[count][5]) * wall_h / 100;
+			boolean = 0;
+		}
+		else
+		{
+			dist2 = wall_h - (wall_h - get_decimals(player->sprite[count][1]) * wall_h / 100);
+			boolean = 1;
+		}
+	}
 	if (player->sprite[count][8] == 0)
-		dist2 = get_decimals(player->sprite[count][5]) * wall_h / 100;
+	{
+		if (get_decimals(player->teta) == get_decimals(M_PI / 2) || get_decimals(player->teta) == get_decimals(M_PI) || get_decimals(player->teta) == 0)
+		{
+			dist2 = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ? 
+			get_decimals(player->sprite[count][5]) * wall_h / 100 : (wall_h - get_decimals(player->sprite[count][1]) * wall_h / 100);
+			boolean = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ? 0 : 1;
+		}
+		else if ((player->teta > M_PI / 2 || (player->teta < -0 && player->teta > -M_PI / 2)) || player->sprite[count][3] == player->struct_screen.x - 1)
+		{
+			dist2 = get_decimals(player->sprite[count][5]) * wall_h / 100;
+			boolean = 0;
+		}
+		else
+		{
+			dist2 = wall_h - get_decimals(player->sprite[count][1]) * wall_h / 100;
+			boolean = 1;
+		}
+	}
 	if (player->sprite[count][8] == 2)
-		dist2 = wall_h - get_decimals(player->sprite[count][4]) * wall_h / 100;
+	{
+		if (get_decimals(player->teta) == get_decimals(M_PI / 2) || get_decimals(player->teta) == get_decimals(M_PI) || get_decimals(player->teta) == 0)
+		{
+			dist2 = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ?
+			wall_h - get_decimals(player->sprite[count][4]) * wall_h / 100 : wall_h - (wall_h - get_decimals(player->sprite[count][0]) * wall_h / 100);
+			boolean = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ?  0 : 1;
+		}
+		else if ((player->teta > M_PI / 2 || (player->teta < -0 && player->teta > -M_PI / 2)) || player->sprite[count][3] == player->struct_screen.x - 1)
+		{
+			dist2 = wall_h - get_decimals(player->sprite[count][4]) * wall_h / 100;
+			boolean = 0;
+		}
+		else
+		{
+			dist2 = wall_h - (wall_h - get_decimals(player->sprite[count][0]) * wall_h / 100);
+			boolean = 1;
+		}
+		
+	}
 	if (player->sprite[count][8] == 3)
-		dist2 = get_decimals(player->sprite[count][4]) * wall_h / 100;
+	{
+		if (get_decimals(player->teta) == get_decimals(M_PI / 2) || get_decimals(player->teta) == get_decimals(M_PI))
+		{
+			dist2 = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ? get_decimals(player->sprite[count][4]) * wall_h / 100 : 
+			(wall_h - get_decimals(player->sprite[count][0]) * wall_h / 100);
+			boolean = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ? 0 : 1;
+		}
+		else if ((player->teta > M_PI / 2 || (player->teta < -0 && player->teta > -M_PI / 2)) || player->sprite[count][3] == player->struct_screen.x - 1)
+		{
+			dist2 =  get_decimals(player->sprite[count][4]) * wall_h / 100;
+			boolean = 0;
+		}
+		else
+		{
+			dist2 = wall_h - get_decimals(player->sprite[count][0]) * wall_h / 100;
+			boolean = 1;
+		}
+	}
 	ratio = dist2;
 //	printf("ratio = %f\n", ratio);
 	xposition_start = (int)player->sprite[count][7] - fabs(ratio);
+	xposition_end = (int)player->sprite[count][3] + fabs(ratio);
 //	printf("xposition start %d\n", xposition_start);
-	if (j < wall_h && i < wall_h && i >= 0 && j >= 0)
+	if (boolean == 0 && j < wall_h && i < wall_h && i >= 0 && j >= 0)
 	{
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
 		wall_h, (wall_h - i) * player->ids.xpm_sprite_w / wall_h);
 	}
-	if ((color > 0 && xposition_start + i <= player->sprite[count][3]
+	if (boolean == 1 && j < wall_h && i < wall_h && i >= 0 && j >= 0)
+	{
+		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
+		wall_h, i * player->ids.xpm_sprite_w / wall_h);
+	}
+	if (boolean == 0 && color > 0 && xposition_start + i <= player->sprite[count][3]
 		&& xposition_start + i >= player->sprite[count][7]
 		&& player->struct_screen.y / 2 - wall_h / 2
 		+ j >= 0 && player->struct_screen.y / 2 - wall_h / 2 + j <
-		player->struct_screen.y))
+		player->struct_screen.y)
 			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
 			xposition_start + i, color);
+	if (boolean == 1 && color > 0 && xposition_end - i <= player->sprite[count][3]
+		&& xposition_end - i >= player->sprite[count][7]
+		&& player->struct_screen.y / 2 - wall_h / 2
+		+ j >= 0 && player->struct_screen.y / 2 - wall_h / 2 + j <
+		player->struct_screen.y)
+			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
+			xposition_end - i, color);
 }
 
 void	pivot_textures_sprite(int i, int j, t_player *player)
@@ -110,7 +195,7 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 	sort_sprite(player);
 	while (player->sprite[count] && (int)player->sprite[count][0] != 0)
 	{
-		while (++i <= (int)(((player->sprite[count][2] + player->sprite[count][6]) / 2)))
+		while (++i <= (int)(((player->sprite[count][6] + player->sprite[count][2]) / 2)))
 		{
 			while (++j < (int)(((player->sprite[count][2] +
 			player->sprite[count][6]) / 2)))
