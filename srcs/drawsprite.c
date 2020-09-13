@@ -17,6 +17,7 @@ void	register_sprite_start(int i, t_player *player, float angle, float d)
 	player->sprite[i][4] = player->ray_x + d * sin(angle);
 	player->sprite[i][5] = player->ray_y + d * cos(angle);
 	player->sprite[i][7] = player->struct_screen.i;
+	player->sprite[i][10] = player->distance;
 	check_sprite_sides(player, d, angle, i);
 	player->nb_sprites++;
 }
@@ -87,7 +88,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 			wall_h - (wall_h - get_decimals(player->sprite[count][1]) * wall_h / 100);
 			boolean = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ? 0 : 1;
 		}*/
-		if ((player->teta > M_PI / 2 || (player->teta < -0 && player->teta > -M_PI / 2)) && player->sprite[count][7] != 0)
+		if ((player->sprite[count][10] < player->sprite[count][9] && player->sprite[count][7] != 0) || player->sprite[count][3] == player->struct_screen.x - 1)
 		{
 			dist2 = wall_h - get_decimals(player->sprite[count][5]) * wall_h / 100;
 			boolean = 0;
@@ -105,7 +106,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 			get_decimals(player->sprite[count][5]) * wall_h / 100 : (wall_h - get_decimals(player->sprite[count][1]) * wall_h / 100);
 			boolean = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ? 0 : 1;
 		}*/
-		if ((player->teta > M_PI / 2 || (player->teta < -0 && player->teta > -M_PI / 2)) && player->sprite[count][7] != 0)
+		if ((player->sprite[count][10] < player->sprite[count][9] && player->sprite[count][7] != 0) || player->sprite[count][3] == player->struct_screen.x - 1)
 		{
 			dist2 = get_decimals(player->sprite[count][5]) * wall_h / 100;
 			boolean = 0;
@@ -124,7 +125,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 			wall_h - get_decimals(player->sprite[count][4]) * wall_h / 100 : wall_h - (wall_h - get_decimals(player->sprite[count][0]) * wall_h / 100);
 			boolean = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ?  0 : 1;
 		}*/
-		if ((player->teta > M_PI / 2 || (player->teta < -0 && player->teta > -M_PI / 2)) && player->sprite[count][7] != 0)
+		if ((player->sprite[count][10] < player->sprite[count][9] && player->sprite[count][7] != 0) || player->sprite[count][3] == player->struct_screen.x - 1)
 		{
 			dist2 = wall_h - get_decimals(player->sprite[count][4]) * wall_h / 100;
 			boolean = 0;
@@ -144,7 +145,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 			(wall_h - get_decimals(player->sprite[count][0]) * wall_h / 100);
 			boolean = (player->sprite[count][7] + ((player->sprite[count][3] - player->sprite[count][7]) / 2) < player->struct_screen.x / 2) ? 0 : 1;
 		}*/
-		if ((player->teta > M_PI / 2 || (player->teta < -0 && player->teta > -M_PI / 2)) && player->sprite[count][7] != 0)
+		if ((player->sprite[count][10] < player->sprite[count][9] && player->sprite[count][7] != 0) || player->sprite[count][3] == player->struct_screen.x - 1)
 		{
 			dist2 =  get_decimals(player->sprite[count][4]) * wall_h / 100;
 			boolean = 0;
