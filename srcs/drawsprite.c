@@ -17,6 +17,7 @@ void	register_sprite_start(int i, t_player *player, float angle, float d)
 	player->sprite[i][4] = player->ray_x + d * sin(angle);
 	player->sprite[i][5] = player->ray_y + d * cos(angle);
 	player->sprite[i][7] = player->struct_screen.i;
+	player->sprite[i][10] = player->distance;
 	check_sprite_sides(player, d, angle, i);
 	player->nb_sprites++;
 }
@@ -26,7 +27,6 @@ void	register_sprite_end(int i, t_player *player, float angle, float d)
 	player->sprite[i][0] = player->ray_x + d * sin(angle);
 	player->sprite[i][1] = player->ray_y + d * cos(angle);
 	player->sprite[i][3] = player->struct_screen.i;
-	player->sprite[i][10] = player->distance;
 //	check_sprite_sides(player, d, angle, i);
 //	check_sprite_sides(player, d, angle, i);
 }
