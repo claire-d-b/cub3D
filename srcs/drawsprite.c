@@ -26,7 +26,7 @@ void	register_sprite_end(int i, t_player *player, float angle, float d)
 	player->sprite[i][0] = player->ray_x + d * sin(angle);
 	player->sprite[i][1] = player->ray_y + d * cos(angle);
 	player->sprite[i][3] = player->struct_screen.i;
-	player->sprite[i][10] = player->distance;
+	player->sprite[i][10] = (player->sprite[i][10] == 0) ? player->distance : player->sprite[i][10];
 //	check_sprite_sides(player, d, angle, i);
 //	check_sprite_sides(player, d, angle, i);
 }
@@ -95,7 +95,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		}
 		else
 		{
-			dist2 = (get_decimals(player->sprite[count][1]) * wall_h / 100);
+			dist2 = wall_h - (wall_h - (get_decimals(player->sprite[count][1]) * wall_h / 100));
 			boolean = 1;
 		}
 	}
@@ -113,7 +113,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		}
 		else
 		{
-			dist2 = wall_h - get_decimals(player->sprite[count][1]) * wall_h / 100;
+			dist2 = (wall_h - get_decimals(player->sprite[count][1]) * wall_h / 100);
 			boolean = 1;
 		}
 	}
@@ -132,7 +132,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		}
 		else
 		{
-			dist2 = (get_decimals(player->sprite[count][0]) * wall_h / 100);
+			dist2 = wall_h - (wall_h - (get_decimals(player->sprite[count][0]) * wall_h / 100));
 			boolean = 1;
 		}
 		
@@ -152,7 +152,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		}
 		else
 		{
-			dist2 = wall_h - get_decimals(player->sprite[count][0]) * wall_h / 100;
+			dist2 = (wall_h - get_decimals(player->sprite[count][0]) * wall_h / 100);
 			boolean = 1;
 		}
 	}
