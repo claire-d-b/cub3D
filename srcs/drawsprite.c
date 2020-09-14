@@ -95,7 +95,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		}
 		else
 		{
-			dist2 = wall_h - (wall_h - (get_decimals(player->sprite[count][1]) * wall_h / 100));
+			dist2 = (get_decimals(player->sprite[count][1]) * wall_h / 100);
 			boolean = 1;
 		}
 	}
@@ -113,7 +113,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		}
 		else
 		{
-			dist2 = (wall_h - get_decimals(player->sprite[count][1]) * wall_h / 100);
+			dist2 = wall_h - (get_decimals(player->sprite[count][1]) * wall_h / 100);
 			boolean = 1;
 		}
 	}
@@ -132,7 +132,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		}
 		else
 		{
-			dist2 = wall_h - (wall_h - (get_decimals(player->sprite[count][0]) * wall_h / 100));
+			dist2 = ((get_decimals(player->sprite[count][0]) * wall_h / 100));
 			boolean = 1;
 		}
 		
@@ -152,7 +152,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		}
 		else
 		{
-			dist2 = (wall_h - get_decimals(player->sprite[count][0]) * wall_h / 100);
+			dist2 = wall_h - (wall_h - get_decimals(player->sprite[count][0]) * wall_h / 100);
 			boolean = 1;
 		}
 	}
