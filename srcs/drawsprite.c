@@ -17,6 +17,7 @@ void	register_sprite_start(int i, t_player *player, float angle, float d)
 	player->sprite[i][4] = player->ray_x + d * sin(angle);
 	player->sprite[i][5] = player->ray_y + d * cos(angle);
 	player->sprite[i][7] = player->struct_screen.i;
+	player->sprite[i][10] = (player->struct_screen.x) / (d);
 	check_sprite_sides(player, d, angle, i);
 	player->nb_sprites++;
 }
@@ -26,7 +27,6 @@ void	register_sprite_end(int i, t_player *player, float angle, float d)
 	player->sprite[i][0] = player->ray_x + d * sin(angle);
 	player->sprite[i][1] = player->ray_y + d * cos(angle);
 	player->sprite[i][3] = player->struct_screen.i;
-	player->sprite[i][10] = (player->sprite[i][10] == 0) ? player->distance : player->sprite[i][10];
 //	check_sprite_sides(player, d, angle, i);
 //	check_sprite_sides(player, d, angle, i);
 }
@@ -142,12 +142,8 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 	xposition_start = (int)(player->sprite[count][7] - (wall_h - (player->sprite[count][3] - player->sprite[count][7])));
 	xposition_end = (int)(player->sprite[count][3] + (wall_h - (player->sprite[count][3] - player->sprite[count][7])));
 //	printf("xposition start %d\n", xposition_start);
-	if (boolean == 0 && j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
-	{
-		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, (wall_h - i) * player->ids.xpm_sprite_w / wall_h);
-	}
-	if (boolean == 1 && j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
+
+	if (j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
 	{
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
 		wall_h, i * player->ids.xpm_sprite_w / wall_h);
