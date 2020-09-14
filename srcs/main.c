@@ -13,7 +13,9 @@
 #include "cub3d.h"
 
 void	exit_program(t_player *player)
-{
+{;
+	if (player->map)
+		ft_free_tab(player->map);
 	if (player->xpm_path_no)
 		free(player->xpm_path_no);
 	if (player->xpm_path_so)
@@ -39,12 +41,16 @@ void	hooks(t_player *player)
 	mlx_hook(player->ids.mlx_win, 17, 1L << 17, &exit_game, player);
 }
 
-void	player_placement(t_player *player, char *title)
+void		player_placement(t_player *player, char *title)
 {
 	if (place_player(-1, -1, 0, player) != -1)
 		open_window(-1, -1, player, title);
 	else
+	{
+		free(player->ids.mlx_ptr);
+		player->ids.mlx_ptr = 0;
 		exit_program(player);
+	}
 }
 
 int		main(int argc, char **argv)
