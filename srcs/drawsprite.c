@@ -17,7 +17,6 @@ void	register_sprite_start(int i, t_player *player, float angle, float d)
 	player->sprite[i][4] = player->ray_x + d * sin(angle);
 	player->sprite[i][5] = player->ray_y + d * cos(angle);
 	player->sprite[i][7] = player->struct_screen.i;
-	player->sprite[i][10] = player->distance;
 	check_sprite_sides(player, d, angle, i);
 	player->nb_sprites++;
 }
@@ -27,6 +26,7 @@ void	register_sprite_end(int i, t_player *player, float angle, float d)
 	player->sprite[i][0] = player->ray_x + d * sin(angle);
 	player->sprite[i][1] = player->ray_y + d * cos(angle);
 	player->sprite[i][3] = player->struct_screen.i;
+	player->sprite[i][10] = player->distance;
 //	check_sprite_sides(player, d, angle, i);
 //	check_sprite_sides(player, d, angle, i);
 }
@@ -207,10 +207,10 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 			//	draw_sprite_from_end(player, i, j, count);
 
 			}
-			j = 0;
+			j = -1;
 		}
-		i = 0;
-		j = 0;
+		i = -1;
+		j = -1;
 		count++;
 	}
 }

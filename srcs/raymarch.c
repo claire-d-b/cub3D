@@ -49,7 +49,7 @@ float	raycast(t_player *player, char **map, float angle)
 		}
 		d += EPSILON;
 	}
-	player->distance = (player->struct_screen.x) / d;
+	player->distance = (player->struct_screen.x) / (d - EPSILON);
 	define_heightawidth(player, d, angle);
 	check_wall_sides(player, d, angle);
 	return (d * cos(fabs(angle - player->teta)));
