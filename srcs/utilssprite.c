@@ -18,11 +18,11 @@ void	register_dist_minmax(t_player *player, float d, float angle, int i)
 	player->sprite[i][2] || player->sprite[i][2] == 0)
 		player->sprite[i][2] = ((player->struct_screen.x) / (d * cos(fabs(angle
 		- player->teta))));
-	if (((player->struct_screen.x) / (d * cos(fabs(angle
+/*	if (((player->struct_screen.x) / (d * cos(fabs(angle
 		- player->teta))) > player->sprite[i][9] ||
 	player->sprite[i][9] == 0))
 		player->sprite[i][9] = (player->struct_screen.x) / (d * cos(fabs(angle
-		- player->teta)));
+		- player->teta)));*/
 	if ((player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) <
 	player->sprite[i][6] || player->sprite[i][6] == 0)
 		player->sprite[i][6] = (player->struct_screen.x) / (d * cos(fabs(angle

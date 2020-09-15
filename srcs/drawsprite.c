@@ -17,7 +17,8 @@ void	register_sprite_start(int i, t_player *player, float angle, float d)
 	player->sprite[i][4] = player->ray_x + d * sin(angle);
 	player->sprite[i][5] = player->ray_y + d * cos(angle);
 	player->sprite[i][7] = player->struct_screen.i;
-	player->sprite[i][10] = player->distance;
+	player->sprite[i][10] = (player->struct_screen.x) / ((d - EPSILON)* cos(fabs(angle
+		- player->teta)));
 	check_sprite_sides(player, d, angle, i);
 	player->nb_sprites++;
 }
@@ -27,6 +28,9 @@ void	register_sprite_end(int i, t_player *player, float angle, float d)
 	player->sprite[i][0] = player->ray_x + d * sin(angle);
 	player->sprite[i][1] = player->ray_y + d * cos(angle);
 	player->sprite[i][3] = player->struct_screen.i;
+	if (player->map[(int)(player->ray_x + (d - EPSILON) * sin(angle))][(int)(player->ray_y + (d - EPSILON) * cos(angle))] != '2')
+		player->sprite[i][9] = (player->struct_screen.x) / (d * cos(fabs(angle
+		- player->teta)));
 //	check_sprite_sides(player, d, angle, i);
 //	check_sprite_sides(player, d, angle, i);
 }
@@ -74,9 +78,17 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 	boolean = 0;
 //	printf("player->teta %f\n", player->teta);
 	wall_h = ((player->sprite[count][6] + player->sprite[count][2]) / 2);
-	if ((player->sprite[count][10] > player->sprite[count][9]) || player->sprite[count][7] == 0)
+	if (fabs(player->teta) >= VIEW_ANGLE && player->sprite[count][3] == player->struct_screen.x - 1 && player->sprite[count][7] == 0)
+	boolean = 1;
+	else if (player->sprite[count][3] == player->struct_screen.x - 1 && player->sprite[count][7] == 0)
 	boolean = 0;
-	else
+	else if (player->sprite[count][3] == player->struct_screen.x - 1)
+	boolean = 1;
+	else if (player->sprite[count][7] == 0)
+	boolean = 0;
+	else if (player->sprite[count][10] > player->sprite[count][9])
+	boolean = 0;
+	else if (player->sprite[count][10] <= player->sprite[count][9])
 	boolean = 1;
 /*	if (player->sprite[count][10] == 0 || player->sprite[count][10] == 1) 
 		dist2 = (player->sprite[count][10] == 0) ? get_decimals(player->sprite[count][5]) * wall_h / 100 :
@@ -143,15 +155,10 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 	xposition_end = (int)(player->sprite[count][3] + (wall_h - (player->sprite[count][3] - player->sprite[count][7])));
 //	printf("xposition start %d\n", xposition_start);
 
-	if (boolean == 1 && j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
+	if (j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
 	{
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
 		wall_h, i * player->ids.xpm_sprite_w / wall_h);
-	}
-	if (boolean == 0 && j <= wall_h && wall_h - i <= wall_h && wall_h - i >= 0 && j >= 0)
-	{
-		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, (wall_h - i) * player->ids.xpm_sprite_w / wall_h);
 	}
 	if (boolean == 0 && color > 0 && xposition_start + i <= player->sprite[count][3]
 		&& xposition_start + i >= player->sprite[count][7]
