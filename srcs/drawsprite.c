@@ -76,14 +76,12 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 
 	color = 0;
 	wall_h = ((player->sprite[count][6] + player->sprite[count][2]) / 2);
-	xposition_end = (player->sprite[count][3] == player->struct_screen.x - 1 || player->sprite[count][10] < player->sprite[count][9]) ? 
-	(int)(player->sprite[count][3] + (wall_h - (player->sprite[count][3] - player->sprite[count][7]))) :
-	(int)(player->sprite[count][3]);
-	xposition_start = (player->sprite[count][7] == 0 || player->sprite[count][10] > player->sprite[count][9]) ? 
-	(int)(player->sprite[count][7] - (wall_h - (player->sprite[count][3] - player->sprite[count][7])))
-	: (int)(player->sprite[count][7]);
+	xposition_end = 
+	(int)(player->sprite[count][3] + (wall_h - (player->sprite[count][3] - player->sprite[count][7])));
+	xposition_start = 
+	(int)(player->sprite[count][7] - (wall_h - (player->sprite[count][3] - player->sprite[count][7])));
 	adjust = fabs(wall_h - (xposition_end - xposition_start)) / 2;
-	if (player->sprite[count][7] == 0 || player->sprite[count][10] > player->sprite[count][9])
+	if ((player->sprite[count][3] == player->struct_screen.x - 1 || player->sprite[count][10] > player->sprite[count][9]))
 	{
 	if (j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
 	{
