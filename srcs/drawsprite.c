@@ -28,9 +28,8 @@ void	register_sprite_end(int i, t_player *player, float angle, float d)
 	player->sprite[i][0] = player->ray_x + d * sin(angle);
 	player->sprite[i][1] = player->ray_y + d * cos(angle);
 	player->sprite[i][3] = player->struct_screen.i;
-	if (player->map[(int)(player->ray_x + (d - EPSILON) * sin(angle))][(int)(player->ray_y + (d - EPSILON) * cos(angle))] != '2')
-		player->sprite[i][9] = (player->struct_screen.x) / (d * cos(fabs(angle
-		- player->teta)));
+	player->sprite[i][9] = (player->sprite[i][9] > (player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) || player->sprite[i][9] == 0) ? 
+		(player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) : player->sprite[i][9];
 //	check_sprite_sides(player, d, angle, i);
 //	check_sprite_sides(player, d, angle, i);
 }
@@ -81,7 +80,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 	xposition_start = 
 	(int)(player->sprite[count][7] - (wall_h - (player->sprite[count][3] - player->sprite[count][7]))) - wall_h;
 	adjust = fabs(wall_h - (xposition_end - xposition_start)) / 2;
-	if (xposition_end != player->struct_screen.x - 1 && xposition_start != 0 && player->sprite[count][10] >= player->sprite[count][9])
+	if (player->sprite[count][3] < player->struct_screen.x - 1 && player->sprite[count][7] > 0 && player->sprite[count][10] >= player->sprite[count][9])
 	{
 	if (j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
 	{
@@ -97,7 +96,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
 			xposition_start + adjust + i, color);
 	}
-	else if (xposition_end != player->struct_screen.x - 1 && xposition_start != 0 && player->sprite[count][10] < player->sprite[count][9])
+	else if (player->sprite[count][3] < player->struct_screen.x - 1 && player->sprite[count][7] > 0 && player->sprite[count][10] < player->sprite[count][9])
 	{
 	if (j <= wall_h && (wall_h - i) <= wall_h && (wall_h - i) >= 0 && j >= 0)
 	{
@@ -113,7 +112,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
 			xposition_end - adjust - i, color);
 	}
-	else if (xposition_end == player->struct_screen.x - 1)
+	else if (player->sprite[count][7] <= 0)
 	{
 	if (j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
 	{
@@ -121,15 +120,15 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		wall_h, i * player->ids.xpm_sprite_w / wall_h);
 	}
 	if (
-	color > 0 && xposition_start + i <= player->sprite[count][3]
-		&& xposition_start + i >= player->sprite[count][7]
+	color > 0 && xposition_start + wall_h / 2 + i <= player->sprite[count][3]
+		&& xposition_start + wall_h / 2 + i >= player->sprite[count][7]
 		&& player->struct_screen.y / 2 - wall_h / 2
 		+ j >= 0 && player->struct_screen.y / 2 - wall_h / 2 + j <
 		player->struct_screen.y)
 			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
-			xposition_start + i, color);
+			xposition_start + wall_h / 2 + i, color);
 	}
-	else if (xposition_start == 0)
+	else if (player->sprite[count][3] >= player->struct_screen.x - 1)
 	{
 	if (j <= wall_h && (wall_h - i) <= wall_h && (wall_h - i) >= 0 && j >= 0)
 	{
@@ -137,13 +136,13 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		wall_h, (wall_h - i) * player->ids.xpm_sprite_w / wall_h);
 	}
 	if (
-	color > 0 && xposition_end - i <= player->sprite[count][3]
-		&& xposition_end - i >= player->sprite[count][7]
+	color > 0 && xposition_end - wall_h / 2 - i <= player->sprite[count][3]
+		&& xposition_end - wall_h / 2 - i >= player->sprite[count][7]
 		&& player->struct_screen.y / 2 - wall_h / 2
 		+ j >= 0 && player->struct_screen.y / 2 - wall_h / 2 + j <
 		player->struct_screen.y)
 			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
-			xposition_end - i, color);
+			xposition_end - wall_h / 2 - i, color);
 	}
 /*	if (j <= wall_h && ((middle - i) * wall_h / player->struct_screen.x) <= wall_h && ((middle - i) * wall_h / player->struct_screen.x) >= 0 && j >= 0)
 	{
