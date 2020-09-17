@@ -57,7 +57,7 @@ float	raycast(t_player *player, char **map, float angle)
 
 void	display_all(t_player *player)
 {
-	pivot_textures_sprite(player->struct_screen.x, -1, player);
+	pivot_textures_sprite(-1, -1, player);
 	mlx_put_image_to_window(player->ids.mlx_ptr, player->ids.mlx_win,
 	player->ids.img_ptr, 0, 0);
 	if (player->start == 1 && player->save == 1)

@@ -18,6 +18,8 @@ void	register_sprite_start(int i, t_player *player, float angle, float d)
 	player->sprite[i][5] = player->ray_y + d * cos(angle);
 	player->sprite[i][7] = player->struct_screen.i;
 	player->sprite[i][10] = player->struct_screen.x / d;
+	if (player->distance > player->sprite[i][10])
+		player->sprite[i][10] = player->distance;
 	check_sprite_sides(player, d, angle, i);
 	player->nb_sprites++;
 }
@@ -96,7 +98,9 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 			printf("AAAAAAAAAAAAA");
 		printf("count 3 - count 7 %f\n", player->sprite[count][3] - player->sprite[count][7]);
 		printf("wall_h %f\n", ((player->sprite[count][6] + player->sprite[count][2]) / 2));
-		while (--i >= 0)
+		printf("get dec 1 %d\n", get_decimals(player->sprite[count][1]));
+		printf("get dec 0 %d\n", get_decimals(player->sprite[count][0]));
+		while (++i < player->struct_screen.x)
 		{
 			while (++j < (int)(((player->sprite[count][2] +
 			player->sprite[count][6]) / 2)))
@@ -110,7 +114,7 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 			}
 			j = -1;
 		}
-		i = player->struct_screen.x;
+		i = -1;
 		j = -1;
 		count++;
 	}
