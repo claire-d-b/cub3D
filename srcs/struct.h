@@ -88,6 +88,7 @@ typedef struct	s_ids
 
 typedef struct	s_player
 {
+	int			boolean;
 	int			key_r;
 	int			waste;
 	char		*xpm_path_no;

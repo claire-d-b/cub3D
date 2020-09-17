@@ -31,8 +31,6 @@ void	register_sprite_end(int i, t_player *player, float angle, float d)
 	player->sprite[i][3] = player->struct_screen.i;
 	player->sprite[i][9] = (player->map[(int)(player->ray_x + (d - EPSILON) * sin(angle))][(int)(player->ray_y + (d - EPSILON) * cos(angle))] != '2' || player->sprite[i][9] == 0) ? 
 		(player->struct_screen.x) / d : player->sprite[i][9];
-	if (player->distance > player->sprite[i][9])
-		player->sprite[i][9] = player->distance;
 }
 
 void	draw_sprite_from_start(t_player *player, int i, int j, int count)
@@ -90,16 +88,16 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 	sort_sprite(player);
 	while (player->sprite[count] && (int)player->sprite[count][0] != 0)
 	{
-		printf("playeri 9 %f\n", player->sprite[count][9]);
-		printf("playeri 10 %f\n", player->sprite[count][10]);
-		printf("count %d\n", count);
-		printf("player->sprite[count][10] - player->sprite[count][9] %f\n", player->sprite[count][10] - player->sprite[count][9]);
-		if (player->sprite[count][10] - player->sprite[count][9] < 0)
-			printf("AAAAAAAAAAAAA");
-		printf("count 3 - count 7 %f\n", player->sprite[count][3] - player->sprite[count][7]);
-		printf("wall_h %f\n", ((player->sprite[count][6] + player->sprite[count][2]) / 2));
-		printf("get dec 1 %d\n", get_decimals(player->sprite[count][1]));
-		printf("get dec 0 %d\n", get_decimals(player->sprite[count][0]));
+	//	printf("playeri 9 %f\n", player->sprite[count][9]);
+	//	printf("playeri 10 %f\n", player->sprite[count][10]);
+	//	printf("count %d\n", count);
+	//	printf("player->sprite[count][10] - player->sprite[count][9] %f\n", player->sprite[count][10] - player->sprite[count][9]);
+	//	if (player->sprite[count][10] - player->sprite[count][9] < 0)
+	//		printf("AAAAAAAAAAAAA");
+	//	printf("count 3 - count 7 %f\n", player->sprite[count][3] - player->sprite[count][7]);
+	//	printf("wall_h %f\n", ((player->sprite[count][6] + player->sprite[count][2]) / 2));
+	//	printf("get dec 1 %d\n", get_decimals(player->sprite[count][1]));
+	//	printf("get dec 0 %d\n", get_decimals(player->sprite[count][0]));
 		while (++i < player->struct_screen.x)
 		{
 			while (++j < (int)(((player->sprite[count][2] +

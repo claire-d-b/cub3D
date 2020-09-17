@@ -26,7 +26,9 @@ float	raycast(t_player *player, char **map, float angle)
 {
 	float	d;
 	int		i;
+	int		count;
 
+	count = 0;
 	init_var_raycast(&player->p, &d, player, &i); 
 	while (is_not_wall(player, angle, d))
 	{
@@ -46,10 +48,19 @@ float	raycast(t_player *player, char **map, float angle)
 			}
 			register_dist_minmax(player, d, angle, i);
 			register_sprite_end(i, player, angle, d);
+			player->boolean = 0;
 		}
 		d += EPSILON;
 	}
+	player->boolean++;
 	player->distance = player->struct_screen.x / d;
+	if (player->boolean == 2)
+	{
+		while (is_sprite(player->sprite[count]))
+			count++;
+		if (count > 0)
+			player->sprite[count - 1][9] = player->distance;
+	}
 	define_heightawidth(player, d, angle);
 	check_wall_sides(player, d, angle);
 	return (d * cos(fabs(angle - player->teta)));
@@ -79,6 +90,7 @@ void	display_view(float teta, float dist, double wall_h, t_player *player)
 {
 	init_pixels(player);
 	init_sprite(player);
+	player->boolean = 0;
 	player->distance = 0;
 	while (++player->struct_screen.i < player->struct_screen.x)
 	{
