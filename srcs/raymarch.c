@@ -27,7 +27,7 @@ float	raycast(t_player *player, char **map, float angle)
 	float	d;
 	int		i;
 
-	init_var_raycast(&player->p, &d, player, &i);
+	init_var_raycast(&player->p, &d, player, &i); 
 	while (is_not_wall(player, angle, d))
 	{
 		player->p = map[(int)(player->ray_x + d * sin(angle))]
@@ -49,6 +49,7 @@ float	raycast(t_player *player, char **map, float angle)
 		}
 		d += EPSILON;
 	}
+	player->distance = player->struct_screen.x / d;
 	define_heightawidth(player, d, angle);
 	check_wall_sides(player, d, angle);
 	return (d * cos(fabs(angle - player->teta)));
@@ -56,7 +57,7 @@ float	raycast(t_player *player, char **map, float angle)
 
 void	display_all(t_player *player)
 {
-	pivot_textures_sprite(-1, -1, player);
+	pivot_textures_sprite(player->struct_screen.x, -1, player);
 	mlx_put_image_to_window(player->ids.mlx_ptr, player->ids.mlx_win,
 	player->ids.img_ptr, 0, 0);
 	if (player->start == 1 && player->save == 1)
@@ -70,7 +71,6 @@ double *wall_h)
 	*teta = player->teta + FOV / 2 - player->struct_screen.i * FOV
 	/ (float)player->struct_screen.x;
 	*dist = raycast(player, player->map, *teta);
-	player->distance = *dist;
 	*wall_h = (player->struct_screen.x / 2) / *dist;
 	player->struct_screen.j = 0;
 }
