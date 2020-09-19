@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:36:12 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/19 13:32:35 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/19 13:40:40 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
 		wall_h, i * player->ids.xpm_sprite_w / wall_h);
 	}
-	if (
+	if (player->sprite[count][7] != 0 &&
 	color > 0 && xposition_start + i <= player->sprite[count][3]
 		&& xposition_start + i >= player->sprite[count][7]
 		&& player->struct_screen.y / 2 - wall_h / 2
@@ -61,6 +61,14 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		player->struct_screen.y)
 			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
 			xposition_start + i, color);
+	if (player->sprite[count][7] == 0 &&
+	color > 0 && player->sprite[count][3] - i <= player->sprite[count][3]
+		&& player->sprite[count][3] - i >= player->sprite[count][7]
+		&& player->struct_screen.y / 2 - wall_h / 2
+		+ j >= 0 && player->struct_screen.y / 2 - wall_h / 2 + j <
+		player->struct_screen.y)
+			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
+			player->sprite[count][3] - i, color);
 	}
 	else
 	{
@@ -69,7 +77,7 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
 		wall_h, (wall_h - i) * player->ids.xpm_sprite_w / wall_h);
 	}
-	if (
+	if (player->sprite[count][3] != player->struct_screen.x - 1 &&
 	color > 0 && xposition_end - i <= player->sprite[count][3]
 		&& xposition_end - i >= player->sprite[count][7]
 		&& player->struct_screen.y / 2 - wall_h / 2
@@ -77,6 +85,14 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 		player->struct_screen.y)
 			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
 			xposition_end - i, color);
+	if (player->sprite[count][3] == player->struct_screen.x - 1 &&
+	color > 0 && player->sprite[count][7] + i <= player->sprite[count][3]
+		&& player->sprite[count][7] + i >= player->sprite[count][7]
+		&& player->struct_screen.y / 2 - wall_h / 2
+		+ j >= 0 && player->struct_screen.y / 2 - wall_h / 2 + j <
+		player->struct_screen.y)
+			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
+			player->sprite[count][7] + i, color);
 	}
 }
 
