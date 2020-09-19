@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:31:09 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/11 11:09:37 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/19 12:08:27 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct	s_ids
 
 typedef struct	s_player
 {
-	int			side;
+	int			boolean;
 	int			key_r;
 	int			waste;
 	char		*xpm_path_no;
@@ -121,5 +121,4 @@ typedef struct	s_player
 	t_bitmap	bitmap;
 	char		**map;
 }				t_player;
-
 #endif

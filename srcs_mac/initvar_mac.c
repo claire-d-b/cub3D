@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:37:01 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/11 11:06:11 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/19 12:05:48 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_sprite(t_player *player)
 	player->nb_sprites = 0;
 	while (player->sprite[i])
 	{
-		while (j < 11)
+		while (j < 12)
 		{
 			player->sprite[i][j] = 0;
 			j++;
@@ -61,10 +61,7 @@ void	init_struct_side(t_player *player)
 	player->struct_side.west = 0;
 }
 
-void	init_struct_side_s(t_player *player)
+void	init_struct_side_s(t_player *player, int i)
 {
-	player->struct_side.north_s = 0;
-	player->struct_side.south_s = 0;
-	player->struct_side.east_s = 0;
-	player->struct_side.west_s = 0;
+	player->sprite[i][8] = 0;
 }

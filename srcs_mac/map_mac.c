@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:26:26 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/04 17:41:24 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/19 13:18:32 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,15 @@ void	check_map(char *line, char **map, int count, t_player *player)
 	parse_map(map, player);
 	while (map[i])
 	{
-		while (map[i][j] && j)
+		while (i && ft_strlen(map[i - 1]) != ft_strlen(map[i]) && map[i - 1][j])
 		{
-			if (map[i + 1][j - 1] != '1' && (j < (int)ft_strlen(map[i + 1])
-			|| map[i][j] != '1'))
-			{
-				write(1, "Error\nMap must be surrounded by walls.\n", 39);
-				exit_program(player);
-			}
-			j++;
+			if (j > (int)ft_strlen(map[i]) && map[i - 1][j] != '1')
+				if (map[i - 1][j] != '1')
+				{
+					write(1, "Error\nMap must be surrounded by walls.\n", 39);
+					exit_program(player);
+				}
+		j++;
 		}
 		i++;
 		j = 0;

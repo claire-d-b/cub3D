@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:44:05 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/11 13:43:21 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/19 12:09:03 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,26 @@ void	check_side_west(t_player *player)
 	player->struct_side.west = 1;
 }
 
-void	check_side_south_s(t_player *player)
+void	check_side_south_s(t_player *player, int i)
 {
-	init_struct_side_s(player);
-	player->struct_side.south_s = 1;
+//	init_struct_side_s(player);
+	player->sprite[i][8] = 0;
 }
 
-void	check_side_north_s(t_player *player)
+void	check_side_north_s(t_player *player, int i)
 {
-	init_struct_side_s(player);
-	player->struct_side.north_s = 1;
+//	init_struct_side_s(player);
+	player->sprite[i][8] = 1;
 }
 
-void	check_side_east_s(t_player *player)
+void	check_side_east_s(t_player *player, int i)
 {
-	init_struct_side_s(player);
-	player->struct_side.east_s = 1;
+//	init_struct_side_s(player);
+	player->sprite[i][8] = 2;
 }
 
-void	check_side_west_s(t_player *player)
+void	check_side_west_s(t_player *player, int i)
 {
-	init_struct_side_s(player);
-	player->struct_side.west_s = 1;
+//	init_struct_side_s(player);
+	player->sprite[i][8] = 3;
 }
