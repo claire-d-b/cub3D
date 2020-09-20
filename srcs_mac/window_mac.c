@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:32:09 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/20 13:35:28 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/20 15:48:37 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ int		open_window(int count, int j, t_player *player, char const *title)
 		return (0);
 	while (++count < player->max * player->table_lenght)
 	{
-		if (!(player->sprite[count] = malloc(sizeof(float) * 19)))
+		if (!(player->sprite[count] = malloc(sizeof(float) * 21)))
 			return (0);
-		while (++j < 18)
+		while (++j < 20)
 			player->sprite[count][j] = 0;
 	}
 	player->sprite[count] = NULL;

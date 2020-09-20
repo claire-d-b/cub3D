@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:30:38 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/19 12:07:56 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/20 16:19:12 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ float	raycast(t_player *player, char **map, float angle)
 		{
 			i = 0;
 			while (is_sprite(player->sprite[i]) && ((((int)player->sprite[i][4]
-			!= (int)(player->ray_x + d * sin(angle)) || ((int)
-			player->sprite[i][5] != (int)(player->ray_y + d * cos(angle)))))))
+			!= (int)(player->ray_x + (d) * sin(angle)) || ((int)
+			player->sprite[i][5] != (int)(player->ray_y + (d) * cos(angle)))))))
 				i++;
 			if (!is_sprite(player->sprite[i]))
 			{

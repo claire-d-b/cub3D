@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:11:42 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/20 13:35:19 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/20 15:48:22 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int		is_sprite(float *sprite)
 	i = 0;
 	if (sprite)
 	{
-		while (i < 18 && sprite[i] == 0)
+		while (i < 20 && sprite[i] == 0)
 			i++;
-		return (i == 18) ? 0 : 1;
+		return (i == 20) ? 0 : 1;
 	}
 	else
 		return (0);

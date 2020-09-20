@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:44:48 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/19 12:10:14 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/20 16:45:02 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,19 @@ void		check_sprite_sides(t_player *player, float d, float angle, int count)
 {
 	if ((int)(player->ray_x + (d - EPSILON) * sin(angle)) -
 	(int)player->sprite[count][4] == -1 && (int)(player->ray_y + (d - EPSILON) *
-	cos(angle)) - (int)player->sprite[count][5] == 0 && player->p == '2')
+	cos(angle)) - (int)player->sprite[count][5] == 0)
 		check_side_south_s(player, count);
 	else if ((int)(player->ray_x + (d - EPSILON) * sin(angle)) -
 	(int)player->sprite[count][4] == 1 && (int)(player->ray_y + (d - EPSILON) *
-	cos(angle)) - (int)player->sprite[count][5] == 0 && player->p == '2')
+	cos(angle)) - (int)player->sprite[count][5] == 0)
 		check_side_north_s(player, count);
 	else if ((int)(player->ray_y + (d - EPSILON) * cos(angle)) -
 	(int)player->sprite[count][5] == -1 && (int)(player->ray_x + (d - EPSILON) *
-	sin(angle)) - (int)player->sprite[count][4] == 0 && player->p == '2')
+	sin(angle)) - (int)player->sprite[count][4] == 0)
 		check_side_east_s(player, count);
 	else if ((int)(player->ray_y + (d - EPSILON) * cos(angle)) -
 	(int)player->sprite[count][5] == 1 && (int)(player->ray_x + (d - EPSILON) *
-	sin(angle)) - (int)player->sprite[count][4] == 0 && player->p == '2')
+	sin(angle)) - (int)player->sprite[count][4] == 0)
 		check_side_west_s(player, count);
 }
 
