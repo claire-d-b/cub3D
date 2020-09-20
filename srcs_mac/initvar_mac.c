@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:37:01 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/19 12:05:48 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/20 13:35:05 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_sprite(t_player *player)
 	player->nb_sprites = 0;
 	while (player->sprite[i])
 	{
-		while (j < 12)
+		while (j < 18)
 		{
 			player->sprite[i][j] = 0;
 			j++;

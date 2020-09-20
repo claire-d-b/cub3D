@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:11:42 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/19 12:09:37 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/20 13:35:19 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,10 @@
 
 void	register_dist_minmax(t_player *player, float d, float angle, int i)
 {
-	if (((player->struct_screen.x) / (d * cos(fabs(angle - player->teta)))) >
-	player->sprite[i][2] || player->sprite[i][2] == 0)
-		player->sprite[i][2] = ((player->struct_screen.x) / (d * cos(fabs(angle
-		- player->teta))));
 	if (((player->struct_screen.x) / (d * cos(fabs(angle
 		- player->teta))) > player->sprite[i][11] ||
 	player->sprite[i][11] == 0))
 		player->sprite[i][11] = (player->struct_screen.x) / (d * cos(fabs(angle
-		- player->teta)));
-	if ((player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) <
-	player->sprite[i][6] || player->sprite[i][6] == 0)
-		player->sprite[i][6] = (player->struct_screen.x) / (d * cos(fabs(angle
 		- player->teta)));
 }
 
@@ -36,9 +28,9 @@ int		is_sprite(float *sprite)
 	i = 0;
 	if (sprite)
 	{
-		while (i < 12 && sprite[i] == 0)
+		while (i < 18 && sprite[i] == 0)
 			i++;
-		return (i == 12) ? 0 : 1;
+		return (i == 18) ? 0 : 1;
 	}
 	else
 		return (0);
