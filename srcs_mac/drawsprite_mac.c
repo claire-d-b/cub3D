@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:36:12 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/20 18:00:14 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/09/20 22:58:38 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	register_sprite_start(int i, t_player *player, float angle, float d)
 	player->sprite[i][10] = player->struct_screen.x / d;
 	if (player->distance > player->sprite[i][10])
 		player->sprite[i][10] = player->distance;
-	check_sprite_sides(player, d, angle, i);
 	player->nb_sprites++;
 }
 
@@ -65,6 +64,7 @@ void	register_sprite_end(int i, t_player *player, float angle, float d)
 	player->sprite[i][3] = player->struct_screen.i;
 	player->sprite[i][9] = (player->map[(int)(player->ray_x + (d - EPSILON) * sin(angle))][(int)(player->ray_y + (d - EPSILON) * cos(angle))] != '2' || player->sprite[i][9] == 0) ?
 		(player->struct_screen.x) / d : player->sprite[i][9];
+	check_sprite_sides(player, d, angle, i);
 }
 
 void	draw_sprite_from_start(t_player *player, int i, int j, int count)
@@ -82,50 +82,49 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 	xposition_start =
 	(int)(player->sprite[count][7] - (wall_h - (player->sprite[count][3] - player->sprite[count][7])));
 	if (player->sprite[count][8] == 0
-	&& j <= wall_h && (((get_decimals(player->sprite[count][19]) * wall_h / 100)) + i) <= wall_h &&
-	(((get_decimals(player->sprite[count][19]) * wall_h / 100)) + i) >= 0 && j >= 0)
+	&& j <= wall_h && (((get_decimals(player->sprite[count][5])))) * player->ids.xpm_sprite_w / 100 + i * player->ids.xpm_sprite_w / wall_h <= player->ids.xpm_sprite_w &&
+	(((get_decimals(player->sprite[count][5])))) * player->ids.xpm_sprite_w / 100 + i * player->ids.xpm_sprite_w / wall_h >= 0 && j >= 0)
 	{
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, (((get_decimals(player->sprite[count][19]) * wall_h / 100)) + i) * player->ids.xpm_sprite_w / wall_h);
+		wall_h, (((get_decimals(player->sprite[count][5])))) * player->ids.xpm_sprite_w / 100 + i * player->ids.xpm_sprite_w / wall_h);
 	}
 	if (player->sprite[count][8] == 1
-	&& j <= wall_h && ((wall_h - (get_decimals(player->sprite[count][19]) * wall_h / 100)) + i) <= wall_h &&
-	((wall_h - (get_decimals(player->sprite[count][19]) * wall_h / 100)) + i) >= 0 && j >= 0)
+	&& j <= wall_h && (((get_decimals(player->sprite[count][5])))) * player->ids.xpm_sprite_w / 100 + i * player->ids.xpm_sprite_w / wall_h <= player->ids.xpm_sprite_w &&
+	(((get_decimals(player->sprite[count][5])))) * player->ids.xpm_sprite_w / 100 + i * player->ids.xpm_sprite_w / wall_h >= 0 && j >= 0)
 	{
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, ((wall_h - (get_decimals(player->sprite[count][19]) * wall_h / 100)) + i) * player->ids.xpm_sprite_w / wall_h);
+		wall_h, (((get_decimals(player->sprite[count][5])))) * player->ids.xpm_sprite_w / 100 + i * player->ids.xpm_sprite_w / wall_h);
 	}
-
 	if ((player->sprite[count][8] == 0 || player->sprite[count][8] == 1) &&
-	color > 0 && player->sprite[count][13] + i <= player->sprite[count][3]
-		&& player->sprite[count][13] + i >= player->sprite[count][7]
+	color > 0 && player->sprite[count][7] + i <= player->sprite[count][3]
+		&& player->sprite[count][7] + i >= player->sprite[count][7]
 		&& player->struct_screen.y / 2 - wall_h / 2
 		+ j >= 0 && player->struct_screen.y / 2 - wall_h / 2 + j <
 		player->struct_screen.y)
 			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
-			player->sprite[count][13] + i , color);
+			player->sprite[count][7] + i , color);
 	if ((player->sprite[count][8] == 3) &&
-	j <= wall_h && (((get_decimals(player->sprite[count][18]) * wall_h / 100)) + i) <= wall_h &&
-	(((get_decimals(player->sprite[count][18]) * wall_h / 100)) + i) >= 0 && j >= 0)
+	j <= wall_h && ((get_decimals(player->sprite[count][4]))) * player->ids.xpm_sprite_w / wall_h + i * player->ids.xpm_sprite_w / 100 <= player->ids.xpm_sprite_w &&
+	((get_decimals(player->sprite[count][4]))) * player->ids.xpm_sprite_w / wall_h + i * player->ids.xpm_sprite_w / 100 >= 0 && j >= 0)
 	{
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, (((get_decimals(player->sprite[count][18]) * wall_h / 100)) + i) * player->ids.xpm_sprite_w / wall_h);
+		wall_h, ((get_decimals(player->sprite[count][4]))) * player->ids.xpm_sprite_w / 100 + i * player->ids.xpm_sprite_w / wall_h);
 	}
 	if ((player->sprite[count][8] == 2) &&
-	j <= wall_h && ((wall_h - (get_decimals(player->sprite[count][18]) * wall_h / 100)) + i) <= wall_h &&
-	((wall_h - (get_decimals(player->sprite[count][18]) * wall_h / 100)) + i) >= 0 && j >= 0)
+	j <= wall_h && ((get_decimals(player->sprite[count][4]))) * player->ids.xpm_sprite_w / 100 + i * player->ids.xpm_sprite_w / wall_h <= player->ids.xpm_sprite_w &&
+	(get_decimals(player->sprite[count][4])) * player->ids.xpm_sprite_w / 100 + i * player->ids.xpm_sprite_w / wall_h >= 0 && j >= 0)
 	{
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, ((wall_h - (get_decimals(player->sprite[count][18]) * wall_h / 100)) + i) * player->ids.xpm_sprite_w / wall_h);
+		wall_h, (get_decimals(player->sprite[count][4])) * player->ids.xpm_sprite_w / 100 + i * player->ids.xpm_sprite_w / wall_h);
 	}
 	if ((player->sprite[count][8] == 2 || player->sprite[count][8] == 3) &&
-	color > 0 && player->sprite[count][12] + i <= player->sprite[count][3]
-		&& player->sprite[count][12] + i >= player->sprite[count][7]
+	color > 0 && player->sprite[count][7] + i <= player->sprite[count][3]
+		&& player->sprite[count][7] + i >= player->sprite[count][7]
 		&& player->struct_screen.y / 2 - wall_h / 2
 		+ j >= 0 && player->struct_screen.y / 2 - wall_h / 2 + j <
 		player->struct_screen.y)
 			change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
-			player->sprite[count][12] + i , color);
+			player->sprite[count][7] + i , color);
 
 }
 
