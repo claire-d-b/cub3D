@@ -22,19 +22,48 @@ int		is_not_wall(t_player *player, float angle, float d)
 	return (0);
 }
 
+int		is_not_sprite(t_player *player, float angle, float d)
+{
+	if ((!(((int)(player->ray_x + d * sin(angle)) >
+	player->table_lenght - 1 || (int)(player->ray_x + d * sin(angle)) < 0) ||
+	((int)(player->ray_y + d * cos(angle)) > player->max - 1 ||
+	(int)(player->ray_y + d * cos(angle)) < 0))))
+		return (1);
+	return (0);
+}
+
 float	raycast(t_player *player, char **map, float angle)
+{
+	float	d;
+	int		i;
+
+	init_var_raycast(&player->p, &d, player, &i); 
+	while (is_not_wall(player, angle, d))
+	{
+		player->p = map[(int)(player->ray_x + d * sin(angle))]
+		[(int)(player->ray_y + d * cos(angle))];
+		d += EPSILON;
+	}
+	define_heightawidth(player, d, angle);
+	check_wall_sides(player, d, angle);
+	return (d * cos(fabs(angle - player->teta)));
+}
+
+float	raycast_sprites(t_player *player, char **map, float angle)
 {
 	float	d;
 	int		i;
 	int		count;
 
 	count = 0;
-	init_var_raycast(&player->p, &d, player, &i); 
-	while (is_not_wall(player, angle, d))
+	init_var_raycast(&player->p2, &d, player, &i); 
+	while (is_not_sprite(player, angle, d))
 	{
-		player->p = map[(int)(player->ray_x + d * sin(angle))]
+		player->p2 = map[(int)(player->ray_x + d * sin(angle))]
 		[(int)(player->ray_y + d * cos(angle))];
-		if (player->p == '2')
+		if (player->p2 == '1')
+			player->dist_wall = d * cos(fabs(angle - player->teta));
+		if (player->p2 == '2')
 		{
 			i = 0;
 			while (is_sprite(player->sprite[i]) && ((((int)player->sprite[i][4]
@@ -61,8 +90,6 @@ float	raycast(t_player *player, char **map, float angle)
 		if (count > 0)
 			player->sprite[count - 1][9] = player->distance;
 	}
-	define_heightawidth(player, d, angle);
-	check_wall_sides(player, d, angle);
 	return (d * cos(fabs(angle - player->teta)));
 }
 
@@ -82,6 +109,7 @@ double *wall_h)
 	*teta = player->teta + FOV / 2 - player->struct_screen.i * FOV
 	/ (float)player->struct_screen.x;
 	*dist = raycast(player, player->map, *teta);
+	player->dist_sprite = raycast_sprites(player, player->map, *teta);
 	*wall_h = (player->struct_screen.x / 2) / *dist;
 	player->struct_screen.j = 0;
 }

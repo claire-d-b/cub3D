@@ -36,9 +36,9 @@ int		is_sprite(float *sprite)
 	i = 0;
 	if (sprite)
 	{
-		while (i < 12 && sprite[i] == 0)
+		while (i < 14 && sprite[i] == 0)
 			i++;
-		return (i == 12) ? 0 : 1;
+		return (i == 14) ? 0 : 1;
 	}
 	else
 		return (0);
