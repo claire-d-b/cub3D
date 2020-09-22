@@ -15,14 +15,20 @@
 int		set_map_len(int y, t_player *player, char *line)
 {
 	int x;
+	int count;
 
 	x = 0;
+	count = 0;
 	player->map_start = (player->bool_start == 0) ? y : player->map_start;
 	player->bool_start = 1;
 	while (line[x])
+	{
+		if (!(is_space(line[x])))
+			count++;
 		x++;
-	if (player->max < x)
-		player->max = x;
+	}
+	if (player->max < count)
+		player->max = count;
 	return (1);
 }
 
