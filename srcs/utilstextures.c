@@ -17,7 +17,7 @@ void	doublons(char *line, t_player *player)
 	if (is_map(line) == 0 &&
 	is_empty_line(line) == 0 && ((ft_strlen(line) >= 1 &&
 	((line[0] == 'R' && player->struct_screen.x != -1 &&
-	player->struct_screen.y != -1) || (line[0] != 'C' &&
+	player->struct_screen.y != -1) || (line[0] == 'C' &&
 	player->ceil_color[3] != -1) || (line[0] == 'F' &&
 	player->floor_color[3] != -1) || (line[0] == 'S' &&
 	player->xpm_path_sp != 0)) && (is_space(line[1]) || line[1] == '\0'))

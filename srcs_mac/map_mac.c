@@ -34,9 +34,7 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 
 	y = -1;
 	x = 0;
-	while (line[++y] &&
-	(line[y] == '0' || line[y] == '1' || line[y] == '2' || line[y] == 'N' ||
-	line[y] == 'S' || line[y] == 'E' || line[y] == 'W' || is_space(line[y])))
+	while (line[++y] && is_map(line))
 	{
 		if (is_space(line[y]) == 0)
 		{

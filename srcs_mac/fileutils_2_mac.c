@@ -21,7 +21,8 @@ int		is_map(char *line)
 	count = 0;
 	while (line[x])
 	{
-		if (is_space(line[x]) || line[x] == '1')
+		if (is_space(line[x]) || line[x] == '1' || line[x] == '0' || line[x] == '2'
+		|| line[x] == 'N' || line[x] == 'S' || line[x] == 'E' || line[x] == 'W')
 			count++;
 		x++;
 	}

@@ -19,8 +19,7 @@ int		set_map_len(int y, t_player *player, char *line)
 	x = 0;
 	player->map_start = (player->bool_start == 0) ? y : player->map_start;
 	player->bool_start = 1;
-	while (line[x] && line[x] != ' ' && line[x] != '\t' && line[x] != '\n'
-	&& line[x] != '\r' && line[x] != '\v' && line[x] != '\f' && line[x])
+	while (line[x])
 		x++;
 	if (player->max < x)
 		player->max = x;
@@ -34,14 +33,13 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 
 	y = -1;
 	x = 0;
-	while (line[++y] &&
-	(line[y] == '0' || line[y] == '1' || line[y] == '2' || line[y] == 'N' ||
-	line[y] == 'S' || line[y] == 'E' || line[y] == 'W' || is_space(line[y])))
+	while (line[++y] && is_map(line))
 	{
 		if (is_space(line[y]) == 0)
 		{
 			map[count][x] = line[y];
 			x++;
+			printf("x %d\n", x);
 		}
 		if ((count == 0 || count == player->table_lenght - 1 || y == 0 ||
 		y == (int)ft_strlen(line) - 1) && line[y] != '1' &&

@@ -44,10 +44,7 @@ void	set_game_elements(char *line, t_player *player)
 int		pivot_file_checking(int len, t_player *player, char *line, int y)
 {
 	set_game_elements(line, player);
-	if ((line[0] == ' ' || line[0] == '\t' || line[0] == '\n' ||
-	line[0] == '\r' || line[0] == '\v' || line[0] == '\f' ||
-	line[0] == '1' || line[0] == '2' || line[0] == '0') &&
-	(ft_strchr(line, '1') || ft_strchr(line, '0')))
+	if (is_map(line) && is_empty_line(line) == 0)
 		len += set_map_len(y, player, line);
 	return (len);
 }
