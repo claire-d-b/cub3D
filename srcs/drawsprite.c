@@ -111,7 +111,29 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 			{
 			//	if (player->sprite[count][7] + ((player->sprite[count][3]
 			//	- player->sprite[count][7]) / 2) < player->struct_screen.x / 2)
-				draw_sprite_from_start(player, i, j, count);
+				if ((int)(((player->sprite[count][2] + player->sprite[count][6]) / 2)) < player->struct_screen.x)
+					draw_sprite_from_start(player, i, j, count);
+				else
+				{
+					player->map[(int)((player->x) / CELL_SIZE) - 1]
+					[(int)((player->y) / CELL_SIZE) - 1] = '0';
+					player->map[(int)((player->x) / CELL_SIZE) - 1]
+					[(int)((player->y) / CELL_SIZE)] = '0';
+					player->map[(int)((player->x) / CELL_SIZE) - 1]
+					[(int)((player->y) / CELL_SIZE) - 2] = '0';
+					player->map[(int)((player->x) / CELL_SIZE) - 2]
+					[(int)((player->y) / CELL_SIZE) - 1] = '0';
+					player->map[(int)((player->x) / CELL_SIZE) -2]
+					[(int)((player->y) / CELL_SIZE)] = '0';
+					player->map[(int)((player->x) / CELL_SIZE) - 2]
+					[(int)((player->y) / CELL_SIZE) - 2] = '0';
+					player->map[(int)((player->x) / CELL_SIZE)]
+					[(int)((player->y) / CELL_SIZE) - 1] = '0';
+					player->map[(int)((player->x) / CELL_SIZE)]
+					[(int)((player->y) / CELL_SIZE)] = '0';
+					player->map[(int)((player->x) / CELL_SIZE)]
+					[(int)((player->y) / CELL_SIZE) - 2] = '0';
+				}
 			//	else
 			//	draw_sprite_from_end(player, i, j, count);
 
