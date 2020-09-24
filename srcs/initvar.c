@@ -16,6 +16,8 @@ void	init_pixels(t_player *player)
 {
 	player->struct_screen.i = -1;
 	player->struct_screen.j = 0;
+	player->boolean = 0;
+	player->distance = 0;
 }
 
 void	init_var_raycast(char *p, float *d, t_player *player, int *i)
@@ -59,9 +61,4 @@ void	init_struct_side(t_player *player)
 	player->struct_side.south = 0;
 	player->struct_side.east = 0;
 	player->struct_side.west = 0;
-}
-
-void	init_struct_side_s(t_player *player, int i)
-{
-	player->sprite[i][8] = 0;
 }

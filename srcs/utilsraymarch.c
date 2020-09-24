@@ -12,12 +12,6 @@
 
 #include "cub3d.h"
 
-//void	register_coordinates(t_player *player, double x, double y)
-//{
-//	player->struct_side.he = x;
-//	player->struct_side.wi = y;
-//}
-
 void	check_side_south(t_player *player)
 {
 	init_struct_side(player);
@@ -42,26 +36,10 @@ void	check_side_west(t_player *player)
 	player->struct_side.west = 1;
 }
 
-void	check_side_south_s(t_player *player, int i)
+void	define_heightawidth(t_player *player, float d, float angle)
 {
-//	init_struct_side_s(player);
-	player->sprite[i][8] = 0;
-}
-
-void	check_side_north_s(t_player *player, int i)
-{
-//	init_struct_side_s(player);
-	player->sprite[i][8] = 1;
-}
-
-void	check_side_east_s(t_player *player, int i)
-{
-//	init_struct_side_s(player);
-	player->sprite[i][8] = 2;
-}
-
-void	check_side_west_s(t_player *player, int i)
-{
-//	init_struct_side_s(player);
-	player->sprite[i][8] = 3;
+	player->struct_side.he = (player->ray_x + ((d - (2 * EPSILON)) *
+	sin(angle)));
+	player->struct_side.wi = (player->ray_y + ((d - (2 * EPSILON)) *
+	cos(angle)));
 }

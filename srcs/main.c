@@ -13,7 +13,7 @@
 #include "cub3d.h"
 
 void	exit_program(t_player *player)
-{;
+{
 	if (player->map)
 		ft_free_tab(player->map);
 	if (player->xpm_path_no)
@@ -34,7 +34,7 @@ void	exit_program(t_player *player)
 	exit(0);
 }
 
-int	minimise(t_player *player)
+int		minimise(t_player *player)
 {
 	mlx_put_image_to_window(player->ids.mlx_ptr, player->ids.mlx_win,
 	player->ids.img_ptr, 0, 0);
@@ -49,7 +49,7 @@ void	hooks(t_player *player)
 	mlx_hook(player->ids.mlx_win, 17, 1L << 17, &exit_game, player);
 }
 
-void		player_placement(t_player *player, char *title)
+void	player_placement(t_player *player, char *title)
 {
 	if (place_player(-1, -1, 0, player) != -1)
 		open_window(player, title);
@@ -59,29 +59,6 @@ void		player_placement(t_player *player, char *title)
 		player->ids.mlx_ptr = 0;
 		exit_program(player);
 	}
-}
-
-int	create_sprite_tab(t_player *player)
-{
-	int count;
-	int j;
-
-	count = -1;
-	j = -1;
-	printf("playermax %d\n", player->max);
-	printf("playertablelenght %d\n", player->table_lenght);
-	if (!(player->sprite = malloc(sizeof(float *) * (player->max *
-	player->table_lenght + 1))))
-		return (0);
-	while (++count < player->max * player->table_lenght)
-	{
-		if (!(player->sprite[count] = malloc(sizeof(float) * 15)))
-			return (0);
-		while (++j < 14)
-			player->sprite[count][j] = 0;
-	}
-	player->sprite[count] = NULL;
-	return(0);
 }
 
 int		main(int argc, char **argv)

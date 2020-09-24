@@ -12,23 +12,6 @@
 
 #include "cub3d.h"
 
-void	register_dist_minmax(t_player *player, float d, float angle, int i)
-{
-	if (((player->struct_screen.x) / (d * cos(fabs(angle - player->teta)))) >
-	player->sprite[i][2] || player->sprite[i][2] == 0)
-		player->sprite[i][2] = ((player->struct_screen.x) / (d * cos(fabs(angle
-		- player->teta))));
-	if (((player->struct_screen.x) / (d * cos(fabs(angle
-		- player->teta))) > player->sprite[i][11] ||
-	player->sprite[i][11] == 0))
-		player->sprite[i][11] = (player->struct_screen.x) / (d * cos(fabs(angle
-		- player->teta)));
-	if ((player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) <
-	player->sprite[i][6] || player->sprite[i][6] == 0)
-		player->sprite[i][6] = (player->struct_screen.x) / (d * cos(fabs(angle
-		- player->teta)));
-}
-
 int		is_sprite(float *sprite)
 {
 	int i;
@@ -44,28 +27,54 @@ int		is_sprite(float *sprite)
 		return (0);
 }
 
+void	del_sprites1(t_player *player)
+{
+	if (player->map[(int)((player->x) / CELL_SIZE) - 1]
+	[(int)((player->y) / CELL_SIZE) - 1] == '2')
+		player->map[(int)((player->x) / CELL_SIZE) - 1]
+		[(int)((player->y) / CELL_SIZE) - 1] = '0';
+	if (player->map[(int)((player->x) / CELL_SIZE) - 1]
+	[(int)((player->y) / CELL_SIZE)] == '2')
+		player->map[(int)((player->x) / CELL_SIZE) - 1]
+		[(int)((player->y) / CELL_SIZE)] = '0';
+	if (player->map[(int)((player->x) / CELL_SIZE) - 1]
+	[(int)((player->y) / CELL_SIZE) - 2] == '2')
+		player->map[(int)((player->x) / CELL_SIZE) - 1]
+		[(int)((player->y) / CELL_SIZE) - 2] = '0';
+	if (player->map[(int)((player->x) / CELL_SIZE) - 2]
+	[(int)((player->y) / CELL_SIZE) - 1] == '2')
+		player->map[(int)((player->x) / CELL_SIZE) - 2]
+		[(int)((player->y) / CELL_SIZE) - 1] = '0';
+	if (player->map[(int)((player->x) / CELL_SIZE) - 2]
+	[(int)((player->y) / CELL_SIZE)] == '2')
+		player->map[(int)((player->x) / CELL_SIZE) - 2]
+		[(int)((player->y) / CELL_SIZE)] = '0';
+}
+
+void	del_sprites2(t_player *player)
+{
+	if (player->map[(int)((player->x) / CELL_SIZE) - 2]
+	[(int)((player->y) / CELL_SIZE) - 2] == '2')
+		player->map[(int)((player->x) / CELL_SIZE) - 2]
+		[(int)((player->y) / CELL_SIZE) - 2] = '0';
+	if (player->map[(int)((player->x) / CELL_SIZE)]
+	[(int)((player->y) / CELL_SIZE) - 1] == '2')
+		player->map[(int)((player->x) / CELL_SIZE)]
+		[(int)((player->y) / CELL_SIZE) - 1] = '0';
+	if (player->map[(int)((player->x) / CELL_SIZE)]
+	[(int)((player->y) / CELL_SIZE)] == '2')
+		player->map[(int)((player->x) / CELL_SIZE)]
+		[(int)((player->y) / CELL_SIZE)] = '0';
+	if (player->map[(int)((player->x) / CELL_SIZE)]
+	[(int)((player->y) / CELL_SIZE) - 2] == '2')
+		player->map[(int)((player->x) / CELL_SIZE)]
+		[(int)((player->y) / CELL_SIZE) - 2] = '0';
+}
+
 void	delete_sprites(t_player *player)
 {
-	if (player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
-	[(int)((player->y - CELL_SIZE) / CELL_SIZE)] == '2')
-		player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
-		[(int)((player->y - CELL_SIZE) / CELL_SIZE)] = '0';
-	if (player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE) + 1]
-	[(int)((player->y - CELL_SIZE) / CELL_SIZE)] == '2')
-		player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE) + 1]
-		[(int)((player->y - CELL_SIZE) / CELL_SIZE)] = '0';
-	if (player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
-	[(int)((player->y - CELL_SIZE) / CELL_SIZE) + 1] == '2')
-		player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
-		[(int)((player->y - CELL_SIZE) / CELL_SIZE) + 1] = '0';
-	if (player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE) - 1]
-	[(int)((player->y - CELL_SIZE) / CELL_SIZE)] == '2')
-		player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE) - 1]
-		[(int)((player->y - CELL_SIZE) / CELL_SIZE)] = '0';
-	if (player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
-	[(int)((player->y - CELL_SIZE) / CELL_SIZE) - 1] == '2')
-		player->map[(int)((player->x - CELL_SIZE) / CELL_SIZE)]
-		[(int)((player->y - CELL_SIZE) / CELL_SIZE) - 1] = '0';
+	del_sprites1(player);
+	del_sprites2(player);
 }
 
 void	sort_sprite(t_player *player)
@@ -87,12 +96,4 @@ void	sort_sprite(t_player *player)
 		i++;
 		j = i + 1;
 	}
-}
-
-void	define_heightawidth(t_player *player, float d, float angle)
-{
-	player->struct_side.he = (player->ray_x + ((d - (2 * EPSILON)) *
-	sin(angle)));
-	player->struct_side.wi = (player->ray_y + ((d - (2 * EPSILON)) *
-	cos(angle)));
 }

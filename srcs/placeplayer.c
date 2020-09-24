@@ -64,7 +64,6 @@ int		place_player(int i, int j, int count, t_player *player)
 		}
 		j = -1;
 	}
-	printf("COUNT %d\n", count);
 	player->waste = (count != 1) ? write(1, "Error\nPlayer.\n", 13) : 0;
 	return (count == 1) ? 1 : -1;
 }

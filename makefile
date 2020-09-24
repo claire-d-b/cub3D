@@ -40,6 +40,8 @@ SRCS		= ./srcs/main.c\
 		./srcs/init_struct_2.c\
 		./srcs/utilstextures.c\
 		./srcs/args_error.c\
+		./srcs/utilssprite_2.c\
+		./srcs/utilsraymarch_2.c\
 
 SRCS_MAC	= ./srcs_mac/main_mac.c\
 		./srcs_mac/gnl_mac.c\
