@@ -39,6 +39,7 @@ int		key_release(int keycode, t_player *player)
 
 int		key_press(int keycode, t_player *player)
 {
+	printf("keycode %d\n", keycode);
 	if (player->key_r != -1)
 	{
 		if (keycode == RIGHT_ARROW)
