@@ -54,7 +54,6 @@ void	screen_size(t_player *player)
 		player->struct_screen.y = 1440;
 }
 
-
 int		open_window(t_player *player, char const *title)
 {
 	screen_size(player);
