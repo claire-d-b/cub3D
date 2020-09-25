@@ -27,56 +27,6 @@ int		is_sprite(float *sprite)
 		return (0);
 }
 
-void	del_sprites1(t_player *player)
-{
-	if (player->map[(int)((player->x) / CELL_SIZE) - 1]
-	[(int)((player->y) / CELL_SIZE) - 1] == '2')
-		player->map[(int)((player->x) / CELL_SIZE) - 1]
-		[(int)((player->y) / CELL_SIZE) - 1] = '0';
-	if (player->map[(int)((player->x) / CELL_SIZE) - 1]
-	[(int)((player->y) / CELL_SIZE)] == '2')
-		player->map[(int)((player->x) / CELL_SIZE) - 1]
-		[(int)((player->y) / CELL_SIZE)] = '0';
-	if (player->map[(int)((player->x) / CELL_SIZE) - 1]
-	[(int)((player->y) / CELL_SIZE) - 2] == '2')
-		player->map[(int)((player->x) / CELL_SIZE) - 1]
-		[(int)((player->y) / CELL_SIZE) - 2] = '0';
-	if (player->map[(int)((player->x) / CELL_SIZE) - 2]
-	[(int)((player->y) / CELL_SIZE) - 1] == '2')
-		player->map[(int)((player->x) / CELL_SIZE) - 2]
-		[(int)((player->y) / CELL_SIZE) - 1] = '0';
-	if (player->map[(int)((player->x) / CELL_SIZE) - 2]
-	[(int)((player->y) / CELL_SIZE)] == '2')
-		player->map[(int)((player->x) / CELL_SIZE) - 2]
-		[(int)((player->y) / CELL_SIZE)] = '0';
-}
-
-void	del_sprites2(t_player *player)
-{
-	if (player->map[(int)((player->x) / CELL_SIZE) - 2]
-	[(int)((player->y) / CELL_SIZE) - 2] == '2')
-		player->map[(int)((player->x) / CELL_SIZE) - 2]
-		[(int)((player->y) / CELL_SIZE) - 2] = '0';
-	if (player->map[(int)((player->x) / CELL_SIZE)]
-	[(int)((player->y) / CELL_SIZE) - 1] == '2')
-		player->map[(int)((player->x) / CELL_SIZE)]
-		[(int)((player->y) / CELL_SIZE) - 1] = '0';
-	if (player->map[(int)((player->x) / CELL_SIZE)]
-	[(int)((player->y) / CELL_SIZE)] == '2')
-		player->map[(int)((player->x) / CELL_SIZE)]
-		[(int)((player->y) / CELL_SIZE)] = '0';
-	if (player->map[(int)((player->x) / CELL_SIZE)]
-	[(int)((player->y) / CELL_SIZE) - 2] == '2')
-		player->map[(int)((player->x) / CELL_SIZE)]
-		[(int)((player->y) / CELL_SIZE) - 2] = '0';
-}
-
-void	delete_sprites(t_player *player)
-{
-	del_sprites1(player);
-	del_sprites2(player);
-}
-
 void	sort_sprite(t_player *player)
 {
 	int i;

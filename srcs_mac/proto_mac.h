@@ -108,7 +108,6 @@ int				player_placement_error(int i, int j, t_player *player);
 void			init_struct_bitmap(t_player *player);
 void			bmp_write_header(int i, int fd, t_player *player);
 void			bmp_write_colors(int i, int j, int fd, t_player *player);
-void			delete_sprites(t_player *player);
 void			register_dist_minmax(t_player *player, float d, float angle,
 				int i);
 int				is_not_wall(t_player *player, float angle, float d);
@@ -159,7 +158,5 @@ float			raycast_sprites(t_player *player, char **map, float angle,
 void			check_wall_dist_before_sprite(t_player *player, int count,
 				float d);
 int				is_new(t_player *player, float d, float angle, int i);
-void			del_sprites1(t_player *player);
-void			del_sprites2(t_player *player);
 
 #endif

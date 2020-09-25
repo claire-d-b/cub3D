@@ -19,7 +19,9 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 	double			wall_h;
 
 	color = 0;
-	wall_h = ((player->sprite[count][6] + player->sprite[count][2]) / 2);
+	wall_h = ((player->sprite[count][6] + player->sprite[count][2]) / 2
+	> player->struct_screen.x) ? player->struct_screen.x :
+	(player->sprite[count][6] + player->sprite[count][2]) / 2;
 	xposition_start =
 	(int)(player->sprite[count][7] - (wall_h - (player->sprite[count][3] -
 	player->sprite[count][7])));
@@ -42,7 +44,9 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 	double			wall_h;
 
 	color = 0;
-	wall_h = ((player->sprite[count][6] + player->sprite[count][2]) / 2);
+	wall_h = ((player->sprite[count][6] + player->sprite[count][2]) / 2
+	> player->struct_screen.x) ? player->struct_screen.x :
+	(player->sprite[count][6] + player->sprite[count][2]) / 2;
 	xposition_end =
 	(int)(player->sprite[count][3] + (wall_h - (player->sprite[count][3] -
 	player->sprite[count][7])));
@@ -80,14 +84,7 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 		{
 			while (++j < (int)(((player->sprite[count][2] +
 			player->sprite[count][6]) / 2)))
-			{
-				if ((int)(((player->sprite[count][2] +
-				player->sprite[count][6]) / 2))
-				<= player->struct_screen.x)
-					draw_sprite(player, i, j, count);
-				else
-					delete_sprites(player);
-			}
+				draw_sprite(player, i, j, count);
 			j = -1;
 		}
 		i = -1;
