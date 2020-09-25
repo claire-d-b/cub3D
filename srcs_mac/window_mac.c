@@ -54,19 +54,9 @@ void	screen_size(t_player *player)
 		player->struct_screen.y = 1440;
 }
 
-int		open_window(int count, int j, t_player *player, char const *title)
+
+int		open_window(t_player *player, char const *title)
 {
-	if (!(player->sprite = malloc(sizeof(float *) * (player->max *
-	player->table_lenght + 1))))
-		return (0);
-	while (++count < player->max * player->table_lenght)
-	{
-		if (!(player->sprite[count] = malloc(sizeof(float) * 21)))
-			return (0);
-		while (++j < 20)
-			player->sprite[count][j] = 0;
-	}
-	player->sprite[count] = NULL;
 	screen_size(player);
 	player->ids.mlx_win = mlx_new_window(player->ids.mlx_ptr,
 	player->struct_screen.x, player->struct_screen.y, (char *)title);

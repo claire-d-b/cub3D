@@ -12,57 +12,48 @@
 
 #include "cub3d_mac.h"
 
-int		is_not_wall(t_player *player, float angle, float d)
-{
-	if (player->p != '1' && (!(((int)(player->ray_x + d * sin(angle)) >
-	player->table_lenght - 1 || (int)(player->ray_x + d * sin(angle)) < 0) ||
-	((int)(player->ray_y + d * cos(angle)) > player->max - 1 ||
-	(int)(player->ray_y + d * cos(angle)) < 0))))
-		return (1);
-	return (0);
-}
-
 float	raycast(t_player *player, char **map, float angle)
 {
 	float	d;
 	int		i;
-	int		count;
 
-	count = 0;
 	init_var_raycast(&player->p, &d, player, &i);
 	while (is_not_wall(player, angle, d))
 	{
 		player->p = map[(int)(player->ray_x + d * sin(angle))]
 		[(int)(player->ray_y + d * cos(angle))];
-		if (player->p == '2')
-		{
-			i = 0;
-			while (is_sprite(player->sprite[i]) && ((((int)player->sprite[i][4]
-			!= (int)(player->ray_x + (d) * sin(angle)) || ((int)
-			player->sprite[i][5] != (int)(player->ray_y + (d) * cos(angle)))))))
-				i++;
-			if (!is_sprite(player->sprite[i]))
-			{
-				init_struct_side_s(player, i);
-				register_sprite_start(i, player, angle, d);
-			}
-			register_dist_minmax(player, d, angle, i);
-			register_sprite_end(i, player, angle, d);
-			player->boolean = 0;
-		}
 		d += EPSILON;
-	}
-	player->boolean++;
-	player->distance = player->struct_screen.x / d;
-	if (player->boolean == 2)
-	{
-		while (is_sprite(player->sprite[count]))
-			count++;
-		if (count > 0)
-			player->sprite[count - 1][9] = player->distance;
 	}
 	define_heightawidth(player, d, angle);
 	check_wall_sides(player, d, angle);
+	return (d * cos(fabs(angle - player->teta)));
+}
+
+float	raycast_sprites(t_player *player, char **map, float angle, int count)
+{
+	float	d;
+	int		i;
+
+	init_var_raycast(&player->p2, &d, player, &i);
+	while (is_not_sprite(player, angle, d))
+	{
+		player->p2 = map[(int)(player->ray_x + d * sin(angle))]
+		[(int)(player->ray_y + d * cos(angle))];
+		if (player->p2 == '1')
+			player->dist_wall = d * cos(fabs(angle - player->teta));
+		if (player->p2 == '2')
+		{
+			i = 0;
+			while (is_sprite(player->sprite[i]) && is_new(player, d, angle, i))
+				i++;
+			if (!is_sprite(player->sprite[i]))
+				register_sprite_start(i, player, angle, d);
+			register_dist_minmax(player, d, angle, i);
+			register_sprite_end(i, player, angle, d);
+		}
+		d += EPSILON;
+	}
+	check_wall_dist_before_sprite(player, count, d);
 	return (d * cos(fabs(angle - player->teta)));
 }
 
@@ -82,6 +73,7 @@ double *wall_h)
 	*teta = player->teta + FOV / 2 - player->struct_screen.i * FOV
 	/ (float)player->struct_screen.x;
 	*dist = raycast(player, player->map, *teta);
+	player->dist_sprite = raycast_sprites(player, player->map, *teta, 0);
 	*wall_h = (player->struct_screen.x / 2) / *dist;
 	player->struct_screen.j = 0;
 }
@@ -90,8 +82,6 @@ void	display_view(float teta, float dist, double wall_h, t_player *player)
 {
 	init_pixels(player);
 	init_sprite(player);
-	player->boolean = 0;
-	player->distance = 0;
 	while (++player->struct_screen.i < player->struct_screen.x)
 	{
 		display_view_x(player, &teta, &dist, &wall_h);

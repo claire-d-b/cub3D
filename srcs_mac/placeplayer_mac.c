@@ -25,10 +25,10 @@ int		player_placement_error(int i, int j, t_player *player)
 
 void	player_coord(int *count, t_player *player, int i, int j)
 {
-	player->map[i][j] = '0';
 	*count += 1;
-	player->x = (i + 1) * CELL_SIZE + (CELL_SIZE / 2);
-	player->y = (j + 1) * CELL_SIZE + (CELL_SIZE / 2);
+	player->map[i][j] = '0';
+	player->x = (i + 1) * CELL_SIZE + CELL_SIZE / 4;
+	player->y = (j + 1) * CELL_SIZE + CELL_SIZE / 4;
 }
 
 int		is_player(char c)
@@ -43,7 +43,7 @@ int		place_player(int i, int j, int count, t_player *player)
 {
 	while (++i < player->table_lenght)
 	{
-		while (player->map[++j])
+		while (player->map[i][++j])
 		{
 			if (is_player(player->map[i][j]))
 			{

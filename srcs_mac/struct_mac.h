@@ -88,6 +88,9 @@ typedef struct	s_ids
 
 typedef struct	s_player
 {
+	float		dist_sprite;
+	float		dist_wall;
+	char		p2;
 	int			boolean;
 	int			key_r;
 	int			waste;
@@ -121,4 +124,5 @@ typedef struct	s_player
 	t_bitmap	bitmap;
 	char		**map;
 }				t_player;
+
 #endif

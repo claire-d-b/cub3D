@@ -19,7 +19,7 @@ char			*join_a_free(char *s1, char *s2);
 size_t			ft_strlen(char *str);
 int				find_n(char *buf, size_t size);
 void			*ft_memmove(void *dst, const void *src, size_t len);
-int				open_window(int count, int j, t_player *player,
+int				open_window(t_player *player,
 				char const *title);
 char			**create_map(char **map, int lenght, t_player *player,
 			char *arg);
@@ -148,10 +148,18 @@ void			arg_error(int nb_args, char **args, t_player *player);
 void			two_args_plus_error(int nb_args, char **args, t_player *player);
 void			doublons(char *line, t_player *player);
 int				is_map(char *line);
-void			check_sprite_sides(t_player *player, float d, float angle, int count);
-void			check_side_south_s(t_player *player, int i);
-void			check_side_north_s(t_player *player, int i);
-void			check_side_east_s(t_player *player, int i);
-void			check_side_west_s(t_player *player, int i);
-void			init_struct_side_s(t_player *player, int i);
+int				create_sprite_tab(t_player *player);
+void			draw_sprite_from_start(t_player *player, int i, int j,
+				int count);
+void			draw_sprite_from_end(t_player *player, int i, int j, int count);
+int				is_not_sprite(t_player *player, float angle, float d);
+int				is_not_wall(t_player *player, float angle, float d);
+float			raycast_sprites(t_player *player, char **map, float angle,
+				int count);
+void			check_wall_dist_before_sprite(t_player *player, int count,
+				float d);
+int				is_new(t_player *player, float d, float angle, int i);
+void			del_sprites1(t_player *player);
+void			del_sprites2(t_player *player);
+
 #endif

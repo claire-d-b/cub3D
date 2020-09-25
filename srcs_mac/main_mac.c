@@ -14,6 +14,8 @@
 
 void	exit_program(t_player *player)
 {
+	if (player->map)
+		ft_free_tab(player->map);
 	if (player->xpm_path_no)
 		free(player->xpm_path_no);
 	if (player->xpm_path_so)
@@ -32,19 +34,31 @@ void	exit_program(t_player *player)
 	exit(0);
 }
 
+int		minimise(t_player *player)
+{
+	mlx_put_image_to_window(player->ids.mlx_ptr, player->ids.mlx_win,
+	player->ids.img_ptr, 0, 0);
+	return (0);
+}
+
 void	hooks(t_player *player)
 {
+	mlx_hook(player->ids.mlx_win, 25, 1L << 18, &key_press, player);
 	mlx_hook(player->ids.mlx_win, 2, 1L << 0, &key_press, player);
-	mlx_hook(player->ids.mlx_win, 3, 1L << 1, &key_release, player);
+	mlx_hook(player->ids.mlx_win, 15, 1L << 16, &minimise, player);
 	mlx_hook(player->ids.mlx_win, 17, 1L << 17, &exit_game, player);
 }
 
 void	player_placement(t_player *player, char *title)
 {
 	if (place_player(-1, -1, 0, player) != -1)
-		open_window(-1, -1, player, title);
+		open_window(player, title);
 	else
+	{
+		free(player->ids.mlx_ptr);
+		player->ids.mlx_ptr = 0;
 		exit_program(player);
+	}
 }
 
 int		main(int argc, char **argv)
@@ -66,6 +80,7 @@ int		main(int argc, char **argv)
 	map = (argc == 2) ? create_map(map, player.table_lenght, &player, argv[1])
 	: create_map(map, player.table_lenght, &player, argv[2]);
 	player.map = map;
+	create_sprite_tab(&player);
 	player.ids.mlx_ptr = mlx_init();
 	player_placement(&player, title);
 	hooks(&player);

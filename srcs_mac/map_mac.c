@@ -15,15 +15,20 @@
 int		set_map_len(int y, t_player *player, char *line)
 {
 	int x;
+	int count;
 
 	x = 0;
+	count = 0;
 	player->map_start = (player->bool_start == 0) ? y : player->map_start;
 	player->bool_start = 1;
-	while (line[x] && line[x] != ' ' && line[x] != '\t' && line[x] != '\n'
-	&& line[x] != '\r' && line[x] != '\v' && line[x] != '\f' && line[x])
+	while (line[x])
+	{
+		if (!(is_space(line[x])))
+			count++;
 		x++;
-	if (player->max < x)
-		player->max = x;
+	}
+	if (player->max < count)
+		player->max = count;
 	return (1);
 }
 
@@ -45,12 +50,32 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 		y == (int)ft_strlen(line) - 1) && line[y] != '1' &&
 		is_space(line[y]) == 0)
 		{
-			player->waste = write(1, "Error\nMap must be surrounded by walls.\n", 39);
+			player->waste =
+			write(1, "Error\nMap must be surrounded by walls.\n", 39);
 			exit_program(player);
 		}
 	}
 	map[count][x] = '\0';
 	return (1);
+}
+
+int		check_surr_walls(char **map, int i, int j)
+{
+	if ((((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 2 && j >=
+	(int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1')
+	|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < -2 &&
+	((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < 0 &&
+	j >= (int)ft_strlen(map[i - 1]) - 1 && map[i][j] != '1')
+	|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) <= 2 &&
+	((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 0 &&
+	j >= (int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1' &&
+	map[i - 1][j + 1] != '1')
+	|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) >= -2 &&
+	((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < 0 &&
+	j >= (int)ft_strlen(map[i - 1]) - 1 && map[i][j] != '1' &&
+	map[i][j + 1] != '1'))
+		return (1);
+	return (0);
 }
 
 void	check_map(char *line, char **map, int count, t_player *player)
@@ -68,12 +93,10 @@ void	check_map(char *line, char **map, int count, t_player *player)
 	{
 		while (map[i][j])
 		{
-			if (i && j && ((((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 2 && j >= (int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1')
-			|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < -2 && ((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < 0 && j >= (int)ft_strlen(map[i - 1]) - 1 && map[i][j] != '1')
-			|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) <= 2 && ((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 0 && j >= (int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1' && map[i - 1][j + 1] != '1')
-			|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) >= -2 && ((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < 0 && j >= (int)ft_strlen(map[i - 1]) - 1 && map[i][j] != '1' && map[i][j + 1] != '1')))
+			if (i && j && check_surr_walls(map, i, j))
 			{
-				player->waste = write(1, "Error\nMap must be surrounded by walls.\n", 39);
+				player->waste =
+				write(1, "Error\nMap must be surrounded by walls.\n", 39);
 				exit_program(player);
 			}
 			j++;

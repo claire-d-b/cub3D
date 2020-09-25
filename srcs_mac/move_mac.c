@@ -30,10 +30,7 @@ int		key_release(int keycode, t_player *player)
 	if (keycode == ESCAPE)
 		exit_game(player);
 	else
-	{
-	//	delete_sprites(player);
 		display_view(0, 0, 0, player);
-	}
 	return (0);
 }
 
@@ -56,10 +53,7 @@ int		key_press(int keycode, t_player *player)
 		if (keycode == ESCAPE)
 			exit_game(player);
 		else
-		{
-		//	delete_sprites(player);
 			display_view(0, 0, 0, player);
-		}
 	}
 	player->key_r = 0;
 	return (0);
