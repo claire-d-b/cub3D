@@ -113,20 +113,18 @@ char	**create_map(char **map, int lenght, t_player *player, char *arg)
 	int		count;
 
 	count = 0;
-	i = 0;
-	y = 0;
+	y = -1;
 	fd = open(arg, O_RDONLY);
 	if (!(map = malloc(sizeof(char *) * (lenght + 2))))
 		return (0);
 	while ((i = get_next_line(fd, &line)) >= 0)
 	{
-		if (y >= player->map_start && count < (player->table_lenght))
+		if (++y >= player->map_start && count < (player->table_lenght))
 		{
 			if (!(map[count] = malloc(sizeof(char) * (player->max + 1))))
 				return (0);
 			count += transform_map(map, count, line, player);
 		}
-		y++;
 		free(line);
 		if (i == 0)
 			break ;
