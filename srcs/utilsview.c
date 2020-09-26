@@ -46,8 +46,10 @@ int				exit_game(t_player *player)
 {
 	mlx_clear_window(player->ids.mlx_ptr, player->ids.mlx_win);
 	mlx_destroy_window(player->ids.mlx_ptr, player->ids.mlx_win);
-	ft_free_sprite(player->sprite);
-	ft_free_tab(player->map);
+	if (player->sprite)
+		ft_free_sprite(player->sprite);
+	if (player->map)
+		ft_free_tab(player->map);
 	if (player->xpm_path_no)
 		free(player->xpm_path_no);
 	if (player->xpm_path_so)
