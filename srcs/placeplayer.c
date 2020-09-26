@@ -27,8 +27,8 @@ void	player_coord(int *count, t_player *player, int i, int j)
 {
 	*count += 1;
 	player->map[i][j] = '0';
-	player->x = (i + 1) * CELL_SIZE + CELL_SIZE / 4;
-	player->y = (j + 1) * CELL_SIZE + CELL_SIZE / 4;
+	player->x = (i + 1) * CELL_SIZE + CELL_SIZE / 2;
+	player->y = (j + 1) * CELL_SIZE + CELL_SIZE / 2;
 }
 
 int		is_player(char c)
