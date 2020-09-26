@@ -78,15 +78,13 @@ int		check_surr_walls(char **map, int i, int j)
 	return (0);
 }
 
-void	check_map(char *line, char **map, int count, t_player *player)
+void	check_map(char **map, int count, t_player *player)
 {
 	int i;
 	int j;
 
 	i = 0;
 	j = 0;
-	if (line)
-		free(line);
 	map[count] = 0;
 	parse_map(map, player);
 	while (map[i])
@@ -120,7 +118,7 @@ char	**create_map(char **map, int lenght, t_player *player, char *arg)
 	fd = open(arg, O_RDONLY);
 	if (!(map = malloc(sizeof(char *) * (lenght + 2))))
 		return (0);
-	while ((i = get_next_line(fd, &line)))
+	while ((i = get_next_line(fd, &line)) >= 0)
 	{
 		if (y >= player->map_start && count < (player->table_lenght))
 		{
@@ -130,7 +128,9 @@ char	**create_map(char **map, int lenght, t_player *player, char *arg)
 		}
 		y++;
 		free(line);
+		if (i == 0)
+			break ;
 	}
-	check_map(line, map, count, player);
+	check_map(map, count, player);
 	return (map);
 }

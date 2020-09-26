@@ -80,7 +80,7 @@ int				pivot_file_checking(int len, t_player *player, char *line,
 				int y);
 int				set_map_len(int y, t_player *player, char *line);
 int				check_file(char *line, int fd, t_player *player, char *arg);
-void			check_map(char *line, char **map, int count, t_player *player);
+void			check_map(char **map, int count, t_player *player);
 int				transform_map(char **map, int count, char *line,
 				t_player *player);
 int				set_resolution(int count, t_player *player, char *line);
