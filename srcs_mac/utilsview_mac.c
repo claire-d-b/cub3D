@@ -73,17 +73,17 @@ void			check_wall_sides(t_player *player, float d, float angle)
 	if ((int)(player->ray_x + (d - EPSILON) * sin(angle)) -
 	(int)player->struct_side.he == -1 && (int)(player->ray_y + (d - EPSILON) *
 	cos(angle)) - (int)player->struct_side.wi == 0 && player->p == '1')
-		check_side_south(player);
+		check_side_east(player);
 	else if ((int)(player->ray_x + (d - EPSILON) * sin(angle)) -
 	(int)player->struct_side.he == 1 && (int)(player->ray_y + (d - EPSILON) *
 	cos(angle)) - (int)player->struct_side.wi == 0 && player->p == '1')
-		check_side_north(player);
+		check_side_west(player);
 	else if ((int)(player->ray_y + (d - EPSILON) * cos(angle)) -
 	(int)player->struct_side.wi == -1 && (int)(player->ray_x + (d - EPSILON) *
 	sin(angle)) - (int)player->struct_side.he == 0 && player->p == '1')
-		check_side_east(player);
+		check_side_south(player);
 	else if ((int)(player->ray_y + (d - EPSILON) * cos(angle)) -
 	(int)player->struct_side.wi == 1 && (int)(player->ray_x + (d - EPSILON) *
 	sin(angle)) - (int)player->struct_side.he == 0 && player->p == '1')
-		check_side_west(player);
+		check_side_north(player);
 }

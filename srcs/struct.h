@@ -17,14 +17,14 @@ typedef struct	s_side
 {
 	double			he;
 	double			wi;
-	int				north;
-	int				south;
-	int				east;
 	int				west;
-	int				north_s;
-	int				south_s;
-	int				east_s;
+	int				east;
+	int				south;
+	int				north;
 	int				west_s;
+	int				east_s;
+	int				south_s;
+	int				north_s;
 	unsigned char	pixel[4];
 }				t_side;
 

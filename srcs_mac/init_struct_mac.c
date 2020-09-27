@@ -109,10 +109,10 @@ void	init_struct_side_s_e(t_player *player)
 	int i;
 
 	i = 0;
-	player->struct_side.north = 0;
-	player->struct_side.south = 0;
-	player->struct_side.east = 0;
 	player->struct_side.west = 0;
+	player->struct_side.east = 0;
+	player->struct_side.south = 0;
+	player->struct_side.north = 0;
 	player->struct_side.he = 0;
 	player->struct_side.wi = 0;
 	while (i < 4)

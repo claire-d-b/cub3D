@@ -38,7 +38,7 @@ unsigned int	set_texture_sprite(t_player *player, int y, int i)
 	return (color);
 }
 
-unsigned int	set_texture_south(t_player *player, int y, int i)
+unsigned int	set_texture_east(t_player *player, int y, int i)
 {
 	unsigned int color;
 
@@ -66,7 +66,7 @@ unsigned int	set_texture_south(t_player *player, int y, int i)
 	return (color);
 }
 
-unsigned int	set_texture_north(t_player *player, int y, int i)
+unsigned int	set_texture_west(t_player *player, int y, int i)
 {
 	unsigned int color;
 
@@ -94,7 +94,7 @@ unsigned int	set_texture_north(t_player *player, int y, int i)
 	return (color);
 }
 
-unsigned int	set_texture_east(t_player *player, int y, int i)
+unsigned int	set_texture_south(t_player *player, int y, int i)
 {
 	unsigned int color;
 
@@ -122,7 +122,7 @@ unsigned int	set_texture_east(t_player *player, int y, int i)
 	return (color);
 }
 
-unsigned int	set_texture_west(t_player *player, int y, int i)
+unsigned int	set_texture_north(t_player *player, int y, int i)
 {
 	unsigned int color;
 

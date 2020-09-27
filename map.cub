@@ -1,9 +1,9 @@
 R 800 600
 
-NO ./text1.xpm
-SO ./text2.xpm
-WE ./text3.xpm
-EA ./text4.xpm
+NO ./text4.xpm
+SO ./text3.xpm
+WE ./text1.xpm
+EA ./text2.xpm
 S ./sprite.xpm
 
 F 45,129,106

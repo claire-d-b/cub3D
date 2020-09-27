@@ -27,10 +27,10 @@ float			raycast(t_player *player, char **map, float angle);
 void			display_view(float teta, float dist, double wall_h,
 				t_player *player);
 unsigned int	rgb3(unsigned int r, unsigned int g, unsigned int b);
-unsigned int	set_texture_south(t_player *player, int y, int i);
-unsigned int	set_texture_north(t_player *player, int y, int i);
 unsigned int	set_texture_east(t_player *player, int y, int i);
 unsigned int	set_texture_west(t_player *player, int y, int i);
+unsigned int	set_texture_south(t_player *player, int y, int i);
+unsigned int	set_texture_north(t_player *player, int y, int i);
 void			camera_right(t_player *player);
 void			camera_left(t_player *player);
 void			walk_up(t_player *player);
@@ -47,10 +47,10 @@ void			pivot_textures_ns(unsigned int col, int wall_h,
 void			pivot_textures_ew(unsigned int col, int wall_h,
 				t_player *player);
 void			define_heightawidth(t_player *player, float d, float angle);
-void			check_side_south(t_player *player);
-void			check_side_north(t_player *player);
 void			check_side_east(t_player *player);
 void			check_side_west(t_player *player);
+void			check_side_south(t_player *player);
+void			check_side_north(t_player *player);
 void			register_coordinates(t_player *player, double x, double y);
 void			init_var_raycast(char *p, float *d, t_player *player, int *i);
 void			init_pixels(t_player *player);

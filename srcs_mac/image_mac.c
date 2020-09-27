@@ -28,7 +28,7 @@ void	pivot_colors_f(t_player *player)
 
 void	pivot_textures_ns(unsigned int col, int wall_h, t_player *player)
 {
-	if (player->struct_side.south == 1)
+	if (player->struct_side.east == 1)
 	{
 		player->rx = (int)((get_decimals(player->struct_side.wi) *
 		player->ids.xpm_img_w) / 100);
@@ -38,9 +38,9 @@ void	pivot_textures_ns(unsigned int col, int wall_h, t_player *player)
 		+ (player->struct_screen.i * 4) + 3))) <= (player->struct_screen.x *
 		player->struct_screen.y * 4) && (int)(((player->struct_screen.j *
 		player->struct_screen.x * 4) + (player->struct_screen.i * 4))) >= 0)
-			col = set_texture_south(player, player->ry, player->rx);
+			col = set_texture_east(player, player->ry, player->rx);
 	}
-	if (player->struct_side.north == 1)
+	if (player->struct_side.west == 1)
 	{
 		player->rx = (int)((get_decimals(player->struct_side.wi) *
 		player->ids.xpm_img2_w) / 100);
@@ -50,14 +50,14 @@ void	pivot_textures_ns(unsigned int col, int wall_h, t_player *player)
 		+ (player->struct_screen.i * 4) + 3))) <= (player->struct_screen.x *
 		player->struct_screen.y * 4) && (int)(((player->struct_screen.j *
 		player->struct_screen.x * 4) + (player->struct_screen.i * 4))) >= 0)
-			col = set_texture_north(player, player->ry, player->rx);
+			col = set_texture_west(player, player->ry, player->rx);
 	}
 	change_color(player, player->struct_screen.j, player->struct_screen.i, col);
 }
 
 void	pivot_textures_ew(unsigned int col, int wall_h, t_player *player)
 {
-	if (player->struct_side.east == 1)
+	if (player->struct_side.south == 1)
 	{
 		player->rx = (int)((get_decimals(player->struct_side.he) *
 		player->ids.xpm_img3_w) / 100);
@@ -67,9 +67,9 @@ void	pivot_textures_ew(unsigned int col, int wall_h, t_player *player)
 		+ (player->struct_screen.i * 4) + 3))) <= (player->struct_screen.x *
 		player->struct_screen.y * 4) && (int)(((player->struct_screen.j *
 		player->struct_screen.x * 4) + (player->struct_screen.i * 4))) >= 0)
-			col = set_texture_east(player, player->ry, player->rx);
+			col = set_texture_south(player, player->ry, player->rx);
 	}
-	if (player->struct_side.west == 1)
+	if (player->struct_side.north == 1)
 	{
 		player->rx = (int)((get_decimals(player->struct_side.he) *
 		player->ids.xpm_img4_w) / 100);
@@ -79,7 +79,7 @@ void	pivot_textures_ew(unsigned int col, int wall_h, t_player *player)
 		+ (player->struct_screen.i * 4) + 3))) <= (player->struct_screen.x *
 		player->struct_screen.y * 4) && (int)(((player->struct_screen.j *
 		player->struct_screen.x * 4) + (player->struct_screen.i * 4))) >= 0)
-			col = set_texture_west(player, player->ry, player->rx);
+			col = set_texture_north(player, player->ry, player->rx);
 	}
 	change_color(player, player->struct_screen.j, player->struct_screen.i, col);
 }

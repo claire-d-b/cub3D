@@ -12,18 +12,6 @@
 
 #include "cub3d_mac.h"
 
-void	check_side_south(t_player *player)
-{
-	init_struct_side(player);
-	player->struct_side.south = 1;
-}
-
-void	check_side_north(t_player *player)
-{
-	init_struct_side(player);
-	player->struct_side.north = 1;
-}
-
 void	check_side_east(t_player *player)
 {
 	init_struct_side(player);
@@ -34,6 +22,18 @@ void	check_side_west(t_player *player)
 {
 	init_struct_side(player);
 	player->struct_side.west = 1;
+}
+
+void	check_side_south(t_player *player)
+{
+	init_struct_side(player);
+	player->struct_side.south = 1;
+}
+
+void	check_side_north(t_player *player)
+{
+	init_struct_side(player);
+	player->struct_side.north = 1;
 }
 
 void	define_heightawidth(t_player *player, float d, float angle)
