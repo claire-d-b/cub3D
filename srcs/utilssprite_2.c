@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int		create_sprite_tab(t_player *player)
+int				create_sprite_tab(t_player *player)
 {
 	int count;
 	int j;
@@ -21,7 +21,8 @@ int		create_sprite_tab(t_player *player)
 	return (0);
 }
 
-void	register_sprite_start(int i, t_player *player, float angle, float d)
+void			register_sprite_start(int i, t_player *player, float angle,
+float d)
 {
 	player->sprite[i][4] = player->ray_x + (d) * sin(angle);
 	player->sprite[i][5] = player->ray_y + (d) * cos(angle);
@@ -33,7 +34,8 @@ void	register_sprite_start(int i, t_player *player, float angle, float d)
 	player->nb_sprites++;
 }
 
-void	register_sprite_end(int i, t_player *player, float angle, float d)
+void			register_sprite_end(int i, t_player *player, float angle,
+float d)
 {
 	player->sprite[i][0] = player->ray_x + d * sin(angle);
 	player->sprite[i][1] = player->ray_y + d * cos(angle);
@@ -52,7 +54,8 @@ void	register_sprite_end(int i, t_player *player, float angle, float d)
 	player->boolean = 0;
 }
 
-void	register_dist_minmax(t_player *player, float d, float angle, int i)
+void			register_dist_minmax(t_player *player, float d, float angle,
+int i)
 {
 	if (((player->struct_screen.x) / (d * cos(fabs(angle - player->teta)))) >
 	player->sprite[i][2] || player->sprite[i][2] == 0)

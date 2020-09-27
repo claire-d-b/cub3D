@@ -95,8 +95,8 @@ void	display_view(float teta, float dist, double wall_h, t_player *player)
 			== 1) && player->p == '1')
 				pivot_textures_ew(0, (int)(player->struct_screen.x / dist),
 				player);
-			if ((player->struct_side.south == 1 || player->struct_side.north == 1)
-			&& player->p == '1')
+			if ((player->struct_side.south == 1 || player->struct_side.north
+			== 1) && player->p == '1')
 				pivot_textures_ns(0, (int)(player->struct_screen.x / dist),
 				player);
 			player->struct_screen.j++;

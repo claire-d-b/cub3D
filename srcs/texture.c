@@ -64,7 +64,7 @@ unsigned int	set_texture_east(t_player *player, int wall_h)
 unsigned int	set_texture_west(t_player *player, int wall_h)
 {
 	unsigned int	color;
-	
+
 	if (ft_strncmp((const char *)player->xpm_path_we, "./text1.xpm",
 	ft_strlen(player->xpm_path_we)) == 0 ||
 	ft_strncmp((const char *)player->xpm_path_we, "./text2.xpm",
@@ -84,7 +84,7 @@ unsigned int	set_texture_west(t_player *player, int wall_h)
 unsigned int	set_texture_south(t_player *player, int wall_h)
 {
 	unsigned int	color;
-	
+
 	if (ft_strncmp((const char *)player->xpm_path_so, "./text1.xpm",
 	ft_strlen(player->xpm_path_so)) == 0 ||
 	ft_strncmp((const char *)player->xpm_path_so, "./text2.xpm",
@@ -104,7 +104,7 @@ unsigned int	set_texture_south(t_player *player, int wall_h)
 unsigned int	set_texture_north(t_player *player, int wall_h)
 {
 	unsigned int	color;
-	
+
 	if (ft_strncmp((const char *)player->xpm_path_no, "./text1.xpm",
 	ft_strlen(player->xpm_path_no)) == 0 ||
 	ft_strncmp((const char *)player->xpm_path_no, "./text2.xpm",

@@ -52,7 +52,7 @@ void			set_image_data34_ew(t_player *player, int wall_h, char *path)
 	}
 }
 
-void			set_image_data12_ns(t_player *player, int wall_h, char * path)
+void			set_image_data12_ns(t_player *player, int wall_h, char *path)
 {
 	if (ft_strncmp((const char *)path, "./text1.xpm",
 	ft_strlen(path)) == 0)
