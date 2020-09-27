@@ -68,3 +68,29 @@ void	register_dist_minmax(t_player *player, float d, float angle, int i)
 		player->sprite[i][6] = (player->struct_screen.x) / (d * cos(fabs(angle
 		- player->teta)));
 }
+
+unsigned int	set_texture_sprite(t_player *player, int y, int i)
+{
+	unsigned int color;
+
+	if (((((y * player->ids.xpm_sprite_w * 4) + (i * 4) + 3))) <=
+	(player->ids.xpm_sprite_w * player->ids.xpm_sprite_h * 4) &&
+	(((y * player->ids.xpm_sprite_w * 4) + (i * 4))) >= 0)
+	{
+		player->struct_side.pixel[0] =
+		player->ids.xpm_data_sprite[((((y * (player->ids.xpm_sprite_w) * 4))
+		+ (i * 4)))];
+		player->struct_side.pixel[1] =
+		player->ids.xpm_data_sprite[((((y * (player->ids.xpm_sprite_w) * 4))
+		+ (i * 4))) + 1];
+		player->struct_side.pixel[2] =
+		player->ids.xpm_data_sprite[((((y * (player->ids.xpm_sprite_w) * 4))
+		+ (i * 4))) + 2];
+		player->struct_side.pixel[3] =
+		player->ids.xpm_data_sprite[((((y * (player->ids.xpm_sprite_w) * 4))
+		+ (i * 4))) + 3];
+	}
+	color = rgb3(player->struct_side.pixel[2], player->struct_side.pixel[1],
+	player->struct_side.pixel[0]);
+	return (color);
+}

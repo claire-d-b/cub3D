@@ -39,6 +39,7 @@ SRCS		= ./srcs/main.c\
 		./srcs/init_struct.c\
 		./srcs/init_struct_2.c\
 		./srcs/utilstextures.c\
+		./srcs/utilstextures_2.c\
 		./srcs/args_error.c\
 		./srcs/utilssprite_2.c\
 		./srcs/utilsraymarch_2.c\

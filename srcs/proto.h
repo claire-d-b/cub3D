@@ -158,5 +158,11 @@ float			raycast_sprites(t_player *player, char **map, float angle,
 void			check_wall_dist_before_sprite(t_player *player, int count,
 				float d);
 int				is_new(t_player *player, float d, float angle, int i);
+void			select_image_data(t_player *player, int w, int h, char *path);
+void			pick_pixels_in_texture(int w, int h, t_player *player);
+void			set_image_data34_ns(t_player *player, int wall_h, char *path);
+void			set_image_data12_ns(t_player *player, int wall_h, char * path);
+void			set_image_data34_ew(t_player *player, int wall_h, char *path);
+void			set_image_data12_ew(t_player *player, int wall_h, char * path);
 
 #endif
