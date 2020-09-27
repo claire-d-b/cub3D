@@ -73,6 +73,7 @@ SRCS_MAC	= ./srcs_mac/main_mac.c\
 		./srcs_mac/init_struct_mac.c\
 		./srcs_mac/init_struct_2_mac.c\
 		./srcs_mac/utilstextures_mac.c\
+		./srcs_mac/utilstextures_2_mac.c\
 		./srcs_mac/args_error_mac.c\
 		./srcs_mac/utilssprite_2_mac.c\
 		./srcs_mac/utilsraymarch_2_mac.c\

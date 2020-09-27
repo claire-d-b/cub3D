@@ -27,10 +27,10 @@ float			raycast(t_player *player, char **map, float angle);
 void			display_view(float teta, float dist, double wall_h,
 				t_player *player);
 unsigned int	rgb3(unsigned int r, unsigned int g, unsigned int b);
-unsigned int	set_texture_east(t_player *player, int y, int i);
-unsigned int	set_texture_west(t_player *player, int y, int i);
-unsigned int	set_texture_south(t_player *player, int y, int i);
-unsigned int	set_texture_north(t_player *player, int y, int i);
+unsigned int	set_texture_east(t_player *player, int wall_h);
+unsigned int	set_texture_west(t_player *player, int wall_h);
+unsigned int	set_texture_south(t_player *player, int wall_h);
+unsigned int	set_texture_north(t_player *player, int wall_h);
 void			camera_right(t_player *player);
 void			camera_left(t_player *player);
 void			walk_up(t_player *player);
@@ -158,5 +158,11 @@ float			raycast_sprites(t_player *player, char **map, float angle,
 void			check_wall_dist_before_sprite(t_player *player, int count,
 				float d);
 int				is_new(t_player *player, float d, float angle, int i);
+void			select_image_data(t_player *player, int w, int h, char *path);
+void			pick_pixels_in_texture(int w, int h, t_player *player);
+void			set_image_data34_ns(t_player *player, int wall_h, char *path);
+void			set_image_data12_ns(t_player *player, int wall_h, char *path);
+void			set_image_data34_ew(t_player *player, int wall_h, char *path);
+void			set_image_data12_ew(t_player *player, int wall_h, char *path);
 
 #endif
