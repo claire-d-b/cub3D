@@ -29,7 +29,9 @@ void	manage_lines(char *line, t_player *player)
 	line[1] != 'E'))))))
 	{
 		player->waste =
-		write(1, "Error\nOnly IDs, map and empty lines are valid.\n", 47);
+		write(1,
+		"Error\nOnly IDs with correct path, map and empty lines are valid.\n",
+		65);
 		exit_program(player);
 	}
 	doublons(line, player);
