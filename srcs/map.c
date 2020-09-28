@@ -15,20 +15,14 @@
 int		set_map_len(int y, t_player *player, char *line)
 {
 	int x;
-	int count;
 
 	x = 0;
-	count = 0;
 	player->map_start = (player->bool_start == 0) ? y : player->map_start;
 	player->bool_start = 1;
 	while (line[x])
-	{
-		if (!(is_space(line[x])))
-			count++;
 		x++;
-	}
-	if (player->max < count)
-		player->max = count;
+	if (player->max < x)
+		player->max = x;
 	return (1);
 }
 
@@ -42,10 +36,9 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 	while (line[++y] && is_map(line))
 	{
 		if (is_space(line[y]) == 0)
-		{
 			map[count][x] = line[y];
-			x++;
-		}
+		else
+			map[count][x] = '1';
 		if ((count == 0 || count == player->table_lenght - 1 || y == 0 ||
 		y == (int)ft_strlen(line) - 1) && line[y] != '1' &&
 		is_space(line[y]) == 0)
@@ -54,6 +47,7 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 			write(1, "Error\nMap must be surrounded by walls.\n", 39);
 			exit_program(player);
 		}
+		x++;
 	}
 	map[count][x] = '\0';
 	return (1);
@@ -62,10 +56,9 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 int		check_surr_walls(char **map, int i, int j)
 {
 	if ((((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 2 && j >=
-	(int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1')
+	(int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1' && map[i - 1][j + 1] != '1')
 	|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < -2 &&
-	((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < 0 &&
-	j >= (int)ft_strlen(map[i - 1]) - 1 && map[i][j] != '1')
+	j >= (int)ft_strlen(map[i - 1]) - 1 && map[i][j] != '1' && map[i][j + 1] != '1')
 	|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) <= 2 &&
 	((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 0 &&
 	j >= (int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1' &&

@@ -14,8 +14,7 @@
 
 void	map_error(t_player *player, char **map, int i, int j)
 {
-	if (map[i][j] != '1' && map[i][j] != 'S' && map[i][j] != 'N'
-	&& map[i][j] != 'E' && map[i][j] != 'W')
+	if (map[i][j] != '1' && is_space(map[i][j]) == 0)
 	{
 		player->waste =
 		write(1, "Error\nMap must be surrounded by walls.\n", 39);
@@ -34,9 +33,7 @@ void	parse_map(char **map, t_player *player)
 	{
 		while (map[i][++j])
 		{
-			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != '2' &&
-			map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E' &&
-			map[i][j] != 'W')
+			if (is_space(map[i][j]))
 				map[i][j] = '1';
 			if (j == player->max - 1 || j == 0 || i == 0 || i
 			== player->table_lenght - 1)
