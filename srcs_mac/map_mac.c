@@ -56,10 +56,10 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 int		check_surr_walls(char **map, int i, int j)
 {
 	if ((((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 2 && j >=
-	(int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1' && map[i - 1][j + 1] != '1')
-	|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < -2 &&
-	j >= (int)ft_strlen(map[i - 1]) - 1 && map[i][j] != '1' && map[i][j + 1] != '1')
-	|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) <= 2 &&
+	(int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1' && map[i - 1][j + 1]
+	!= '1') || (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < -2 &&
+	j >= (int)ft_strlen(map[i - 1]) - 1 && map[i][j] != '1' && map[i][j + 1]
+	!= '1') || (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) <= 2 &&
 	((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 0 &&
 	j >= (int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1' &&
 	map[i - 1][j + 1] != '1')

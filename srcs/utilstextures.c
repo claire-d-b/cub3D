@@ -28,7 +28,7 @@ int		set_path_to_texture_no(char *to_record, t_player *player)
 		return (-1);
 	}
 	player->xpm_path_no = ft_strdup(to_record);
-	while(player->xpm_path_no[i])
+	while (player->xpm_path_no[i])
 	{
 		if (is_space(player->xpm_path_no[i]))
 			player->xpm_path_no[i] = '\0';
@@ -53,7 +53,7 @@ int		set_path_to_texture_so(char *to_record, t_player *player)
 		return (-1);
 	}
 	player->xpm_path_so = ft_strdup(to_record);
-	while(player->xpm_path_so[i])
+	while (player->xpm_path_so[i])
 	{
 		if (is_space(player->xpm_path_so[i]))
 			player->xpm_path_so[i] = '\0';
@@ -78,7 +78,7 @@ int		set_path_to_texture_we(char *to_record, t_player *player)
 		return (-1);
 	}
 	player->xpm_path_we = ft_strdup(to_record);
-	while(player->xpm_path_we[i])
+	while (player->xpm_path_we[i])
 	{
 		if (is_space(player->xpm_path_we[i]))
 			player->xpm_path_we[i] = '\0';
@@ -103,7 +103,7 @@ int		set_path_to_texture_ea(char *to_record, t_player *player)
 		return (-1);
 	}
 	player->xpm_path_ea = ft_strdup(to_record);
-	while(player->xpm_path_ea[i])
+	while (player->xpm_path_ea[i])
 	{
 		if (is_space(player->xpm_path_ea[i]))
 			player->xpm_path_ea[i] = '\0';
