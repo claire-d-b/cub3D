@@ -52,3 +52,16 @@ void	doublons(char *line, t_player *player)
 		exit_program(player);
 	}
 }
+
+int		is_number(char *to_cast)
+{
+	int i;
+
+	i = 0;
+	while (to_cast[i] && (ft_isdigit(to_cast[i]) ||
+	is_space(to_cast[i])))
+		i++;
+	if (i == (int)ft_strlen(to_cast))
+		return (1);
+	return (0);
+}

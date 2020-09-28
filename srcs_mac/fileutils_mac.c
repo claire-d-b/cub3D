@@ -31,7 +31,7 @@ void	set_game_elements(char *line, t_player *player)
 			exit_program(player);
 	if (line[0] == 'S' && line[1] != 'O' &&
 	player->xpm_path_sp == 0)
-		if (set_path_to_texture_sp(0, player, line) == -1)
+		if (set_path_to_texture_sp(0, player, line, -1) == -1)
 			exit_program(player);
 	if (line[0] == 'F' && player->floor_color[0] == -1)
 		if (set_floor_color(1, player, line) == -1)

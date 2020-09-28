@@ -62,7 +62,6 @@ int				exit_game(t_player *player);
 unsigned int	set_texture_sprite_rev(t_player *player, int y, int i);
 int				create_bmp(t_player *player);
 void			parse_map(char **map, t_player *player);
-int				ft_atoi(const char *str);
 char			**ft_split(char const *s, char c);
 int				ft_isdigit(int c);
 void			*ft_calloc(size_t count, size_t size);
@@ -86,7 +85,8 @@ int				transform_map(char **map, int count, char *line,
 int				set_resolution(int count, t_player *player, char *line);
 int				set_path_to_texture_ns(int count, t_player *player, char *line);
 int				set_path_to_texture_ew(int count, t_player *player, char *line);
-int				set_path_to_texture_sp(int count, t_player *player, char *line);
+int				set_path_to_texture_sp(int count, t_player *player, char *line,
+				int i);
 int				set_floor_color(int count, t_player *player, char *line);
 int				set_ceiling_color(int count, t_player *player, char *line);
 void			init_struct_side(t_player *player);
@@ -164,5 +164,6 @@ void			set_image_data34_ns(t_player *player, int wall_h, char *path);
 void			set_image_data12_ns(t_player *player, int wall_h, char *path);
 void			set_image_data34_ew(t_player *player, int wall_h, char *path);
 void			set_image_data12_ew(t_player *player, int wall_h, char *path);
+int				is_number(char *to_cast);
 
 #endif

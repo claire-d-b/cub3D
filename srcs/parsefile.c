@@ -17,7 +17,7 @@ int	set_path_to_texture_ns(int count, t_player *player, char *line)
 	char *to_record;
 
 	if ((to_record = ft_strchr(line, '.')) &&
-	ft_strlen(to_record) == ft_strlen("./text1.xpm"))
+	is_empty_line(&to_record[11]))
 	{
 		if (line[count] == 'N' && line[count + 1] == 'O' && count == 0)
 			set_path_to_texture_no(to_record, player);
@@ -35,7 +35,7 @@ int	set_path_to_texture_ew(int count, t_player *player, char *line)
 	char *to_record;
 
 	if ((to_record = ft_strchr(line, '.')) &&
-	ft_strlen(to_record) == ft_strlen("./text3.xpm"))
+	is_empty_line(&to_record[11]))
 	{
 		if (line[count] == 'W' && line[count + 1] == 'E' && count == 0)
 			set_path_to_texture_we(to_record, player);
@@ -48,23 +48,26 @@ int	set_path_to_texture_ew(int count, t_player *player, char *line)
 	return (-1);
 }
 
-int	set_path_to_texture_sp(int count, t_player *player, char *line)
+int	set_path_to_texture_sp(int count, t_player *player, char *line, int i)
 {
 	char *to_record;
 
 	if ((to_record = ft_strchr(line, '.')) &&
-	ft_strlen(to_record) == ft_strlen("./sprite.xpm"))
+	is_empty_line(&to_record[12]))
 	{
 		if (line[count] == 'S' && line[count + 1] != 'O' && count == 0)
 		{
 			if ((ft_strncmp((const char *)to_record, "./sprite.xpm",
-			ft_strlen(to_record)) != 0) || ft_strlen(to_record) <= 2)
+			12) != 0) || ft_strlen(to_record) <= 2)
 			{
 				player->waste =
 				write(1, "Error\nWrong path to sprite texture.", 35);
 				return (-1);
 			}
 			player->xpm_path_sp = ft_strdup(to_record);
+			while (player->xpm_path_sp[++i])
+				if (is_space(player->xpm_path_sp[i]))
+					player->xpm_path_sp[i] = '\0';
 		}
 		return (1);
 	}
@@ -82,9 +85,9 @@ int	set_floor_color(int count, t_player *player, char *line)
 	to_cast = NULL;
 	while (line[count] && is_space(line[count]))
 		count++;
-	if (ft_isdigit(line[count]) && (to_cast = ft_split(&line[count], ',')))
-		while (to_cast[j] && ft_atoi(to_cast[j]) >= 0 &&
-		ft_atoi(to_cast[j]) <= 255)
+	if ((to_cast = ft_split(&line[count], ',')))
+		while (to_cast[j] && is_number(to_cast[j]) &&
+		ft_atoi(to_cast[j]) >= 0 && ft_atoi(to_cast[j]) <= 255)
 			j++;
 	if (!(j == 3))
 	{
@@ -111,9 +114,9 @@ int	set_ceiling_color(int count, t_player *player, char *line)
 	to_cast = NULL;
 	while (line[count] && is_space(line[count]))
 		count++;
-	if (ft_isdigit(line[count]) && (to_cast = ft_split(&line[count], ',')))
-		while (to_cast[j] && ft_atoi(to_cast[j]) >= 0 &&
-		ft_atoi(to_cast[j]) <= 255)
+	if ((to_cast = ft_split(&line[count], ',')))
+		while (to_cast[j] && is_number(to_cast[j]) &&
+		ft_atoi(to_cast[j]) >= 0 && ft_atoi(to_cast[j]) <= 255)
 			j++;
 	if (!(j == 3))
 	{
