@@ -113,7 +113,7 @@ int		set_resolution(int count, t_player *player, char *line)
 		count++;
 	if (!(count == 2))
 	{
-		player->waste = write(1, "Error\nWrong resolution ID.", 26);
+		player->waste = write(1, "Error\nWrong resolution ID\n.", 27);
 		ft_free_tab(to_cast);
 		return (-1);
 	}

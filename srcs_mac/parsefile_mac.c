@@ -91,7 +91,7 @@ int	set_floor_color(int count, t_player *player, char *line)
 			j++;
 	if (!(j == 3))
 	{
-		player->waste = write(1, "Error\nWrong color ID [floor]", 28);
+		player->waste = write(1, "Error\nWrong color ID [floor]\n", 29);
 		if (to_cast)
 			ft_free_tab(to_cast);
 		return (-1);
@@ -120,7 +120,7 @@ int	set_ceiling_color(int count, t_player *player, char *line)
 			j++;
 	if (!(j == 3))
 	{
-		player->waste = write(1, "Error\nWrong color ID [ceiling]", 30);
+		player->waste = write(1, "Error\nWrong color ID [ceiling]", 31);
 		if (to_cast)
 			ft_free_tab(to_cast);
 		return (-1);
