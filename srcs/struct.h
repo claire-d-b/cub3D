@@ -88,6 +88,7 @@ typedef struct	s_ids
 
 typedef struct	s_player
 {
+	int			walls;
 	char		*data;
 	int			w;
 	int			h;

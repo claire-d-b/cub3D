@@ -30,24 +30,21 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 {
 	int y;
 	int x;
+	int index;
 
 	y = -1;
-	x = 0;
+	x = -1;
+	index = 0;
 	while (line[++y] && is_map(line))
 	{
-		if (is_space(line[y]) == 0)
-			map[count][x] = line[y];
-		else
-			map[count][x] = '1';
-		if ((count == 0 || count == player->table_lenght - 1 || y == 0 ||
-		y == (int)ft_strlen(line) - 1) && line[y] != '1' &&
-		is_space(line[y]) == 0)
-		{
-			player->waste =
-			write(1, "Error\nMap must be surrounded by walls.\n", 39);
-			exit_program(player);
-		}
-		x++;
+		if (is_space(line[y]))
+			index = y;
+		map[count][++x] = line[y];
+		if (y && count && ((y == index && player->walls > index &&
+		is_space(line[y + 1]) == 0) || (player->walls < index)) &&
+		is_empty_line_count(line, y + 1))
+			map_error2(index, y, player, line);
+		player->walls = (is_space(line[y + 1]) == 0) ? index : player->walls;
 	}
 	map[count][x] = '\0';
 	return (1);
@@ -55,18 +52,13 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 
 int		check_surr_walls(char **map, int i, int j)
 {
-	if ((((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 2 && j >=
-	(int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1' && map[i - 1][j + 1]
-	!= '1') || (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < -2 &&
-	j >= (int)ft_strlen(map[i - 1]) - 1 && map[i][j] != '1' && map[i][j + 1]
-	!= '1') || (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) <= 2 &&
-	((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 0 &&
-	j >= (int)ft_strlen(map[i]) - 1 && map[i - 1][j] != '1' &&
-	map[i - 1][j + 1] != '1')
-	|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) >= -2 &&
-	((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < 0 &&
-	j >= (int)ft_strlen(map[i - 1]) - 1 && map[i][j] != '1' &&
-	map[i][j + 1] != '1'))
+	if (((((int)ft_strlen(map[i - 1]) -
+	(int)ft_strlen(map[i])) > 0 && j > (int)ft_strlen(map[i]) &&
+	map[i - 1][j] != '1' && map[i - 1][j - 1] != '1' && map[i - 1][j + 1]
+	!= '1') || (((int)ft_strlen(map[i - 1]) -
+	(int)ft_strlen(map[i])) < 0 && j > (int)ft_strlen(map[i - 1])
+	&& map[i][j] != '1' && map[i][j - 1] != '1' && map[i][j + 1]
+	!= '1')))
 		return (1);
 	return (0);
 }

@@ -12,9 +12,31 @@
 
 #include "cub3d_mac.h"
 
+int		is_empty_line_count(char *line, int len)
+{
+	size_t i;
+	size_t count;
+
+	i = 0;
+	count = 0;
+	while (i < (size_t)len)
+	{
+		if (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'
+		|| line[i] == '\r' || line[i] == '\v' || line[i] == '\f')
+			count++;
+		i++;
+	}
+	if (i != count)
+		return (0);
+	return (1);
+}
+
 void	map_error(t_player *player, char **map, int i, int j)
 {
-	if (map[i][j] != '1' && is_space(map[i][j]) == 0)
+	if (i && j && j < (int)ft_strlen(map[i]) &&
+	((map[i - 1][j] != '1' && is_space(map[i - 1][j]) == 0) ||
+	(map[i][j - 1] != '1' && is_space(map[i][j - 1]) == 0) ||
+	(map[i][j + 1] != '1' && is_space(map[i][j + 1]) == 0)))
 	{
 		player->waste =
 		write(1, "Error\nMap must be surrounded by walls.\n", 39);
@@ -34,9 +56,6 @@ void	parse_map(char **map, t_player *player)
 		while (map[i][++j])
 		{
 			if (is_space(map[i][j]))
-				map[i][j] = '1';
-			if (j == player->max - 1 || j == 0 || i == 0 || i
-			== player->table_lenght - 1)
 				map_error(player, map, i, j);
 		}
 		j = -1;
@@ -45,10 +64,17 @@ void	parse_map(char **map, t_player *player)
 
 void	screen_size(t_player *player)
 {
-	if (player->struct_screen.x > 2560)
-		player->struct_screen.x = 2560;
-	if (player->struct_screen.y > 1440)
-		player->struct_screen.y = 1440;
+	int height;
+	int width;
+
+	height = 0;
+	width = 0;
+	mlx_get_screen_size(player->ids.mlx_ptr, &width,
+	&height);
+	if (player->struct_screen.x > width)
+		player->struct_screen.x = width;
+	if (player->struct_screen.y > height)
+		player->struct_screen.y = height;
 }
 
 int		open_window(t_player *player, char const *title)

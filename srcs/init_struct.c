@@ -24,6 +24,7 @@ void	init_elements(t_player *player)
 	player->xpm_path_we = 0;
 	player->xpm_path_ea = 0;
 	player->xpm_path_sp = 0;
+	player->walls = 0;
 	while (i < 4)
 	{
 		player->ceil_color[i] = -1;
@@ -70,6 +71,7 @@ void	init_elements_exit(t_player *player)
 	player->xpm_path_we = 0;
 	player->xpm_path_ea = 0;
 	player->xpm_path_sp = 0;
+	player->walls = 0;
 	while (i < 4)
 	{
 		player->ceil_color[i] = 0;

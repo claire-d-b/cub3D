@@ -65,3 +65,15 @@ int		is_number(char *to_cast)
 		return (1);
 	return (0);
 }
+
+void	map_error2(int index, int y, t_player *player, char *line)
+{
+	if (((player->walls > index && y <= player->walls && y > index)
+	|| (player->walls <= index && y <= index && y > player->walls)) &&
+	line[y] != '1')
+	{
+		player->waste =
+		write(1, "Error\nMap must be surrounded by walls.\n", 39);
+		exit_program(player);
+	}
+}
