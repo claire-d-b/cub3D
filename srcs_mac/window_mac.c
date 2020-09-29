@@ -35,6 +35,8 @@ void	map_error(t_player *player, char **map, int i, int j)
 {
 	if (i && j && j < (int)ft_strlen(map[i]) &&
 	((map[i - 1][j] != '1' && is_space(map[i - 1][j]) == 0) ||
+	(map[i + 1] && map[i + 1][j] != '1' &&
+	is_space(map[i + 1][j]) == 0) ||
 	(map[i][j - 1] != '1' && is_space(map[i][j - 1]) == 0) ||
 	(map[i][j + 1] != '1' && is_space(map[i][j + 1]) == 0)))
 	{
