@@ -45,8 +45,8 @@ int		minimise(t_player *player)
 
 void	hooks(t_player *player)
 {
-	mlx_hook(player->ids.mlx_win, 25, 1L << 18, &key_press, player);
 	mlx_hook(player->ids.mlx_win, 2, 1L << 0, &key_press, player);
+	mlx_hook(player->ids.mlx_win, 3, 1L << 1, &key_release, player);
 	mlx_hook(player->ids.mlx_win, 15, 1L << 16, &minimise, player);
 	mlx_hook(player->ids.mlx_win, 17, 1L << 17, &exit_game, player);
 }

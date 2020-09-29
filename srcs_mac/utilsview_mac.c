@@ -19,18 +19,16 @@ unsigned int	rgb3(unsigned int r, unsigned int g, unsigned int b)
 
 void			change_color(t_player *player, int y, int i, unsigned int color)
 {
-	if ((int)(((y * (player->struct_screen.x) * 4) + (i * 4) + 3)) <
-	player->struct_screen.x * player->struct_screen.y * 4 && (int)(((
-	y * (player->struct_screen.x) * 4) + (i * 4))) >= 0)
+	int pixel;
+
+	pixel = (int)(((y * (player->struct_screen.x) * 4) + (i * 4)));
+	if (pixel + 3 <
+	player->struct_screen.x * player->struct_screen.y * 4 && pixel >= 0)
 	{
-		player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) +
-		(i * 4)))] = color;
-		player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) +
-		(i * 4) + 1))] = color / 256;
-		player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) +
-		(i * 4) + 2))] = color / (256 * 256);
-		player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) +
-		(i * 4) + 3))] = 1;
+		player->ids.img_data[pixel] = color;
+		player->ids.img_data[pixel + 1] = color / 256;
+		player->ids.img_data[pixel + 2] = color / (256 * 256);
+		player->ids.img_data[pixel + 3] = 1;
 	}
 }
 
