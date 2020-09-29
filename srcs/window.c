@@ -57,6 +57,13 @@ void	parse_map(char **map, t_player *player)
 		{
 			if (is_space(map[i][j]))
 				map_error(player, map, i, j);
+			else if ((i == 0 || i == player->table_lenght - 1 || j == 0)
+			&& map[i][j] != '1')
+			{
+				player->waste = write(1,
+				"Error.\nMap must be surrounded by walls.\n", 40);
+				exit_program(player);
+			}
 		}
 		j = -1;
 	}
