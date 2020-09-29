@@ -52,14 +52,25 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 
 int		check_surr_walls(char **map, int i, int j)
 {
-	if (((((int)ft_strlen(map[i - 1]) -
-	(int)ft_strlen(map[i])) > 0 && j > (int)ft_strlen(map[i]) &&
-	map[i - 1][j] != '1' && map[i - 1][j - 1] != '1' && map[i - 1][j + 1]
-	!= '1') || (((int)ft_strlen(map[i - 1]) -
-	(int)ft_strlen(map[i])) < 0 && j > (int)ft_strlen(map[i - 1])
-	&& map[i][j] != '1' && map[i][j - 1] != '1' && map[i][j + 1]
-	!= '1')))
-		return (1);
+	int x;
+
+	x = 0;
+	if (((int)ft_strlen(map[i - 1]) -
+	(int)ft_strlen(map[i])) > 0 && j > (int)ft_strlen(map[i]))
+	{
+		while (map[i][j + x])
+			x++;
+		if (map[i][j + x] != '1')
+			return (1);
+	}
+	if (((int)ft_strlen(map[i - 1]) -
+	(int)ft_strlen(map[i])) < 0 && j > (int)ft_strlen(map[i - 1]))
+	{
+		while (map[i][j + x])
+			x++;
+		if (map[i][j + x] != '1')
+			return (1);
+	}
 	return (0);
 }
 
