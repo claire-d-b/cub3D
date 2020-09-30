@@ -14,47 +14,56 @@
 
 int		key_release(int keycode, t_player *player)
 {
-	player->key_r = -1;
 	if (keycode == RIGHT_ARROW)
-		camera_right(player);
+		player->camera_right = 0;
 	if (keycode == LEFT_ARROW)
-		camera_left(player);
+		player->camera_left = 0;
 	if (keycode == MOVE_UP)
-		walk_up(player);
+		player->walk_up = 0;
 	if (keycode == MOVE_DOWN)
-		walk_down(player);
+		player->walk_down = 0;
 	if (keycode == MOVE_RIGHT)
-		walk_right(player);
+		player->walk_right = 0;
 	if (keycode == MOVE_LEFT)
-		walk_left(player);
+		player->walk_left = 0;
 	if (keycode == ESCAPE)
 		exit_game(player);
-	else
-		display_view(0, 0, 0, player);
 	return (0);
 }
 
 int		key_press(int keycode, t_player *player)
 {
-	if (player->key_r != -1)
-	{
 		if (keycode == RIGHT_ARROW)
-			camera_right(player);
+			player->camera_right = 1;
 		if (keycode == LEFT_ARROW)
-			camera_left(player);
+			player->camera_left = 1;
 		if (keycode == MOVE_UP)
-			walk_up(player);
+			player->walk_up = 1;
 		if (keycode == MOVE_DOWN)
-			walk_down(player);
+			player->walk_down = 1;
 		if (keycode == MOVE_RIGHT)
-			walk_right(player);
+			player->walk_right = 1;
 		if (keycode == MOVE_LEFT)
-			walk_left(player);
+			player->walk_left = 1;
 		if (keycode == ESCAPE)
 			exit_game(player);
-		else
-			display_view(0, 0, 0, player);
-	}
-	player->key_r = 0;
+	return (0);
+}
+
+int		moves(t_player *player)
+{
+	if (player->walk_up == 1)
+		walk_up(player);
+	if (player->walk_down == 1)
+		walk_down(player);
+	if (player->walk_right == 1)
+		walk_right(player);
+	if (player->walk_left == 1)
+		walk_left(player);
+	if (player->camera_right == 1)
+		camera_right(player);
+	if (player->camera_left == 1)
+		camera_left(player);
+	display_view(0, 0, 0, player);
 	return (0);
 }

@@ -17,7 +17,6 @@ void	init_elements(t_player *player)
 	int i;
 
 	i = 0;
-	player->key_r = 0;
 	player->waste = 0;
 	player->xpm_path_no = 0;
 	player->xpm_path_so = 0;
@@ -31,6 +30,12 @@ void	init_elements(t_player *player)
 		player->floor_color[i] = -1;
 		i++;
 	}
+	player->walk_up = 0;
+	player->walk_down = 0;
+	player->walk_right = 0;
+	player->walk_left = 0;
+	player->camera_right = 0;
+	player->camera_left = 0;
 }
 
 void	init_struct_player(t_player *player)
@@ -64,7 +69,6 @@ void	init_elements_exit(t_player *player)
 	int i;
 
 	i = 0;
-	player->key_r = 0;
 	player->waste = 0;
 	player->xpm_path_no = 0;
 	player->xpm_path_so = 0;
@@ -78,6 +82,12 @@ void	init_elements_exit(t_player *player)
 		player->floor_color[i] = 0;
 		i++;
 	}
+	player->walk_up = 0;
+	player->walk_down = 0;
+	player->walk_right = 0;
+	player->walk_left = 0;
+	player->camera_right = 0;
+	player->camera_left = 0;
 }
 
 void	init_struct_player_exit(t_player *player)

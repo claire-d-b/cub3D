@@ -88,6 +88,12 @@ typedef struct	s_ids
 
 typedef struct	s_player
 {
+	int			walk_up;
+	int			walk_down;
+	int			walk_right;
+	int			walk_left;
+	int			camera_right;
+	int			camera_left;
 	int			walls;
 	char		*data;
 	int			w;
@@ -96,7 +102,6 @@ typedef struct	s_player
 	float		dist_wall;
 	char		p2;
 	int			boolean;
-	int			key_r;
 	int			waste;
 	char		*xpm_path_no;
 	char		*xpm_path_so;

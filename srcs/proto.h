@@ -167,5 +167,6 @@ void			set_image_data12_ew(t_player *player, int wall_h, char *path);
 int				is_number(char *to_cast);
 int				is_empty_line_count(char *line, int len);
 void			map_error2(int index, int y, t_player *player, char *line);
+int				moves(t_player *player);
 
 #endif
