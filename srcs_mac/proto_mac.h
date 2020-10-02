@@ -168,5 +168,7 @@ int				is_number(char *to_cast);
 int				is_empty_line_count(char *line, int len);
 void			map_error2(int index, int y, t_player *player, char *line);
 int				moves(t_player *player);
+size_t			ft_strlen_nospace(char *str);
+int				check_walls(int i, char **map, t_player *player);
 
 #endif

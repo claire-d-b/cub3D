@@ -40,7 +40,7 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 		map[count][y] = line[y];
 		if (y && count && ((y == index && player->walls > index &&
 		is_space(line[y + 1]) == 0) || (player->walls < index)) &&
-		is_empty_line_count(line, y + 1))
+		is_empty_line_count(line, y + 1) && is_empty_line(line) == 0)
 			map_error2(index, y, player, line);
 		player->walls = (is_space(line[y + 1]) == 0) ? index : player->walls;
 	}
@@ -53,18 +53,18 @@ int		check_surr_walls(char **map, int i, int j)
 	int x;
 
 	x = 0;
-	if (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 0)
+	if (((int)ft_strlen_nospace(map[i - 1]) - (int)ft_strlen_nospace(map[i])) > 0)
 	{
-		while (map[i][j + x])
+		while (j + x < (int)ft_strlen_nospace(map[i]))
 		{
 			if (map[i][j + x] != '1')
 				return (1);
 			x++;
 		}
 	}
-	if (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) < 0)
+	if (((int)ft_strlen_nospace(map[i - 1]) - (int)ft_strlen_nospace(map[i])) < 0)
 	{
-		while (map[i][j + x])
+		while (j + x < (int)ft_strlen_nospace(map[i]))
 		{
 			if (map[i][j + x] != '1')
 				return (1);
@@ -85,14 +85,14 @@ void	check_map(char **map, int count, t_player *player)
 	parse_map(map, player);
 	while (map[i])
 	{
-		if (i && ((((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) == 0
-		&& (j = (int)ft_strlen(map[i]) - 1) && j && (map[i - 1][j] != '1' ||
+		if (i && ((((int)ft_strlen_nospace(map[i - 1]) - (int)ft_strlen_nospace(map[i])) == 0
+		&& (j = (int)ft_strlen_nospace(map[i]) - 1) && j > 0 && (map[i - 1][j] != '1' ||
 		map[i][j] != '1')) ||
-		(((int)ft_strlen(map[i - 1]) - (int)ft_strlen(map[i])) > 0
-		&& (j = (int)ft_strlen(map[i]) - 1) && j && check_surr_walls(map, i, j))
-		|| (((int)ft_strlen(map[i - 1]) -
-		(int)ft_strlen(map[i])) < 0 && (j = (int)ft_strlen(map[i - 1])) && j &&
-		check_surr_walls(map, i, j))))
+		(((int)ft_strlen_nospace(map[i - 1]) - (int)ft_strlen_nospace(map[i])) > 0
+		&& (j = (int)ft_strlen_nospace(map[i])) && j > 0 && check_surr_walls(map, i, j))
+		|| (((int)ft_strlen_nospace(map[i - 1]) -
+		(int)ft_strlen_nospace(map[i])) < 0 && (j = (int)ft_strlen_nospace(map[i - 1])) && j &&
+		check_surr_walls(map, i, j))) && is_empty_line(map[i]) == 0)
 		{
 			player->waste =
 			write(1, "Error\nMap must be surrounded by walls.\n", 39);

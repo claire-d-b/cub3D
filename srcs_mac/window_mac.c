@@ -34,9 +34,10 @@ int		is_empty_line_count(char *line, int len)
 void	map_error(t_player *player, char **map, int i, int j)
 {
 	if (i && j && j < (int)ft_strlen(map[i]) &&
-	((map[i - 1][j] != '1' && is_space(map[i - 1][j]) == 0) ||
+	((map[i - 1][j] != '1' && is_space(map[i - 1][j]) == 0 &&
+	is_empty_line(map[i - 1]) == 0) ||
 	(map[i + 1] && map[i + 1][j] != '1' &&
-	is_space(map[i + 1][j]) == 0) ||
+	is_space(map[i + 1][j]) == 0 && is_empty_line(map[i + 1]) == 0) ||
 	(map[i][j - 1] != '1' && is_space(map[i][j - 1]) == 0) ||
 	(map[i][j + 1] != '1' && is_space(map[i][j + 1]) == 0)))
 	{
@@ -44,6 +45,37 @@ void	map_error(t_player *player, char **map, int i, int j)
 		write(1, "Error\nMap must be surrounded by walls.\n", 39);
 		exit_program(player);
 	}
+}
+
+int		check_walls(int i, char **map, t_player *player)
+{
+	int j;
+	int x;
+
+	j = 0;
+	x = 1;
+	if (i && i < player->table_lenght)
+	{
+		while (i - x >= 0 && is_empty_line(map[i - x]))
+			x++;
+		while (j < (int)ft_strlen_nospace(map[i - x]))
+		{
+			if (map[i - x][j] != '1' && is_space(map[i - x][j]) == 0)
+				return (1);
+			j++;
+		}
+		x = 1;
+		j = 0;
+		while (i + x < player->table_lenght && is_empty_line(map[i + x]))
+			x++;
+		while (j < (int)ft_strlen_nospace(map[i + x]))
+		{
+			if (map[i + x][j] != '1' && is_space(map[i + x][j]) == 0)
+				return (1);
+			j++;
+		}
+	}
+	return (0);
 }
 
 void	parse_map(char **map, t_player *player)
@@ -57,10 +89,10 @@ void	parse_map(char **map, t_player *player)
 	{
 		while (map[i][++j])
 		{
-			if (is_space(map[i][j]))
+			if (is_empty_line(map[i]) == 0 && is_space(map[i][j]) && is_empty_line(&map[i][j]) == 0)
 				map_error(player, map, i, j);
-			else if ((i == 0 || i == player->table_lenght - 1 || j == 0)
-			&& map[i][j] != '1')
+			if ((is_empty_line(map[i]) == 0 && (i == 0 || i == player->table_lenght || j == 0)
+			&& map[i][j] != '1') || (is_empty_line(map[i]) && check_walls(i, map, player)))
 			{
 				player->waste = write(1,
 				"Error.\nMap must be surrounded by walls.\n", 40);
@@ -73,17 +105,10 @@ void	parse_map(char **map, t_player *player)
 
 void	screen_size(t_player *player)
 {
-	int height;
-	int width;
-
-	height = 0;
-	width = 0;
-	mlx_get_screen_size(player->ids.mlx_ptr, &width,
-	&height);
-	if (player->struct_screen.x > width)
-		player->struct_screen.x = width;
-	if (player->struct_screen.y > height)
-		player->struct_screen.y = height;
+	if (player->struct_screen.x > 2560)
+		player->struct_screen.x = 2560;
+	if (player->struct_screen.y > 1440)
+		player->struct_screen.y = 1440;
 }
 
 int		open_window(t_player *player, char const *title)

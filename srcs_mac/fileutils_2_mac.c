@@ -77,3 +77,13 @@ void	map_error2(int index, int y, t_player *player, char *line)
 		exit_program(player);
 	}
 }
+
+size_t	ft_strlen_nospace(char *str)
+{
+	size_t i;
+
+	i = 0;
+	while (str[i] && is_empty_line(&str[i]) == 0)
+		i++;
+	return (i);
+}
