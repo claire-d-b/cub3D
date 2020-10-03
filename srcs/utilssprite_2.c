@@ -41,8 +41,8 @@ float d)
 	player->sprite[i][7] =
 	player->struct_screen.i;
 	player->sprite[i][10] = player->struct_screen.x / d;
-	if (player->distance > player->sprite[i][10])
-		player->sprite[i][10] = player->distance;
+//	if (player->distance > player->sprite[i][10])
+//		player->sprite[i][10] = player->distance;
 	player->nb_sprites++;
 }
 

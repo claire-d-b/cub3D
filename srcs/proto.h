@@ -154,8 +154,7 @@ void			draw_sprite_from_start(t_player *player, int i, int j,
 void			draw_sprite_from_end(t_player *player, int i, int j, int count);
 int				is_not_sprite(t_player *player, float angle, float d);
 int				is_not_wall(t_player *player, float angle, float d);
-float			raycast_sprites(t_player *player, char **map, float angle,
-				int count);
+float			raycast_sprites(t_player *player, char **map, float angle);
 void			check_wall_dist_before_sprite(t_player *player, int count,
 				float d);
 int				is_new(t_player *player, float d, float angle, int i);

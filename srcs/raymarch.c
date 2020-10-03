@@ -29,7 +29,7 @@ float	raycast(t_player *player, char **map, float angle)
 	return (d * cos(fabs(angle - player->teta)));
 }
 
-float	raycast_sprites(t_player *player, char **map, float angle, int count)
+float	raycast_sprites(t_player *player, char **map, float angle)
 {
 	float	d;
 	int		i;
@@ -53,7 +53,7 @@ float	raycast_sprites(t_player *player, char **map, float angle, int count)
 		}
 		d += EPSILON;
 	}
-	check_wall_dist_before_sprite(player, count, d);
+//	check_wall_dist_before_sprite(player, count, d);
 	return (d * cos(fabs(angle - player->teta)));
 }
 
@@ -73,7 +73,7 @@ double *wall_h)
 	*teta = player->teta + FOV / 2 - player->struct_screen.i * FOV
 	/ (float)player->struct_screen.x;
 	*dist = raycast(player, player->map, *teta);
-	player->dist_sprite = raycast_sprites(player, player->map, *teta, 0);
+	player->dist_sprite = raycast_sprites(player, player->map, *teta);
 	*wall_h = (player->struct_screen.x / 2) / *dist;
 	player->struct_screen.j = 0;
 }
