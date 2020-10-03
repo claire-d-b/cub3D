@@ -88,7 +88,8 @@ int				set_path_to_texture_ew(int count, t_player *player, char *line);
 int				set_path_to_texture_sp(int count, t_player *player, char *line,
 				int i);
 int				set_floor_color(int count, int i, t_player *player, char *line);
-int				set_ceiling_color(int count, int i, t_player *player, char *line);
+int				set_ceiling_color(int count, int i, t_player *player,
+				char *line);
 void			init_struct_side(t_player *player);
 void			init_sprite(t_player *player);
 void			draw_sprite_from_end(t_player *player, int i, int j,
@@ -169,6 +170,6 @@ int				is_empty_line_count(char *line, int len);
 void			map_error2(int index, int y, t_player *player, char *line);
 int				moves(t_player *player);
 size_t			ft_strlen_nospace(char *str);
-int				check_walls(int i, char **map, t_player *player);
+int				check_walls(int x, int i, char **map, t_player *player);
 
 #endif

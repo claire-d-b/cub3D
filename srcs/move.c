@@ -33,20 +33,20 @@ int		key_release(int keycode, t_player *player)
 
 int		key_press(int keycode, t_player *player)
 {
-		if (keycode == RIGHT_ARROW)
-			player->camera_right = 1;
-		if (keycode == LEFT_ARROW)
-			player->camera_left = 1;
-		if (keycode == MOVE_UP)
-			player->walk_up = 1;
-		if (keycode == MOVE_DOWN)
-			player->walk_down = 1;
-		if (keycode == MOVE_RIGHT)
-			player->walk_right = 1;
-		if (keycode == MOVE_LEFT)
-			player->walk_left = 1;
-		if (keycode == ESCAPE)
-			exit_game(player);
+	if (keycode == RIGHT_ARROW)
+		player->camera_right = 1;
+	if (keycode == LEFT_ARROW)
+		player->camera_left = 1;
+	if (keycode == MOVE_UP)
+		player->walk_up = 1;
+	if (keycode == MOVE_DOWN)
+		player->walk_down = 1;
+	if (keycode == MOVE_RIGHT)
+		player->walk_right = 1;
+	if (keycode == MOVE_LEFT)
+		player->walk_left = 1;
+	if (keycode == ESCAPE)
+		exit_game(player);
 	return (0);
 }
 

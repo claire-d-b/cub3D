@@ -43,6 +43,7 @@ SRCS		= ./srcs/main.c\
 		./srcs/args_error.c\
 		./srcs/utilssprite_2.c\
 		./srcs/utilsraymarch_2.c\
+		./srcs/map_2.c\
 
 SRCS_MAC	= ./srcs_mac/main_mac.c\
 		./srcs_mac/gnl_mac.c\
@@ -77,6 +78,7 @@ SRCS_MAC	= ./srcs_mac/main_mac.c\
 		./srcs_mac/args_error_mac.c\
 		./srcs_mac/utilssprite_2_mac.c\
 		./srcs_mac/utilsraymarch_2_mac.c\
+		./srcs_mac/map_2_mac.c\
 
 RENAME		= mv a.out Cub3D
 OBJ			= $(SRCS:.c=.o)
