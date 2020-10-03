@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:36:12 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/28 09:52:16 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/10/03 16:27:40 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 
 	color = 0;
 	wall_h = (int)((player->sprite[count][6] + player->sprite[count][2]) / 2);
-	xposition_start = ((int)(player->sprite[count][3] - wall_h) <= 0) ?
+	xposition_start =
 	(int)(player->sprite[count][7] - (wall_h - (player->sprite[count][3] -
-	player->sprite[count][7]))) : (int)player->sprite[count][7];
+	player->sprite[count][7])));
 	if (j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
 		wall_h, i * player->ids.xpm_sprite_w / wall_h);
@@ -42,12 +42,12 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 
 	color = 0;
 	wall_h = (int)((player->sprite[count][6] + player->sprite[count][2]) / 2);
-	xposition_end = ((int)(player->sprite[count][7] + wall_h) >= player->struct_screen.x - 1) ?
+	xposition_end =
 	(int)(player->sprite[count][3] + (wall_h - (player->sprite[count][3] -
-	player->sprite[count][7]))) : (int)player->sprite[count][3];
+	player->sprite[count][7])));
 	if (j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, (wall_h - i) * player->ids.xpm_sprite_w / wall_h);
+		wall_h, i * player->ids.xpm_sprite_w / wall_h);
 	if (color > 0 && xposition_end - i <= player->sprite[count][12] &&
 	xposition_end - i >= player->sprite[count][13]
 	&& player->struct_screen.y / 2 - wall_h / 2 + j >= 0 &&
