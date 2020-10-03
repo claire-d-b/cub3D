@@ -87,8 +87,8 @@ int				set_path_to_texture_ns(int count, t_player *player, char *line);
 int				set_path_to_texture_ew(int count, t_player *player, char *line);
 int				set_path_to_texture_sp(int count, t_player *player, char *line,
 				int i);
-int				set_floor_color(int count, t_player *player, char *line);
-int				set_ceiling_color(int count, t_player *player, char *line);
+int				set_floor_color(int count, int i, t_player *player, char *line);
+int				set_ceiling_color(int count, int i, t_player *player, char *line);
 void			init_struct_side(t_player *player);
 void			init_sprite(t_player *player);
 void			draw_sprite_from_end(t_player *player, int i, int j,

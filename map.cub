@@ -6,7 +6,7 @@ WE ./text3.xpm
 EA ./text4.xpm
 S ./sprite.xpm
 
-F 45,129,106
+F 45,129,106     
 C 62,115,185   
 
 111111111111111

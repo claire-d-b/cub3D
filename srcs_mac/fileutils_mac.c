@@ -34,10 +34,10 @@ void	set_game_elements(char *line, t_player *player)
 		if (set_path_to_texture_sp(0, player, line, -1) == -1)
 			exit_program(player);
 	if (line[0] == 'F' && player->floor_color[0] == -1)
-		if (set_floor_color(1, player, line) == -1)
+		if (set_floor_color(0, 0, player, line) == -1)
 			exit_program(player);
 	if (line[0] == 'C' && player->ceil_color[0] == -1)
-		if (set_ceiling_color(1, player, line) == -1)
+		if (set_ceiling_color(0, 0, player, line) == -1)
 			exit_program(player);
 }
 
@@ -113,7 +113,7 @@ int		set_resolution(int count, t_player *player, char *line)
 		count++;
 	if (!(count == 2))
 	{
-		player->waste = write(1, "Error\nWrong resolution ID.\n", 27);
+		player->waste = write(1, "Error\nWrong resolution ID\n.", 27);
 		ft_free_tab(to_cast);
 		return (-1);
 	}

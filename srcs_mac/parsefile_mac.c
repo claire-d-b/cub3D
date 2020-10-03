@@ -76,20 +76,20 @@ int	set_path_to_texture_sp(int count, t_player *player, char *line, int i)
 	return (-1);
 }
 
-int	set_floor_color(int count, t_player *player, char *line)
+int	set_floor_color(int count, int i, t_player *player, char *line)
 {
 	char	**to_cast;
 	int		j;
 
 	j = 0;
 	to_cast = NULL;
-	while (line[count] && is_space(line[count]))
-		count++;
-	if ((to_cast = ft_split(&line[count], ',')))
+	while (line[++count])
+		i = (line[count] == ',') ? i + 1 : i;
+	if ((to_cast = ft_split(&line[1], ',')))
 		while (to_cast[j] && is_number(to_cast[j]) &&
 		ft_atoi(to_cast[j]) >= 0 && ft_atoi(to_cast[j]) <= 255)
 			j++;
-	if (!(j == 3))
+	if (j != 3 || i != 2)
 	{
 		player->waste = write(1, "Error\nWrong color ID [floor]\n", 29);
 		if (to_cast)
@@ -105,22 +105,22 @@ int	set_floor_color(int count, t_player *player, char *line)
 	return (1);
 }
 
-int	set_ceiling_color(int count, t_player *player, char *line)
+int	set_ceiling_color(int count, int i, t_player *player, char *line)
 {
 	char	**to_cast;
 	int		j;
 
 	j = 0;
 	to_cast = NULL;
-	while (line[count] && is_space(line[count]))
-		count++;
-	if ((to_cast = ft_split(&line[count], ',')))
+	while (line[++count])
+		i = (line[count] == ',') ? i + 1 : i;
+	if ((to_cast = ft_split(&line[1], ',')))
 		while (to_cast[j] && is_number(to_cast[j]) &&
 		ft_atoi(to_cast[j]) >= 0 && ft_atoi(to_cast[j]) <= 255)
 			j++;
-	if (!(j == 3))
+	if (j != 3 || i != 2)
 	{
-		player->waste = write(1, "Error\nWrong color ID [ceiling]", 31);
+		player->waste = write(1, "Error\nWrong color ID [ceiling]\n", 31);
 		if (to_cast)
 			ft_free_tab(to_cast);
 		return (-1);
