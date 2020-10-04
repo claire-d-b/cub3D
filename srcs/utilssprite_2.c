@@ -42,8 +42,6 @@ float d)
 	player->struct_screen.i;
 	player->sprite[i][10] = player->struct_screen.x / (d * cos(fabs(angle
 		- player->teta)));
-//	if (player->distance > player->sprite[i][10])
-//		player->sprite[i][10] = player->distance;
 	player->nb_sprites++;
 }
 

@@ -53,7 +53,6 @@ float	raycast_sprites(t_player *player, char **map, float angle)
 		}
 		d += EPSILON;
 	}
-//	check_wall_dist_before_sprite(player, count, d);
 	return (d * cos(fabs(angle - player->teta)));
 }
 

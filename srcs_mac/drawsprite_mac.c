@@ -20,12 +20,19 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 
 	color = 0;
 	wall_h = (int)((player->sprite[count][6] + player->sprite[count][2]) / 2);
-	xposition_start =
-	(int)(player->sprite[count][7] - (wall_h - (player->sprite[count][3] -
-	player->sprite[count][7])));
-	if (j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
+	xposition_start = (int)(player->sprite[count][7] + (wall_h / 2));
+	if (j <= wall_h && i <= wall_h / 2 && i >= 0 && j >= 0)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, i * player->ids.xpm_sprite_w / wall_h);
+		wall_h, (wall_h / 2 - i) * player->ids.xpm_sprite_w / wall_h);
+	if (color > 0 && xposition_start - i <= player->sprite[count][12] &&
+	xposition_start - i >= player->sprite[count][13]
+	&& player->struct_screen.y / 2 - wall_h / 2 + j >= 0 &&
+	player->struct_screen.y / 2 - wall_h / 2 + j < player->struct_screen.y)
+		change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
+		xposition_start - i, color);
+	if (j <= wall_h && i <= wall_h / 2 && i >= 0 && j >= 0)
+		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
+		wall_h, (wall_h / 2 + i) * player->ids.xpm_sprite_w / wall_h);
 	if (color > 0 && xposition_start + i <= player->sprite[count][12] &&
 	xposition_start + i >= player->sprite[count][13]
 	&& player->struct_screen.y / 2 - wall_h / 2 + j >= 0 &&
@@ -42,24 +49,31 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 
 	color = 0;
 	wall_h = (int)((player->sprite[count][6] + player->sprite[count][2]) / 2);
-	xposition_end =
-	(int)(player->sprite[count][3] + (wall_h - (player->sprite[count][3] -
-	player->sprite[count][7])));
-	if (j <= wall_h && i <= wall_h && i >= 0 && j >= 0)
+	xposition_end = (int)(player->sprite[count][3] - (wall_h / 2));
+	if (j <= wall_h && i <= wall_h / 2 && i >= 0 && j >= 0)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, i * player->ids.xpm_sprite_w / wall_h);
+		wall_h, (wall_h / 2 + i) * player->ids.xpm_sprite_w / wall_h);
 	if (color > 0 && xposition_end - i <= player->sprite[count][12] &&
 	xposition_end - i >= player->sprite[count][13]
 	&& player->struct_screen.y / 2 - wall_h / 2 + j >= 0 &&
 	player->struct_screen.y / 2 - wall_h / 2 + j < player->struct_screen.y)
 		change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
 		xposition_end - i, color);
+	if (j <= wall_h && i <= wall_h / 2 && i >= 0 && j >= 0)
+		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
+		wall_h, (wall_h / 2 - i) * player->ids.xpm_sprite_w / wall_h);
+	if (color > 0 && xposition_end + i <= player->sprite[count][12] &&
+	xposition_end + i >= player->sprite[count][13]
+	&& player->struct_screen.y / 2 - wall_h / 2 + j >= 0 &&
+	player->struct_screen.y / 2 - wall_h / 2 + j < player->struct_screen.y)
+		change_color(player, player->struct_screen.y / 2 - wall_h / 2 + j,
+		xposition_end + i, color);
 }
 
 void	draw_sprite(t_player *player, int i, int j, int count)
 {
-	if (((player->sprite[count][10] - player->sprite[count][9] >= 0
-	|| player->sprite[count][7] == 0) && player->sprite[count][3] !=
+	if ((((int)player->sprite[count][10] - (int)player->sprite[count][9] > 0
+	&& player->sprite[count][7] != 0) || player->sprite[count][3] ==
 	player->struct_screen.x - 1))
 		draw_sprite_from_start(player, i, j, count);
 	else
