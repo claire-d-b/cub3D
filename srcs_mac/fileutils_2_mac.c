@@ -70,7 +70,7 @@ void	map_error2(int index, int y, t_player *player, char *line)
 {
 	if (((player->walls > index && y <= player->walls && y > index)
 	|| (player->walls <= index && y <= index && y > player->walls)) &&
-	line[y] != '1')
+	line[y] != '1' && player->walls != 0)
 	{
 		player->waste =
 		write(1, "Error\nMap must be surrounded by walls.\n", 39);

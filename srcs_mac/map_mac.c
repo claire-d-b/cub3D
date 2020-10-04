@@ -40,7 +40,8 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 		map[count][y] = line[y];
 		if (y && count && ((y == index && player->walls > index &&
 		is_space(line[y + 1]) == 0) || (player->walls < index)) &&
-		is_empty_line_count(line, y + 1) && is_empty_line(line) == 0)
+		is_empty_line_count(line, y + 1) && is_empty_line(line) == 0
+		&& index != 0)
 			map_error2(index, y, player, line);
 		player->walls = (is_space(line[y + 1]) == 0) ? index : player->walls;
 	}
@@ -56,9 +57,9 @@ int		check_surr_walls(char **map, int i, int j)
 	if (((int)ft_strlen_nospace(map[i - 1]) -
 	(int)ft_strlen_nospace(map[i])) > 0)
 	{
-		while (j + x < (int)ft_strlen_nospace(map[i]))
+		while (j + x < (int)ft_strlen_nospace(map[i - 1]))
 		{
-			if (map[i][j + x] != '1')
+			if (map[i - 1][j + x] != '1')
 				return (1);
 			x++;
 		}
@@ -90,7 +91,7 @@ void	check_map(char **map, int count, t_player *player)
 		if (i && ((((int)ft_strlen_nospace(map[i - 1]) -
 		(int)ft_strlen_nospace(map[i])) == 0 && (j = (int)ft_strlen_nospace(
 		map[i]) - 1) && j > 0 && (map[i - 1][j] != '1' || map[i][j] != '1'))
-		|| (((int)ft_strlen_nospace(map[i - 1]) - (int)ft_strlen_nospace(
+		|| (((int)ft_strlen(map[i - 1]) - (int)ft_strlen(
 		map[i])) > 0 && (j = (int)ft_strlen_nospace(map[i])) && j > 0 &&
 		check_surr_walls(map, i, j)) || (((int)ft_strlen_nospace(map[i - 1])
 		- (int)ft_strlen_nospace(map[i])) < 0 && (j = (int)ft_strlen_nospace(
