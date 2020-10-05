@@ -122,7 +122,7 @@ void			sort_sprite(t_player *player);
 void			ft_swap(float **a, float **b);
 void			hooks(t_player *player);
 void			screen_size(t_player *player);
-void			player_placement(t_player *player, char *title);
+void			player_placement(t_player *player, char *title, char **map);
 int				is_player(char c);
 void			set_game_elements(char *line, t_player *player);
 void			init_struct_player(t_player *player);
@@ -138,7 +138,7 @@ void			init_elements_exit(t_player *player);
 void			init_struct_player_exit(t_player *player);
 void			init_struct_ids(t_player *player);
 void			init_struct_side_s_e(t_player *player);
-void			exit_program(t_player *player);
+void			exit_program(t_player *player, char **map);
 int				set_path_to_texture_no(char *to_record, t_player *player);
 int				set_path_to_texture_so(char *to_record, t_player *player);
 int				set_path_to_texture_we(char *to_record, t_player *player);
@@ -168,6 +168,6 @@ int				is_number(char *to_cast);
 int				is_empty_line_count(char *line, int len);
 void			map_error2(int index, int y, t_player *player, char *line);
 int				moves(t_player *player);
-size_t			ft_strlen_nospace(char *str);
+void			id_map_error(t_player *player);
 
 #endif

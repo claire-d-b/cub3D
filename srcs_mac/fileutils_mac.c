@@ -18,34 +18,39 @@ void	set_game_elements(char *line, t_player *player)
 	if (line[0] == 'R' && player->struct_screen.x == -1
 	&& player->struct_screen.y == -1)
 		if (set_resolution(0, player, line) == -1)
-			exit_program(player);
+			exit_program(player, 0);
 	if ((line[0] == 'N' && line[1] == 'O' &&
 	player->xpm_path_no == 0) || (line[0] == 'S' && line[1] == 'O'
 	&& player->xpm_path_so == 0))
 		if (set_path_to_texture_ns(0, player, line) == -1)
-			exit_program(player);
+			exit_program(player, 0);
 	if ((line[0] == 'W' && line[1] == 'E' &&
 	player->xpm_path_we == 0) || (line[0] == 'E' && line[1] == 'A'
 	&& player->xpm_path_ea == 0))
 		if (set_path_to_texture_ew(0, player, line) == -1)
-			exit_program(player);
+			exit_program(player, 0);
 	if (line[0] == 'S' && line[1] != 'O' &&
 	player->xpm_path_sp == 0)
 		if (set_path_to_texture_sp(0, player, line, -1) == -1)
-			exit_program(player);
+			exit_program(player, 0);
 	if (line[0] == 'F' && player->floor_color[0] == -1)
 		if (set_floor_color(0, 0, player, line) == -1)
-			exit_program(player);
+			exit_program(player, 0);
 	if (line[0] == 'C' && player->ceil_color[0] == -1)
 		if (set_ceiling_color(0, 0, player, line) == -1)
-			exit_program(player);
+			exit_program(player, 0);
 }
 
 int		pivot_file_checking(int len, t_player *player, char *line, int y)
 {
 	set_game_elements(line, player);
 	if (is_map(line) && is_empty_line(line) == 0)
+	{
 		len += set_map_len(y, player, line);
+		player->bool_map = 1;
+	}
+	if (!(is_map(line)) && player->bool_map == 1)
+		id_map_error(player);
 	return (len);
 }
 
@@ -58,18 +63,18 @@ void	missing_elements(t_player *player, char *line)
 	player->floor_color[3] < 0)
 	{
 		player->waste = write(1, "Error\nMissing info in file.\n", 28);
-		exit_program(player);
+		exit_program(player, 0);
 	}
 	if (player->table_lenght == 0)
 	{
 		player->waste = write(1, "Error\nMissing map in file.\n", 27);
-		exit_program(player);
+		exit_program(player, 0);
 	}
 	free(line);
 	if (player->table_lenght < 3 || player->max < 3)
 	{
 		player->waste = write(1, "Error\nIncorrect map.\n", 21);
-		exit_program(player);
+		exit_program(player, 0);
 	}
 }
 

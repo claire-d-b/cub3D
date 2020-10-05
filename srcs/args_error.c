@@ -54,5 +54,5 @@ void	arg_error(int nb_args, char **args, t_player *player)
 		player->waste =
 		write(1, "Error\nPlease provide minimum one argment.\n", 42);
 	if (player->waste)
-		exit_program(player);
+		exit_program(player, 0);
 }

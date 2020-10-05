@@ -71,7 +71,7 @@ void	init_struct_screen(t_player *player)
 {
 	player->struct_screen.x = -1;
 	player->struct_screen.y = -1;
-	player->struct_screen.i = 0;
+	player->struct_screen.i = -1;
 	player->struct_screen.j = 0;
 }
 

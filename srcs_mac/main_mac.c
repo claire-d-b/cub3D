@@ -12,8 +12,10 @@
 
 #include "cub3d_mac.h"
 
-void	exit_program(t_player *player)
+void	exit_program(t_player *player, char **map)
 {
+	if (map)
+		ft_free_tab(map);
 	if (player->map)
 		ft_free_tab(player->map);
 	if (player->sprite)
@@ -52,15 +54,20 @@ void	hooks(t_player *player)
 	mlx_loop_hook(player->ids.mlx_ptr, &moves, player);
 }
 
-void	player_placement(t_player *player, char *title)
+void	player_placement(t_player *player, char *title, char **map)
 {
-	if (place_player(-1, -1, 0, player) != -1)
+	if (place_player(-1, -1, 0, player) == 1)
 		open_window(player, title);
-	else
+	else if (place_player (-1, -1, 0, player) == -1)
 	{
 		free(player->ids.mlx_ptr);
 		player->ids.mlx_ptr = 0;
-		exit_program(player);
+		exit_program(player, map);
+	}
+	else
+	{
+		player->waste = write(1, "Error\nPlayer placement.\n", 14);
+		exit_program(player, map);
 	}
 }
 
@@ -85,9 +92,8 @@ int		main(int argc, char **argv)
 	player.map = map;
 	create_sprite_tab(&player);
 	player.ids.mlx_ptr = mlx_init();
-	player_placement(&player, title);
+	player_placement(&player, title, player.map);
 	hooks(&player);
-	display_view(0, 0, 0, &player);
 	mlx_loop(player.ids.mlx_ptr);
 	init_struct_ids(&player);
 	return (0);

@@ -33,17 +33,17 @@ int		is_empty_line_count(char *line, int len)
 
 void	map_error(t_player *player, char **map, int i, int j)
 {
-	if (i && j && j < (int)ft_strlen(map[i]) &&
-	((map[i - 1][j] != '1' && is_space(map[i - 1][j]) == 0 &&
-	is_empty_line(map[i - 1]) == 0) ||
-	(map[i + 1] && map[i + 1][j] != '1' &&
+	if (i && j &&
+	((j < (int)ft_strlen(map[i - 1]) && map[i - 1][j] != '1' &&
+	is_space(map[i - 1][j]) == 0 && is_empty_line(map[i - 1]) == 0) ||
+	(j < (int)ft_strlen(map[i + 1]) && map[i + 1] && map[i + 1][j] != '1' &&
 	is_space(map[i + 1][j]) == 0 && is_empty_line(map[i + 1]) == 0) ||
-	(map[i][j - 1] != '1' && is_space(map[i][j - 1]) == 0) ||
-	(map[i][j + 1] != '1' && is_space(map[i][j + 1]) == 0)))
+	(j < (int)ft_strlen(map[i]) && map[i][j - 1] != '1' && is_space(map[i][j - 1]) == 0) ||
+	(j < (int)ft_strlen(map[i]) && map[i][j + 1] != '1' && is_space(map[i][j + 1]) == 0)))
 	{
 		player->waste =
 		write(1, "Error\nMap must be surrounded by walls.\n", 39);
-		exit_program(player);
+		exit_program(player, map);
 	}
 }
 
@@ -56,7 +56,7 @@ int		check_walls(int x, int i, char **map, t_player *player)
 	{
 		while (i - x >= 0 && is_empty_line(map[i - x]))
 			x++;
-		while (j < (int)ft_strlen_nospace(map[i - x]))
+		while (j < (int)ft_strlen(map[i - x]))
 		{
 			if (map[i - x][j] != '1' && is_space(map[i - x][j]) == 0)
 				return (1);
@@ -66,7 +66,7 @@ int		check_walls(int x, int i, char **map, t_player *player)
 		j = 0;
 		while (i + x < player->table_lenght && is_empty_line(map[i + x]))
 			x++;
-		while (j < (int)ft_strlen_nospace(map[i + x]))
+		while (j < (int)ft_strlen(map[i + x]))
 		{
 			if (map[i + x][j] != '1' && is_space(map[i + x][j]) == 0)
 				return (1);
@@ -74,6 +74,13 @@ int		check_walls(int x, int i, char **map, t_player *player)
 		}
 	}
 	return (0);
+}
+
+void	id_map_error(t_player *player)
+{
+	player->waste =
+	write(1, "Error\nInvalid ID in map.\n", 25);
+	exit_program(player, 0);
 }
 
 void	parse_map(char **map, t_player *player)
@@ -87,8 +94,8 @@ void	parse_map(char **map, t_player *player)
 	{
 		while (map[i][++j])
 		{
-			if (is_empty_line(map[i]) == 0 && is_space(map[i][j]) &&
-			is_empty_line(&map[i][j]) == 0)
+			if ((is_empty_line(map[i]) == 0 && is_space(map[i][j]) &&
+			is_empty_line(&map[i][j]) == 0))
 				map_error(player, map, i, j);
 			if ((is_empty_line(map[i]) == 0 && (i == 0 || i ==
 			player->table_lenght - 1 || j == 0) && map[i][j] != '1' &&
@@ -97,7 +104,7 @@ void	parse_map(char **map, t_player *player)
 			{
 				player->waste = write(1,
 				"Error.\nMap must be surrounded by walls.\n", 40);
-				exit_program(player);
+				exit_program(player, map);
 			}
 		}
 		j = -1;

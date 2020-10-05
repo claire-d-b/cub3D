@@ -62,6 +62,7 @@ void	init_struct_player(t_player *player)
 	player->boolean = 0;
 	player->dist_wall = 0;
 	player->dist_sprite = 0;
+	player->bool_map = 0;
 }
 
 void	init_elements_exit(t_player *player)
@@ -114,6 +115,7 @@ void	init_struct_player_exit(t_player *player)
 	player->boolean = 0;
 	player->dist_wall = 0;
 	player->dist_sprite = 0;
+	player->bool_map = 0;
 }
 
 void	init_struct_side_s_e(t_player *player)

@@ -26,7 +26,7 @@ int	set_path_to_texture_ns(int count, t_player *player, char *line)
 		return (1);
 	}
 	player->waste = write(1, "Error\nWalls texture path.\n", 26);
-	exit_program(player);
+	exit_program(player, 0);
 	return (-1);
 }
 
@@ -44,7 +44,7 @@ int	set_path_to_texture_ew(int count, t_player *player, char *line)
 		return (1);
 	}
 	player->waste = write(1, "Error\nWalls texture path.\n", 26);
-	exit_program(player);
+	exit_program(player, 0);
 	return (-1);
 }
 
@@ -72,7 +72,7 @@ int	set_path_to_texture_sp(int count, t_player *player, char *line, int i)
 		return (1);
 	}
 	player->waste = write(1, "Error\nSprite texture path.\n", 27);
-	exit_program(player);
+	exit_program(player, 0);
 	return (-1);
 }
 

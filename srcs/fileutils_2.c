@@ -49,7 +49,7 @@ void	doublons(char *line, t_player *player)
 	&& player->xpm_path_we != 0)))))
 	{
 		player->waste = write(1, "Error\nDoublons in IDs.\n", 23);
-		exit_program(player);
+		exit_program(player, 0);
 	}
 }
 
@@ -74,16 +74,6 @@ void	map_error2(int index, int y, t_player *player, char *line)
 	{
 		player->waste =
 		write(1, "Error\nMap must be surrounded by walls.\n", 39);
-		exit_program(player);
+		exit_program(player, 0);
 	}
-}
-
-size_t	ft_strlen_nospace(char *str)
-{
-	size_t i;
-
-	i = 0;
-	while (str[i] && is_empty_line(&str[i]) == 0)
-		i++;
-	return (i);
 }

@@ -88,6 +88,7 @@ typedef struct	s_ids
 
 typedef struct	s_player
 {
+	int			bool_map;
 	int			walk_up;
 	int			walk_down;
 	int			walk_right;

@@ -32,7 +32,7 @@ void	manage_lines(char *line, t_player *player)
 		write(1,
 		"Error\nOnly IDs with correct path, map and empty lines are valid.\n",
 		65);
-		exit_program(player);
+		exit_program(player, 0);
 	}
 	doublons(line, player);
 }
@@ -94,7 +94,7 @@ int		ft_atoi(const char *str)
 int		is_space(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n' || c == '\r' ||
-	c == '\v' || c == '\f')
+	c == '\v' || c == '\f' || c == '\0')
 		return (1);
 	return (0);
 }
