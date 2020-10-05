@@ -14,7 +14,7 @@
 
 int		player_placement_error(int i, int j, t_player *player)
 {
-	if (i == 0 || i == player->table_lenght || j == 0 ||
+	if (i == 0 || i == player->table_lenght - 1 || j == 0 ||
 	j == (int)ft_strlen(player->map[i]) - 1)
 	{
 		player->waste = write(1, "Error\nPlayer.\n", 14);

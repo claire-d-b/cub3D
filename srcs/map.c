@@ -37,7 +37,8 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 	{
 		if (is_space(line[y]))
 			index = y;
-		map[count][y] = line[y];
+		if (is_empty_line(line) == 0)
+			map[count][y] = line[y];
 		if (y && count && ((y == index && player->walls > index &&
 		is_space(line[y + 1]) == 0) || (player->walls < index)) &&
 		is_empty_line_count(line, y + 1) && is_empty_line(line) == 0
