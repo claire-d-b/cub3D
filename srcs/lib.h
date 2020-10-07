@@ -13,7 +13,6 @@
 #ifndef CUB3DLIB_H
 # define CUB3DLIB_H
 
-# include <stdio.h>
 # include <math.h>
 # include <stdlib.h>
 # include <string.h>
