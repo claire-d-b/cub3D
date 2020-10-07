@@ -20,7 +20,10 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 
 	color = 0;
 	wall_h = (int)((player->sprite[count][6] + player->sprite[count][2]) / 2);
-	start = (int)(player->sprite[count][7] + (wall_h / 2));
+	start = (player->sprite[count][7] == 0) ?
+	(int)(player->sprite[count][7] - (wall_h - (player->sprite[count][3]
+	- player->sprite[count][7])) + (wall_h / 2)) :
+	(int)(player->sprite[count][7] + (wall_h / 2));
 	if (j <= wall_h && i <= wall_h / 2 && i >= 0 && j >= 0)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
 		wall_h, (wall_h / 2 - i) * player->ids.xpm_sprite_w / wall_h);
@@ -47,7 +50,10 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 
 	color = 0;
 	wall_h = (int)((player->sprite[count][6] + player->sprite[count][2]) / 2);
-	end = (int)(player->sprite[count][3] - (wall_h / 2));
+	end = (player->sprite[count][3] == player->struct_screen.x - 1) ?
+	(int)(player->sprite[count][3] + (wall_h - (player->sprite[count][3] -
+	player->sprite[count][7])) - (wall_h / 2)) :
+	(int)(player->sprite[count][3] - (wall_h / 2));
 	if (j <= wall_h && i <= wall_h / 2 && i >= 0 && j >= 0)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
 		wall_h, (wall_h / 2 - i) * player->ids.xpm_sprite_w / wall_h);
@@ -68,9 +74,10 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 
 void	draw_sprite(t_player *player, int i, int j, int count)
 {
-	if ((((int)player->sprite[count][10] - (int)player->sprite[count][9] < 0
-	&& player->sprite[count][7] != 0) || player->sprite[count][3] ==
-	player->struct_screen.x - 1))
+	if (((((int)player->sprite[count][10] - (int)player->sprite[count][9] < 0
+	|| player->sprite[count][7] == 0) && player->sprite[count][3] !=
+	player->struct_screen.x - 1)) || (player->sprite[count][7] == 0 &&
+	player->sprite[count][3] == player->struct_screen.x - 1))
 		draw_sprite_from_start(player, i, j, count);
 	else
 		draw_sprite_from_end(player, i, j, count);
@@ -84,6 +91,8 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 	sort_sprite(player);
 	while (player->sprite[count] && (int)player->sprite[count][0] != 0)
 	{
+		printf("player->sprite[ocunt][13] %f\n", player->sprite[count][13]);
+		printf("player->sprite[ocunt][7] %f\n", player->sprite[count][7]);
 		while (++i < (int)(((player->sprite[count][2] +
 			player->sprite[count][6]) / 2)))
 		{
