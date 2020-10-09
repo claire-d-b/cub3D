@@ -73,8 +73,8 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 void	draw_sprite(t_player *player, int i, int j, int count)
 {
 	if (((((int)player->sprite[count][14] - (int)player->sprite[count][15] < 0
-	|| player->sprite[count][3] - (int)(((player->sprite[count][2] + player->sprite[count][6])
-		/ 2) <= 0)) && (!(player->sprite[count][3] + (int)(((player->sprite[count][2] + player->sprite[count][6])
+	|| (int)player->sprite[count][3] - (int)(((player->sprite[count][2] + player->sprite[count][6])
+		/ 2) <= 0)) && (!((int)player->sprite[count][7] + (int)(((player->sprite[count][2] + player->sprite[count][6])
 		/ 2) >= player->struct_screen.x - 1))))))
 		draw_sprite_from_start(player, i, j, count);
 	else
