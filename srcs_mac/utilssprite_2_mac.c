@@ -24,9 +24,9 @@ int				create_sprite_tab(t_player *player)
 		return (0);
 	while (++count < player->max * player->table_lenght)
 	{
-		if (!(player->sprite[count] = malloc(sizeof(float) * 15)))
+		if (!(player->sprite[count] = malloc(sizeof(float) * 17)))
 			return (0);
-		while (++j < 14)
+		while (++j < 16)
 			player->sprite[count][j] = 0;
 	}
 	player->sprite[count] = NULL;
@@ -55,9 +55,15 @@ float d)
 	player->sprite[i][13] = (player->sprite[i][13] == 0 && player->dist_wall
 	> d * cos(fabs(angle - player->teta))) ?
 	player->struct_screen.i : player->sprite[i][13];
+	player->sprite[i][14] = (player->sprite[i][14] == 0 && player->dist_wall
+	> d * cos(fabs(angle - player->teta))) ?
+	(player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) : player->sprite[i][14];
 	player->sprite[i][12] = (player->dist_wall >
 	d * cos(fabs(angle - player->teta))) ?
 	player->struct_screen.i : player->sprite[i][12];
+	player->sprite[i][15] = (player->dist_wall
+	> d * cos(fabs(angle - player->teta))) ?
+	(player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) : player->sprite[i][15];
 	player->sprite[i][9] = (player->map[(int)(player->ray_x + (d - EPSILON)
 	* sin(angle))][(int)(player->ray_y + (d - EPSILON) * cos(angle))] != '2') ?
 	(player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) :

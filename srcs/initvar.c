@@ -39,7 +39,7 @@ void	init_sprite(t_player *player)
 	player->nb_sprites = 0;
 	while (player->sprite[i])
 	{
-		while (j < 14)
+		while (j < 16)
 		{
 			player->sprite[i][j] = 0;
 			j++;
