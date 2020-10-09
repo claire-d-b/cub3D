@@ -38,8 +38,9 @@ void	map_error(t_player *player, char **map, int i, int j)
 	is_space(map[i - 1][j]) == 0 && is_empty_line(map[i - 1]) == 0) ||
 	(j < (int)ft_strlen(map[i + 1]) && map[i + 1] && map[i + 1][j] != '1' &&
 	is_space(map[i + 1][j]) == 0 && is_empty_line(map[i + 1]) == 0) ||
-	(j < (int)ft_strlen(map[i]) && map[i][j - 1] != '1' && is_space(map[i][j - 1]) == 0) ||
-	(j < (int)ft_strlen(map[i]) && map[i][j + 1] != '1' && is_space(map[i][j + 1]) == 0)))
+	(j < (int)ft_strlen(map[i]) && map[i][j - 1] != '1' &&
+	is_space(map[i][j - 1]) == 0) || (j < (int)ft_strlen(map[i]) &&
+	map[i][j + 1] != '1' && is_space(map[i][j + 1]) == 0)))
 	{
 		player->waste =
 		write(1, "Error\nMap must be surrounded by walls.\n", 39);

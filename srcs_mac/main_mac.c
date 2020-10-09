@@ -58,7 +58,7 @@ void	player_placement(t_player *player, char *title, char **map)
 {
 	if (place_player(-1, -1, 0, player) == 1)
 		open_window(player, title);
-	else if (place_player (-1, -1, 0, player) == -1)
+	else if (place_player(-1, -1, 0, player) == -1)
 	{
 		free(player->ids.mlx_ptr);
 		player->ids.mlx_ptr = 0;

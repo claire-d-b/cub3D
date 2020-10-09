@@ -54,7 +54,7 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 	(int)(player->sprite[count][3] - (wall_h / 2));
 	if (j <= wall_h && i <= wall_h / 2 && i >= 0 && j >= 0)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, (wall_h / 2 - i) * player->ids.xpm_sprite_w / wall_h);
+		wall_h, (wall_h / 2 + i) * player->ids.xpm_sprite_w / wall_h);
 	if (color > 0 && end - i <= player->sprite[count][12] && end - i >=
 	player->sprite[count][13] && player->struct_screen.y / 2 - wall_h / 2 + j >=
 	0 && player->struct_screen.y / 2 - wall_h / 2 + j < player->struct_screen.y)
@@ -62,7 +62,7 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 		end - i, color);
 	if (j <= wall_h && i <= wall_h / 2 && i >= 0 && j >= 0)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
-		wall_h, (wall_h / 2 + i) * player->ids.xpm_sprite_w / wall_h);
+		wall_h, (wall_h / 2 - i) * player->ids.xpm_sprite_w / wall_h);
 	if (color > 0 && end + i <= player->sprite[count][12] && end + i >=
 	player->sprite[count][13] && player->struct_screen.y / 2 - wall_h / 2 + j >=
 	0 && player->struct_screen.y / 2 - wall_h / 2 + j < player->struct_screen.y)
@@ -88,8 +88,6 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 	sort_sprite(player);
 	while (player->sprite[count] && (int)player->sprite[count][0] != 0)
 	{
-		printf("player->sprite[ocunt][3] %f\n", player->sprite[count][3]);
-		printf("player->sprite[ocunt][7] %f\n", player->sprite[count][7]);
 		if ((int)(((player->sprite[count][2] + player->sprite[count][6])
 		/ 2) <= player->struct_screen.y))
 		{
