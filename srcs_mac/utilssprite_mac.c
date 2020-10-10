@@ -47,4 +47,3 @@ void	sort_sprite(t_player *player)
 		j = i + 1;
 	}
 }
-

@@ -38,8 +38,7 @@ float d)
 {
 	player->sprite[i][4] = player->ray_x + (d) * sin(angle);
 	player->sprite[i][5] = player->ray_y + (d) * cos(angle);
-	player->sprite[i][7] =
-	player->struct_screen.i;
+	player->sprite[i][7] = player->struct_screen.i;
 	player->sprite[i][10] = player->struct_screen.x / (d * cos(fabs(angle
 		- player->teta)));
 	player->nb_sprites++;
@@ -50,20 +49,21 @@ float d)
 {
 	player->sprite[i][0] = player->ray_x + d * sin(angle);
 	player->sprite[i][1] = player->ray_y + d * cos(angle);
-	player->sprite[i][3] =
-	player->struct_screen.i;
+	player->sprite[i][3] = player->struct_screen.i;
 	player->sprite[i][13] = (player->sprite[i][13] == 0 && player->dist_wall
 	> d * cos(fabs(angle - player->teta))) ?
 	player->struct_screen.i : player->sprite[i][13];
 	player->sprite[i][14] = (player->sprite[i][14] == 0 && player->dist_wall
 	> d * cos(fabs(angle - player->teta))) ?
-	(player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) : player->sprite[i][14];
+	(player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) :
+	player->sprite[i][14];
 	player->sprite[i][12] = (player->dist_wall >
 	d * cos(fabs(angle - player->teta))) ?
 	player->struct_screen.i : player->sprite[i][12];
 	player->sprite[i][15] = (player->dist_wall
 	> d * cos(fabs(angle - player->teta))) ?
-	(player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) : player->sprite[i][15];
+	(player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) :
+	player->sprite[i][15];
 	player->sprite[i][9] = (player->map[(int)(player->ray_x + (d - EPSILON)
 	* sin(angle))][(int)(player->ray_y + (d - EPSILON) * cos(angle))] != '2') ?
 	(player->struct_screen.x) / (d * cos(fabs(angle - player->teta))) :
