@@ -16,8 +16,6 @@ void	exit_program(t_player *player, char **map)
 {
 	if (map)
 		ft_free_tab(map);
-	if (player->map)
-		ft_free_tab(player->map);
 	if (player->sprite)
 		ft_free_sprite(player->sprite);
 	if (player->xpm_path_no)
@@ -56,9 +54,12 @@ void	hooks(t_player *player)
 
 void	player_placement(t_player *player, char *title, char **map)
 {
-	if (place_player(-1, -1, 0, player) == 1)
+	int i;
+
+	i = 0;
+	if ((i = place_player(-1, -1, 0, player)) == 1)
 		open_window(player, title);
-	else if (place_player(-1, -1, 0, player) == -1)
+	else if (i == -1)
 	{
 		free(player->ids.mlx_ptr);
 		player->ids.mlx_ptr = 0;
@@ -89,10 +90,11 @@ int		main(int argc, char **argv)
 	: check_file(NULL, 0, &player, argv[2]);
 	map = (argc == 2) ? create_map(map, player.table_lenght, &player, argv[1])
 	: create_map(map, player.table_lenght, &player, argv[2]);
-	player.map = map;
+	player.map = (map) ? map : 0;
 	create_sprite_tab(&player);
 	player.ids.mlx_ptr = mlx_init();
-	player_placement(&player, title, player.map);
+	if (player.map)
+		player_placement(&player, title, player.map);
 	hooks(&player);
 	mlx_loop(player.ids.mlx_ptr);
 	init_struct_ids(&player);

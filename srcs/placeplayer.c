@@ -18,6 +18,9 @@ int		player_placement_error(int i, int j, t_player *player)
 	j == (int)ft_strlen(player->map[i]) - 1)
 	{
 		player->waste = write(1, "Error\nPlayer.\n", 14);
+		if (player->map)
+			ft_free_tab(player->map);
+		exit_program(player, 0);
 		return (-1);
 	}
 	return (1);
