@@ -20,9 +20,11 @@ int	set_path_to_texture_ns(int count, t_player *player, char *line)
 	is_empty_line(&to_record[11]))
 	{
 		if (line[count] == 'N' && line[count + 1] == 'O' && count == 0)
-			set_path_to_texture_no(to_record, player);
+			if (set_path_to_texture_no(to_record, player) == -1)
+				return (-1);
 		if (line[count] == 'S' && line[count + 1] == 'O' && count == 0)
-			set_path_to_texture_so(to_record, player);
+			if (set_path_to_texture_so(to_record, player) == -1)
+				return (-1);
 		return (1);
 	}
 	player->waste = write(1, "Error\nWalls texture path.\n", 26);
@@ -38,9 +40,11 @@ int	set_path_to_texture_ew(int count, t_player *player, char *line)
 	is_empty_line(&to_record[11]))
 	{
 		if (line[count] == 'W' && line[count + 1] == 'E' && count == 0)
-			set_path_to_texture_we(to_record, player);
+			if (set_path_to_texture_we(to_record, player) == -1)
+				return (-1);
 		if (line[count] == 'E' && line[count + 1] == 'A' && count == 0)
-			set_path_to_texture_ea(to_record, player);
+			if (set_path_to_texture_ea(to_record, player) == -1)
+				return (-1);
 		return (1);
 	}
 	player->waste = write(1, "Error\nWalls texture path.\n", 26);
