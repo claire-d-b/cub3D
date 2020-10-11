@@ -18,27 +18,27 @@ void	set_game_elements(char *line, t_player *player)
 	if (line[0] == 'R' && player->struct_screen.x == -1
 	&& player->struct_screen.y == -1)
 		if (set_resolution(0, player, line) == -1)
-			exit_program(player, 0);
+			player->id_error = 1;
 	if ((line[0] == 'N' && line[1] == 'O' &&
 	player->xpm_path_no == 0) || (line[0] == 'S' && line[1] == 'O'
 	&& player->xpm_path_so == 0))
 		if (set_path_to_texture_ns(0, player, line) == -1)
-			exit_program(player, 0);
+			player->id_error = 1;
 	if ((line[0] == 'W' && line[1] == 'E' &&
 	player->xpm_path_we == 0) || (line[0] == 'E' && line[1] == 'A'
 	&& player->xpm_path_ea == 0))
 		if (set_path_to_texture_ew(0, player, line) == -1)
-			exit_program(player, 0);
+			player->id_error = 1;
 	if (line[0] == 'S' && line[1] != 'O' &&
 	player->xpm_path_sp == 0)
 		if (set_path_to_texture_sp(0, player, line, -1) == -1)
-			exit_program(player, 0);
+			player->id_error = 1;
 	if (line[0] == 'F' && player->floor_color[0] == -1)
 		if (set_floor_color(0, 0, player, line) == -1)
-			exit_program(player, 0);
+			player->id_error = 1;
 	if (line[0] == 'C' && player->ceil_color[0] == -1)
 		if (set_ceiling_color(0, 0, player, line) == -1)
-			exit_program(player, 0);
+			player->id_error = 1;
 }
 
 int		pivot_file_checking(int len, t_player *player, char *line, int y)
@@ -96,6 +96,8 @@ int		check_file(char *line, int fd, t_player *player, char *arg)
 	}
 	if (player->map_error == 1)
 		id_map_error(player);
+	if (player->id_error == 1)
+		exit_program(player, 0);
 	missing_elements(player);
 	return (0);
 }
@@ -118,7 +120,7 @@ int		set_resolution(int count, t_player *player, char *line)
 		count++;
 	if (!(count == 2))
 	{
-		player->waste = write(1, "Error\nWrong resolution ID\n.", 27);
+		player->waste = write(1, "Error\nWrong resolution ID.\n", 27);
 		ft_free_tab(to_cast);
 		return (-1);
 	}

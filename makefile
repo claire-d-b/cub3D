@@ -86,7 +86,7 @@ OBJ_MAC		= $(SRCS_MAC:.c=.o)
 NAME		= Cub3D
 NAME_MAC	= Cub3D
 BITMAP		= image.bmp
-FS		= a.out.dSYM
+FS		= a.out.dSYM Cub3D.dSYM
 CC			= gcc
 INCL		= -L. ./srcs/minilibx/libmlx.a -lXext -lX11 -lm -lbsd
 INCL_MAC	= -I ./srcs_mac/minilibx_opengl_20191021 -L ./srcs_mac/minilibx_opengl_20191021 -l mlx -framework OpenGL -framework Appkit
