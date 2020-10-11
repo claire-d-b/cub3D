@@ -16,6 +16,8 @@ void	exit_program(t_player *player, char **map)
 {
 	if (map)
 		ft_free_tab(map);
+	if (player->map)
+		ft_free_tab(player->map);
 	if (player->sprite)
 		ft_free_sprite(player->sprite);
 	if (player->xpm_path_no)
