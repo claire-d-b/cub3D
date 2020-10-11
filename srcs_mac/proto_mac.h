@@ -127,7 +127,7 @@ int				is_player(char c);
 void			set_game_elements(char *line, t_player *player);
 void			init_struct_player(t_player *player);
 void			init_struct_screen(t_player *player);
-void			missing_elements(t_player *player, char *line);
+void			missing_elements(t_player *player);
 void			init_elements(t_player *player);
 void			map_error(t_player *player, char **map, int i, int j);
 int				is_empty_line(char *line);

@@ -50,11 +50,11 @@ int		pivot_file_checking(int len, t_player *player, char *line, int y)
 		player->bool_map = 1;
 	}
 	if (!(is_map(line)) && player->bool_map == 1)
-		id_map_error(player);
+		player->map_error = 1;
 	return (len);
 }
 
-void	missing_elements(t_player *player, char *line)
+void	missing_elements(t_player *player)
 {
 	if (player->struct_screen.x < 0 || player->struct_screen.y < 0
 	|| player->xpm_path_no == 0 || player->xpm_path_so == 0 ||
@@ -70,7 +70,6 @@ void	missing_elements(t_player *player, char *line)
 		player->waste = write(1, "Error\nMissing map in file.\n", 27);
 		exit_program(player, 0);
 	}
-	free(line);
 	if (player->table_lenght < 3 || player->max < 3)
 	{
 		player->waste = write(1, "Error\nIncorrect map.\n", 21);
@@ -90,13 +89,14 @@ int		check_file(char *line, int fd, t_player *player, char *arg)
 	while ((i = get_next_line(fd, &line)) >= 0)
 	{
 		player->table_lenght += pivot_file_checking(0, player, line, y);
-		if (i != 0)
-			free(line);
+		free(line);
 		y++;
 		if (i == 0)
 			break ;
 	}
-	missing_elements(player, line);
+	if (player->map_error == 1)
+		id_map_error(player);
+	missing_elements(player);
 	return (0);
 }
 
