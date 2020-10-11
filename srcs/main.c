@@ -90,7 +90,7 @@ int		main(int argc, char **argv)
 	: check_file(NULL, 0, &player, argv[2]);
 	map = (argc == 2) ? create_map(map, player.table_lenght, &player, argv[1])
 	: create_map(map, player.table_lenght, &player, argv[2]);
-	player.map = (map) ? map : 0;
+	player.map = map;
 	create_sprite_tab(&player);
 	player.ids.mlx_ptr = mlx_init();
 	if (player.map)
