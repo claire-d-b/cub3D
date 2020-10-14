@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:25:54 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/28 09:36:15 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/10/14 14:55:45 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	player_placement(t_player *player, char *title, char **map)
 	{
 		free(player->ids.mlx_ptr);
 		player->ids.mlx_ptr = 0;
-		exit_program(player, map);
+		exit_program(player, 0);
 	}
 	else
 	{
@@ -88,13 +88,13 @@ int		main(int argc, char **argv)
 	init_struct_ids(&player);
 	init_struct_side_s_e(&player);
 	arg_error(argc, argv, &player);
+	player.ids.mlx_ptr = mlx_init();
 	player.waste = (argc == 2) ? check_file(NULL, 0, &player, argv[1])
 	: check_file(NULL, 0, &player, argv[2]);
 	map = (argc == 2) ? create_map(map, player.table_lenght, &player, argv[1])
 	: create_map(map, player.table_lenght, &player, argv[2]);
 	player.map = map;
 	create_sprite_tab(&player);
-	player.ids.mlx_ptr = mlx_init();
 	if (player.map)
 		player_placement(&player, title, player.map);
 	hooks(&player);

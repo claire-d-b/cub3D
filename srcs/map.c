@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:26:26 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/04 17:39:59 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/10/14 14:57:32 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,3 +134,4 @@ char	**create_map(char **map, int lenght, t_player *player, char *arg)
 	check_map(map, count, player);
 	return (map);
 }
+

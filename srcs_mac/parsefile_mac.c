@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:40:30 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/19 18:50:39 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/10/14 15:03:47 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,3 +137,4 @@ int	set_ceiling_color(int count, int i, t_player *player, char *line)
 	ft_free_tab(to_cast);
 	return (1);
 }
+

@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 16:41:20 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/09/04 17:40:37 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/10/14 14:35:02 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,18 @@ void	doublons(char *line, t_player *player)
 int		is_number(char *to_cast)
 {
 	int i;
+	int count;
 
 	i = 0;
+	count = 0;
 	while (to_cast[i] && (ft_isdigit(to_cast[i]) ||
 	is_space(to_cast[i])))
+	{
+		if (ft_isdigit(to_cast[i]))
+			count++;
 		i++;
-	if (i == (int)ft_strlen(to_cast))
+	}
+	if (i == (int)ft_strlen(to_cast) && count)
 		return (1);
 	return (0);
 }
