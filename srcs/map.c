@@ -134,4 +134,3 @@ char	**create_map(char **map, int lenght, t_player *player, char *arg)
 	check_map(map, count, player);
 	return (map);
 }
-

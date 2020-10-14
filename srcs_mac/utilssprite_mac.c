@@ -56,7 +56,8 @@ void	pivot_textures_sprite(int i, int j, t_player *player)
 	sort_sprite(player);
 	while (player->sprite[count] && (int)player->sprite[count][0] != 0)
 	{
-		if ((int)(player->sprite[count][2])  <= player->struct_screen.y)
+		if ((int)(((player->sprite[count][6] + player->sprite[count][2])
+		/ 2)) <= player->struct_screen.y)
 		{
 			while (++i < (int)(((player->sprite[count][6] +
 			player->sprite[count][2]) / 2)))

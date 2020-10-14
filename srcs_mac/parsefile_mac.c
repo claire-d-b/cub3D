@@ -137,4 +137,3 @@ int	set_ceiling_color(int count, int i, t_player *player, char *line)
 	ft_free_tab(to_cast);
 	return (1);
 }
-
