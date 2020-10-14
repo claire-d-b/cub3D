@@ -107,7 +107,7 @@ int		set_resolution(int count, t_player *player, char *line)
 	char **to_cast;
 
 	to_cast = NULL;
-	to_cast = ft_split(&line[count], ' ');
+	to_cast = ft_split(&line[1], ' ');
 	while (to_cast[count] && ft_atoi(to_cast[count]) > 0)
 	{
 		if (is_number(to_cast[count]) == 0)

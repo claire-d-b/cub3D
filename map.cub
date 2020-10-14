@@ -1,4 +1,4 @@
-R 800 0000600a
+R 800 0000600
 
 NO ./text2.xpm
 SO ./text1.xpm     
