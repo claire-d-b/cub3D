@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 08:25:54 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/08/28 09:36:15 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/10/14 11:20:11 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	player_placement(t_player *player, char *title, char **map)
 	{
 		free(player->ids.mlx_ptr);
 		player->ids.mlx_ptr = 0;
-		exit_program(player, map);
+		exit_program(player, 0);
 	}
 	else
 	{
