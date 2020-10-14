@@ -57,17 +57,21 @@ int		is_number(char *to_cast)
 {
 	int i;
 	int count;
+	int no_number;
 
 	i = 0;
 	count = 0;
+	no_number = 0;
 	while (to_cast[i] && (ft_isdigit(to_cast[i]) ||
 	is_space(to_cast[i])))
 	{
 		if (ft_isdigit(to_cast[i]))
 			count++;
+		if ((ft_isdigit(to_cast[i]) == 0) && is_space(to_cast[i]) == 0)
+			no_number = 1;
 		i++;
 	}
-	if (i == (int)ft_strlen(to_cast) && count)
+	if (i == (int)ft_strlen(to_cast) && count && no_number == 0)
 		return (1);
 	return (0);
 }

@@ -107,17 +107,17 @@ int		set_resolution(int count, t_player *player, char *line)
 	char **to_cast;
 
 	to_cast = NULL;
-	while (line[count++] && ft_isdigit(line[count]) == 0)
-		if (line[count] == '\0')
+	to_cast = ft_split(&line[count], ' ');
+	while (to_cast[count] && ft_atoi(to_cast[count]) > 0)
+	{
+		if (is_number(to_cast[count]) == 0)
 		{
 			player->waste =
 			write(1, "Error\nPlease provide numbers as map res.", 40);
 			return (-1);
 		}
-	to_cast = ft_split(&line[count], ' ');
-	count = 0;
-	while (to_cast[count] && ft_atoi(to_cast[count]) > 0)
 		count++;
+	}
 	if (!(count == 2))
 	{
 		player->waste = write(1, "Error\nWrong resolution ID.\n", 27);
