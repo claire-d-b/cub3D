@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 14:39:00 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/10/14 12:20:31 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/10/14 12:43:04 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,9 @@ void	parse_map(char **map, t_player *player)
 				map_error(player, map, i, j);
 			if ((is_empty_line(map[i]) == 0 && (i == 0 || i ==
 			player->table_lenght - 1 || j == 0) && map[i][j] != '1' &&
-			is_space(map[i][j]) == 0) || (is_empty_line(map[i]) &&
-			check_walls(1, i, map, player)))
+			(is_space(map[i][j]) == 0 || (map[i + 1] &&
+			is_space(map[i + 1][j]) == 0 && is_space(map[i][j])))) ||
+			(is_empty_line(map[i]) && check_walls(1, i, map, player)))
 			{
 				player->waste = write(1,
 				"Error.\nMap must be surrounded by walls.\n", 40);
