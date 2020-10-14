@@ -169,5 +169,8 @@ int				is_empty_line_count(char *line, int len);
 void			map_error2(int index, int y, t_player *player, char *line);
 int				moves(t_player *player);
 void			id_map_error(t_player *player);
+int				init_var_sprite_start(t_player *player, int wall_h2, int wall_h, int count);
+int				init_var_sprite_end(t_player *player, int wall_h2, int wall_h, int count);
+void			draw_sprite(t_player *player, int i, int j, int count);
 
 #endif

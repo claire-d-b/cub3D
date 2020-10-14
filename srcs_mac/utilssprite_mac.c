@@ -47,3 +47,28 @@ void	sort_sprite(t_player *player)
 		j = i + 1;
 	}
 }
+
+void	pivot_textures_sprite(int i, int j, t_player *player)
+{
+	int count;
+
+	count = 0;
+	sort_sprite(player);
+	while (player->sprite[count] && (int)player->sprite[count][0] != 0)
+	{
+		if ((int)(player->sprite[count][2])  <= player->struct_screen.y)
+		{
+			while (++i < (int)(((player->sprite[count][6] +
+			player->sprite[count][2]) / 2)))
+			{
+				while (++j < (int)(((player->sprite[count][6] +
+				player->sprite[count][2]) / 2)))
+					draw_sprite(player, i, j, count);
+				j = -1;
+			}
+		}
+		i = -1;
+		j = -1;
+		count++;
+	}
+}
