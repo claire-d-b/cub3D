@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:36:12 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/10/13 21:08:30 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/10/14 10:53:17 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	draw_sprite_from_mid(t_player *player, int i, int j, int count)
 	color = 0;
 	wall_h = (int)(player->sprite[count][2]);
 	wall_h2 = (int)((player->sprite[count][2] + player->sprite[count][6]) / 2);;
-	if (player->sprite[count][3] - wall_h2 <= 0)
+	if (player->sprite[count][7] == 0)
 		start = (int)(player->sprite[count][3] - (wall_h2 / 2) -
 		((wall_h - wall_h2) / 2));
-	else if (player->sprite[count][7] + wall_h2 >= player->struct_screen.x - 1)
+	else if (player->sprite[count][3] == player->struct_screen.x - 1)
 		start = (int)(player->sprite[count][7] + (wall_h2 / 2) +
 		((wall_h - wall_h2) / 2));
 	else
@@ -58,14 +58,14 @@ void	draw_sprite_from_start(t_player *player, int i, int j, int count)
 	color = 0;
 	wall_h = (int)(player->sprite[count][2]);
 	wall_h2 = (int)((player->sprite[count][2] + player->sprite[count][6]) / 2);;
-	if (player->sprite[count][3] - wall_h2 <= 0)
+	if (player->sprite[count][7] == 0)
 		start = (int)(player->sprite[count][3] - (wall_h2 / 2) -
 		((wall_h - wall_h2) / 2));
-	else if (player->sprite[count][7] + wall_h2 >= player->struct_screen.x - 1)
+	else if (player->sprite[count][3] == player->struct_screen.x - 1)
 		start = (int)(player->sprite[count][7] + (wall_h2 / 2) +
 		((wall_h - wall_h2) / 2));
 	else
-		start = (int)(player->sprite[count][7] + (wall_h2 / 2) + ((wall_h - wall_h2) / 2));
+		start = (int)(player->sprite[count][7] + (wall_h2 / 2));
 	if (j <= wall_h2 && i <= wall_h2 / 2 && i >= 0 && j >= 0)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
 		wall_h2, (wall_h2 / 2 - i) * player->ids.xpm_sprite_w / wall_h2);
@@ -94,14 +94,14 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 	color = 0;
 	wall_h = (int)(player->sprite[count][2]);
 	wall_h2 = (int)((player->sprite[count][2] + player->sprite[count][6]) / 2);
-	if (player->sprite[count][3] - wall_h2 <= 0)
+	if (player->sprite[count][7] == 0)
 		end = (int)(player->sprite[count][3] - (wall_h2 / 2) -
 		((wall_h - wall_h2) / 2));
-	else if (player->sprite[count][7] + wall_h2 >= player->struct_screen.x - 1)
+	else if (player->sprite[count][3] == player->struct_screen.x - 1)
 		end = (int)(player->sprite[count][7] + (wall_h2 / 2) +
 		((wall_h - wall_h2) / 2));
 	else
-		end = (int)(player->sprite[count][3] - (wall_h2 / 2) - ((wall_h - wall_h2) / 2));
+		end = (int)(player->sprite[count][3] - (wall_h2 / 2));
 	if (j <= wall_h2 && i <= wall_h2 / 2 && i >= 0 && j >= 0)
 		color = set_texture_sprite(player, j * player->ids.xpm_sprite_h /
 		wall_h2, (wall_h2 / 2 - i) * player->ids.xpm_sprite_w / wall_h2);
@@ -122,9 +122,9 @@ void	draw_sprite_from_end(t_player *player, int i, int j, int count)
 
 void	draw_sprite(t_player *player, int i, int j, int count)
 {
-	if ((int)player->sprite[count][14] - (int)player->sprite[count][15] == 0)
-		draw_sprite_from_mid(player, i, j, count);
-	else if ((int)player->sprite[count][14] - (int)player->sprite[count][15] < 0)
+//	if ((int)player->sprite[count][14] - (int)player->sprite[count][15] == 0)
+//		draw_sprite_from_mid(player, i, j, count);
+	if ((int)player->sprite[count][14] - (int)player->sprite[count][15] > 0)
 		draw_sprite_from_start(player, i, j, count);
 	else
 		draw_sprite_from_end(player, i, j, count);
