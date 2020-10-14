@@ -6,7 +6,7 @@
 /*   By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 14:39:00 by clde-ber          #+#    #+#             */
-/*   Updated: 2020/10/03 14:39:02 by clde-ber         ###   ########.fr       */
+/*   Updated: 2020/10/14 12:20:31 by clde-ber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	map_error(t_player *player, char **map, int i, int j)
 	if (i && j &&
 	((j < (int)ft_strlen(map[i - 1]) && map[i - 1][j] != '1' &&
 	is_space(map[i - 1][j]) == 0 && is_empty_line(map[i - 1]) == 0) ||
-	(j < (int)ft_strlen(map[i + 1]) && map[i + 1] && map[i + 1][j] != '1' &&
+	(map[i + 1] && j < (int)ft_strlen(map[i + 1]) && map[i + 1][j] != '1' &&
 	is_space(map[i + 1][j]) == 0 && is_empty_line(map[i + 1]) == 0) ||
 	(j < (int)ft_strlen(map[i]) && map[i][j - 1] != '1' &&
 	is_space(map[i][j - 1]) == 0) || (j < (int)ft_strlen(map[i]) &&

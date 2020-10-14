@@ -6,7 +6,7 @@
 #    By: clde-ber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/14 11:48:01 by clde-ber          #+#    #+#              #
-#    Updated: 2020/09/03 16:48:49 by clde-ber         ###   ########.fr        #
+#    Updated: 2020/10/14 12:11:07 by clde-ber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ INCL		= -L. ./srcs/minilibx/libmlx.a -lXext -lX11 -lm -lbsd
 INCL_MAC	= -I ./srcs_mac/minilibx_opengl_20191021 -L ./srcs_mac/minilibx_opengl_20191021 -l mlx -framework OpenGL -framework Appkit
 RM			= rm -f
 RM_DIR		= rm -rf
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -g3 -fsanitize=address -Wall -Wextra -Werror
 $(NAME):		$(OBJ)
 				@$(CC) $(CFLAGS) $(SRCS) $(INCL)
 				@$(RENAME)
