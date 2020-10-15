@@ -31,7 +31,7 @@ void	exit_program(t_player *player, char **map)
 	if (player->xpm_path_sp)
 		free(player->xpm_path_sp);
 	free(player->ids.mlx_ptr);
-		player->ids.mlx_ptr = 0;
+	player->ids.mlx_ptr = 0;
 	init_struct_ids(player);
 	init_struct_player_exit(player);
 	init_struct_screen_exit(player);
