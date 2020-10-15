@@ -105,7 +105,7 @@ void	parse_map(char **map, t_player *player)
 			(is_empty_line(map[i]) && check_walls(1, i, map, player)))
 			{
 				player->waste = write(1,
-				"Error.\nMap must be surrounded by walls.\n", 40);
+				"Error\nMap must be surrounded by walls.\n", 39);
 				exit_program(player, map);
 			}
 		}
