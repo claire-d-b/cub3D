@@ -101,7 +101,7 @@ void	parse_map(char **map, t_player *player)
 			if ((is_empty_line(map[i]) == 0 && (i == 0 || i ==
 			player->table_lenght - 1 || j == 0) && map[i][j] != '1' &&
 			(is_space(map[i][j]) == 0 || (map[i + 1] &&
-			is_space(map[i + 1][j]) == 0 && is_space(map[i][j])))) ||
+			map[i + 1][j] != '1' && is_space(map[i][j])))) ||
 			(is_empty_line(map[i]) && check_walls(1, i, map, player)))
 			{
 				player->waste = write(1,
