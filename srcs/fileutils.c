@@ -114,6 +114,7 @@ int		set_resolution(int count, t_player *player, char *line)
 		{
 			player->waste =
 			write(1, "Error\nPlease provide numbers as map res.", 40);
+			ft_free_tab(to_cast);
 			return (-1);
 		}
 		count++;
