@@ -31,7 +31,6 @@ void	exit_program(t_player *player, char **map)
 	if (player->xpm_path_sp)
 		free(player->xpm_path_sp);
 	free(player->ids.mlx_ptr);
-	player->ids.mlx_ptr = 0;
 	init_struct_ids(player);
 	init_struct_player_exit(player);
 	init_struct_screen_exit(player);
@@ -49,11 +48,15 @@ int		minimise(t_player *player)
 
 void	hooks(t_player *player)
 {
-	mlx_hook(player->ids.mlx_win, 02, 1L << 0, &key_press, player);
-	mlx_hook(player->ids.mlx_win, 03, 1L << 1, &key_release, player);
-	mlx_hook(player->ids.mlx_win, 15, 1L << 16, &minimise, player);
-	mlx_hook(player->ids.mlx_win, 17, 1L << 17, &exit_game, player);
-	mlx_loop_hook(player->ids.mlx_ptr, &moves, player);
+	if (player->save == 0)
+	{
+		mlx_hook(player->ids.mlx_win, 02, 1L << 0, &key_press, player);
+		mlx_hook(player->ids.mlx_win, 03, 1L << 1, &key_release, player);
+		mlx_hook(player->ids.mlx_win, 15, 1L << 16, &minimise, player);
+		mlx_hook(player->ids.mlx_win, 17, 1L << 17, &exit_game, player);
+		mlx_loop_hook(player->ids.mlx_ptr, &moves, player);
+		mlx_loop(player->ids.mlx_ptr);
+	}
 }
 
 void	player_placement(t_player *player, char *title, char **map)
@@ -100,7 +103,7 @@ int		main(int argc, char **argv)
 	if (player.map)
 		player_placement(&player, title, player.map);
 	hooks(&player);
-	mlx_loop(player.ids.mlx_ptr);
+	display_view(0, 0, 0, &player);
 	init_struct_ids(&player);
 	return (0);
 }

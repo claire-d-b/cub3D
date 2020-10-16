@@ -59,10 +59,20 @@ float	raycast_sprites(t_player *player, char **map, float angle)
 void	display_all(t_player *player)
 {
 	pivot_textures_sprite(-1, -1, player);
-	mlx_put_image_to_window(player->ids.mlx_ptr, player->ids.mlx_win,
-	player->ids.img_ptr, 0, 0);
+	if (player->save == 0)
+		mlx_put_image_to_window(player->ids.mlx_ptr, player->ids.mlx_win,
+		player->ids.img_ptr, 0, 0);
 	if (player->start == 1 && player->save == 1)
+	{
 		create_bmp(player);
+		mlx_destroy_image(player->ids.mlx_ptr, player->ids.img_ptr);
+		mlx_destroy_image(player->ids.mlx_ptr, player->ids.xpm_img);
+		mlx_destroy_image(player->ids.mlx_ptr, player->ids.xpm_img2);
+		mlx_destroy_image(player->ids.mlx_ptr, player->ids.xpm_img3);
+		mlx_destroy_image(player->ids.mlx_ptr, player->ids.xpm_img4);
+		mlx_destroy_image(player->ids.mlx_ptr, player->ids.xpm_sprite);
+		exit_program(player, 0);
+	}
 	player->start = 0;
 }
 
