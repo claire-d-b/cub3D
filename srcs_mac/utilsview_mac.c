@@ -45,22 +45,21 @@ int				get_decimals(float height)
 int				exit_game(t_player *player)
 {
 	mlx_destroy_image(player->ids.mlx_ptr, player->ids.img_ptr);
+	mlx_destroy_image(player->ids.mlx_ptr, player->ids.xpm_img);
+	mlx_destroy_image(player->ids.mlx_ptr, player->ids.xpm_img2);
+	mlx_destroy_image(player->ids.mlx_ptr, player->ids.xpm_img3);
+	mlx_destroy_image(player->ids.mlx_ptr, player->ids.xpm_img4);
+	mlx_destroy_image(player->ids.mlx_ptr, player->ids.xpm_sprite);
 	mlx_clear_window(player->ids.mlx_ptr, player->ids.mlx_win);
 	mlx_destroy_window(player->ids.mlx_ptr, player->ids.mlx_win);
-	if (player->sprite)
-		ft_free_sprite(player->sprite);
-	if (player->map)
-		ft_free_tab(player->map);
-	if (player->xpm_path_no)
-		free(player->xpm_path_no);
-	if (player->xpm_path_so)
-		free(player->xpm_path_so);
-	if (player->xpm_path_we)
-		free(player->xpm_path_we);
-	if (player->xpm_path_ea)
-		free(player->xpm_path_ea);
-	if (player->xpm_path_sp)
-		free(player->xpm_path_sp);
+	free(player->ids.mlx_ptr);
+	ft_free_sprite(player->sprite);
+	ft_free_tab(player->map);
+	free(player->xpm_path_no);
+	free(player->xpm_path_so);
+	free(player->xpm_path_we);
+	free(player->xpm_path_ea);
+	free(player->xpm_path_sp);
 	init_struct_player_exit(player);
 	init_struct_screen_exit(player);
 	init_struct_side_s_e(player);
