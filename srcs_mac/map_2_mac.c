@@ -93,7 +93,7 @@ void	parse_map(char **map, t_player *player)
 	j = -1;
 	while (map[++i])
 	{
-		while (map[i][++j])
+		while (map[i][++j] && is_empty_line(&map[i][j]) == 0)
 		{
 			if ((is_empty_line(map[i]) == 0 && is_space(map[i][j]) &&
 			is_empty_line(&map[i][j]) == 0))
@@ -109,6 +109,8 @@ void	parse_map(char **map, t_player *player)
 				exit_program(player, map);
 			}
 		}
+		if (j && map[i][j - 1] != '1')
+			map_error_right(player);
 		j = -1;
 	}
 }

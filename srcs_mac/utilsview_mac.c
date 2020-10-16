@@ -19,16 +19,18 @@ unsigned int	rgb3(unsigned int r, unsigned int g, unsigned int b)
 
 void			change_color(t_player *player, int y, int i, unsigned int color)
 {
-	int pixel;
-
-	pixel = (int)(((y * (player->struct_screen.x) * 4) + (i * 4)));
-	if (pixel + 3 <
-	player->struct_screen.x * player->struct_screen.y * 4 && pixel >= 0)
+	if ((int)(((y * (player->struct_screen.x) * 4) + (i * 4) + 3)) <
+	player->struct_screen.x * player->struct_screen.y * 4 && (int)(((
+	y * (player->struct_screen.x) * 4) + (i * 4))) >= 0)
 	{
-		player->ids.img_data[pixel] = color;
-		player->ids.img_data[pixel + 1] = color / 256;
-		player->ids.img_data[pixel + 2] = color / (256 * 256);
-		player->ids.img_data[pixel + 3] = 1;
+		player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) +
+		(i * 4)))] = color;
+		player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) +
+		(i * 4) + 1))] = color / 256;
+		player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) +
+		(i * 4) + 2))] = color / (256 * 256);
+		player->ids.img_data[(int)(((y * (player->struct_screen.x) * 4) +
+		(i * 4) + 3))] = 1;
 	}
 }
 
@@ -42,6 +44,7 @@ int				get_decimals(float height)
 
 int				exit_game(t_player *player)
 {
+	mlx_destroy_image(player->ids.mlx_ptr, player->ids.img_ptr);
 	mlx_clear_window(player->ids.mlx_ptr, player->ids.mlx_win);
 	mlx_destroy_window(player->ids.mlx_ptr, player->ids.mlx_win);
 	if (player->sprite)

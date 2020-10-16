@@ -174,5 +174,6 @@ int				init_var_sprite_start(t_player *player, int wall_h2, int wall_h,
 int				init_var_sprite_end(t_player *player, int wall_h2, int wall_h,
 				int count);
 void			draw_sprite(t_player *player, int i, int j, int count);
+void			map_error_right(t_player *player);
 
 #endif
