@@ -37,8 +37,7 @@ int		transform_map(char **map, int count, char *line, t_player *player)
 	{
 		if (is_space(line[y]))
 			index = y;
-		if (is_empty_line(line) == 0)
-			map[count][y] = line[y];
+		map[count][y] = line[y];
 		if (y && count && ((y == index && player->walls > index &&
 		is_space(line[y + 1]) == 0) || (player->walls < index)) &&
 		is_empty_line_count(line, y + 1) && is_empty_line(line) == 0
@@ -121,7 +120,7 @@ char	**create_map(char **map, int lenght, t_player *player, char *arg)
 		return (0);
 	while ((i = get_next_line(fd, &line)) >= 0)
 	{
-		if (++y >= player->map_start && count < (player->table_lenght))
+		if (++y >= player->map_start && count <= player->table_lenght)
 		{
 			if (!(map[count] = malloc(sizeof(char) * (player->max + 1))))
 				return (0);

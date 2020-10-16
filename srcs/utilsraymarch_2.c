@@ -14,8 +14,8 @@
 
 int		is_not_wall(t_player *player, float angle, float d)
 {
-	if (player->p != '1' && (!(((int)(player->ray_x + d * sin(angle)) >
-	player->table_lenght - 1 || (int)(player->ray_x + d * sin(angle)) < 0) ||
+	if (player->p != '1' && (!(((int)(player->ray_x + d * sin(angle)) >=
+	player->table_lenght || (int)(player->ray_x + d * sin(angle)) < 0) ||
 	((int)(player->ray_y + d * cos(angle)) > player->max - 1 ||
 	(int)(player->ray_y + d * cos(angle)) < 0))))
 		return (1);
@@ -24,8 +24,8 @@ int		is_not_wall(t_player *player, float angle, float d)
 
 int		is_not_sprite(t_player *player, float angle, float d)
 {
-	if ((!(((int)(player->ray_x + d * sin(angle)) >
-	player->table_lenght - 1 || (int)(player->ray_x + d * sin(angle)) < 0) ||
+	if ((!(((int)(player->ray_x + d * sin(angle)) >=
+	player->table_lenght || (int)(player->ray_x + d * sin(angle)) < 0) ||
 	((int)(player->ray_y + d * cos(angle)) > player->max - 1 ||
 	(int)(player->ray_y + d * cos(angle)) < 0))))
 		return (1);

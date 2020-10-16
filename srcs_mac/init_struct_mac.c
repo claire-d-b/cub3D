@@ -36,6 +36,7 @@ void	init_elements(t_player *player)
 	player->walk_left = 0;
 	player->camera_right = 0;
 	player->camera_left = 0;
+	player->is_map = 0;
 }
 
 void	init_struct_player(t_player *player)
@@ -91,6 +92,7 @@ void	init_elements_exit(t_player *player)
 	player->walk_left = 0;
 	player->camera_right = 0;
 	player->camera_left = 0;
+	player->is_map = 0;
 }
 
 void	init_struct_player_exit(t_player *player)

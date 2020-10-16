@@ -88,6 +88,7 @@ typedef struct	s_ids
 
 typedef struct	s_player
 {
+	int			is_map;
 	int			id_error;
 	int			map_error;
 	int			bool_map;
