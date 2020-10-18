@@ -120,7 +120,7 @@ char	**create_map(char **map, int lenght, t_player *player, char *arg)
 		return (0);
 	while ((i = get_next_line(fd, &line)) >= 0)
 	{
-		if (++y >= player->map_start && count <= player->table_lenght)
+		if (++y >= player->map_start && count < player->table_lenght)
 		{
 			if (!(map[count] = malloc(sizeof(char) * (player->max + 1))))
 				return (0);

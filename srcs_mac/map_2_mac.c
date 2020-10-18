@@ -53,11 +53,11 @@ int		check_walls(int x, int i, char **map, t_player *player)
 	int j;
 
 	j = 0;
-	if (i && i <= player->table_lenght)
+	if (i && i < player->table_lenght)
 	{
 		while (i - x >= 0 && is_empty_line(map[i - x]))
 			x++;
-		while (map[i - x][j] && j < (int)ft_strlen(map[i]))
+		while (i - x >= 0 && j < (int)ft_strlen(map[i - x]) && j < (int)ft_strlen(map[i]))
 		{
 			if (map[i - x][j] != '1' && is_space(map[i - x][j]) == 0)
 				return (1);
@@ -65,9 +65,10 @@ int		check_walls(int x, int i, char **map, t_player *player)
 		}
 		x = 1;
 		j = 0;
-		while (i + x <= player->table_lenght && is_empty_line(map[i + x]))
+		while (i + x < player->table_lenght && is_empty_line(map[i + x]))
 			x++;
-		while (map[i + x][j] && j < (int)ft_strlen(map[i]))
+		while (i + x < player->table_lenght && j < (int)ft_strlen(map[i + x]) &&
+		j < (int)ft_strlen(map[i]))
 		{
 			if (map[i + x][j] != '1' && is_space(map[i + x][j]) == 0)
 				return (1);
@@ -98,7 +99,7 @@ void	parse_map(char **map, t_player *player)
 			if (is_empty_line(map[i]) == 0 && is_space(map[i][j]))
 				map_error(player, map, i, j);
 			if ((is_empty_line(map[i]) == 0 && (i == 0 || i ==
-			player->table_lenght || j == 0) && map[i][j] != '1' &&
+			player->table_lenght - 1 || j == 0) && map[i][j] != '1' &&
 			is_space(map[i][j]) == 0 && is_empty_line(&map[i][j]) == 0) ||
 			(is_empty_line(map[i]) && check_walls(1, i, map, player)))
 			{
