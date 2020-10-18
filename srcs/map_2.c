@@ -53,27 +53,25 @@ int		check_walls(int x, int i, char **map, t_player *player)
 	int j;
 
 	j = 0;
-	if (i && i < player->table_lenght)
+	while (i - x >= 0 && is_empty_line(map[i - x]))
+		x++;
+	while (i - x >= 0 && j < (int)ft_strlen(map[i - x]) &&
+	j < (int)ft_strlen(map[i]))
 	{
-		while (i - x >= 0 && is_empty_line(map[i - x]))
-			x++;
-		while (i - x >= 0 && j < (int)ft_strlen(map[i - x]) && j < (int)ft_strlen(map[i]))
-		{
-			if (map[i - x][j] != '1' && is_space(map[i - x][j]) == 0)
-				return (1);
-			j++;
-		}
-		x = 1;
-		j = 0;
-		while (i + x < player->table_lenght && is_empty_line(map[i + x]))
-			x++;
-		while (i + x < player->table_lenght && j < (int)ft_strlen(map[i + x]) &&
-		j < (int)ft_strlen(map[i]))
-		{
-			if (map[i + x][j] != '1' && is_space(map[i + x][j]) == 0)
-				return (1);
-			j++;
-		}
+		if (map[i - x][j] != '1' && is_space(map[i - x][j]) == 0)
+			return (1);
+		j++;
+	}
+	x = 1;
+	j = 0;
+	while (i + x < player->table_lenght && is_empty_line(map[i + x]))
+		x++;
+	while (i + x < player->table_lenght && j < (int)ft_strlen(map[i + x]) &&
+	j < (int)ft_strlen(map[i]))
+	{
+		if (map[i + x][j] != '1' && is_space(map[i + x][j]) == 0)
+			return (1);
+		j++;
 	}
 	return (0);
 }
@@ -98,10 +96,10 @@ void	parse_map(char **map, t_player *player)
 		{
 			if (is_empty_line(map[i]) == 0 && is_space(map[i][j]))
 				map_error(player, map, i, j);
-			if ((is_empty_line(map[i]) == 0 && (i == 0 || i ==
-			player->table_lenght - 1 || j == 0) && map[i][j] != '1' &&
-			is_space(map[i][j]) == 0 && is_empty_line(&map[i][j]) == 0) ||
-			(is_empty_line(map[i]) && check_walls(1, i, map, player)))
+			if ((is_empty_line(map[i]) == 0 && (i == 0 || i == player->
+table_lenght - 1 || j == 0) && map[i][j] != '1' && is_space(map[i][j]) == 0
+			&& is_empty_line(&map[i][j]) == 0) || (is_empty_line(map[i]) &&
+			i && i < player->table_lenght && check_walls(1, i, map, player)))
 			{
 				player->waste = write(1,
 				"Error\nMap must be surrounded by walls.\n", 39);
